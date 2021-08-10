@@ -964,6 +964,14 @@ void create_update_data()
 		fprintf(f2, "this program add some gui interface,easier for you to use\n");
 		fprintf(f2, "version 3.1.1\n");
 		fprintf(f2, "this version has fixed mouse problem\n");
+		fprintf(f2, "version 3.1.2\n");
+		fprintf(f2, "this version has fixed some problems\n");
+		fprintf(f2, "version 4.0.0 BETA\n");
+		fprintf(f2, "this version has two threads to monitor mouse messages.\n");
+		fprintf(f2, "version 4.0.0\n");
+		fprintf(f2, "this version has git to github\n");
+		fprintf(f2, "version 4.0.1\n");
+		fprintf(f2, "this version has makes a open sourse license.\n");
 		fclose(f2);
 	}
 
