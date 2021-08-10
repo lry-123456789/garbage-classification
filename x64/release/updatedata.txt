@@ -1,0 +1,7 @@
+version 1.0.1
+this verson can make simple classify
+version 2.0.1
+this version can run in a mode(lost something it have,still can run)
+add a signcode to this program
+version 3.0.1
+this program add some gui interface,easier for you to use
