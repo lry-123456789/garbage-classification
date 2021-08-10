@@ -1,8 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
-#pragma once
 #include<stdio.h>
 #include<stdlib.h>
-//#include<graphics.h>
 #include<math.h>
 #include<memory.h>
 #include<memory>
