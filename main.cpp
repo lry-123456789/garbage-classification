@@ -44,10 +44,10 @@ int global_change_thread = 1;						//0::use mouse+message_after_1;1::use mouse_m
 * mouse		: this program can be use by mouse 
 * thread	: this program can use in a mutli-threads system
 * what's the function means:
-*		1		:check_python_environment	:this function can check the python environment is completely or not
-*		2		:self_classification		:this function can classify the photograph all by this program itself
+*		1		:check_python_environment			:this function can check the python environment is completely or not
+*		2		:self_classification				:this function can classify the photograph all by this program itself
 *		3		:read_file					:this function can read the files from connect.dll and show on the sereen.
-*		4		:create_operatble_file		:this function can create operatable files for this program to use
+*		4		:create_operatble_file				:this function can create operatable files for this program to use
 *		5		:show						:this function can show the classification by this program or by the users
 *		6		:check_file					:this function can check files is or not fixed successfully.
 *		7		:fix_file_1					:this function can fix the important file this program must use == model.dll
@@ -57,15 +57,15 @@ int global_change_thread = 1;						//0::use mouse+message_after_1;1::use mouse_m
 *		11		:fix_file_5					:this function can fix the important file this program must use == utils.py			>>in order to make the program have a better accuracy
 *		12		:fix_file_6					:this function can fix the important file this program must use == readme.txt		>>in order to make sure that the users can have the right choice to use this program.
 *		13		:fix_file_7					:this function can fix the important file this program must use == Data_Pre.py		>>in order to make this program have the prearation to analysis this photograph.
-*		14		:create_update_data			:this function can show the updata log to the users.
-*		15		:mouse_message_init			:this function is a new thread that can run with GUI interface.
-*		16		:mouse_message_after		:this function is a new thread that can give message to this program .in the use of the running time.
-*		17		:GUI_interface_1			:this function is a new thread that can give the users a good usage operation.
-*		18		:GUI_interface_2			:this function is a new thread that can give the users a operatalbe interface.
-*		19		:GUI_interface_3			:this function is a new thread that can give the users a operatable interface.
-*		20		:language_setting			:set the language you use.			//can't use in this version.
-*		21		:get_the_time_now			:get the time now.
-*		22		:show_the_settings			:show the settings of program
+*		14		:create_update_data				:this function can show the updata log to the users.
+*		15		:mouse_message_init				:this function is a new thread that can run with GUI interface.
+*		16		:mouse_message_after				:this function is a new thread that can give message to this program .in the use of the running time.
+*		17		:GUI_interface_1				:this function is a new thread that can give the users a good usage operation.
+*		18		:GUI_interface_2				:this function is a new thread that can give the users a operatalbe interface.
+*		19		:GUI_interface_3				:this function is a new thread that can give the users a operatable interface.
+*		20		:language_setting				:set the language you use.			//can't use in this version.
+*		21		:get_the_time_now				:get the time now.
+*		22		:show_the_settings				:show the settings of program
 * start create time :2021.3.12
 * 2021.3.12 version 1.0.1 can only run in dos mode.using python script.
 * 2021.7.27 version 2.0.1 this version can fix the wrong files auto.but without any GUI interface.
