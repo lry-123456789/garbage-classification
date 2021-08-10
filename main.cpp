@@ -28,16 +28,16 @@ using namespace std;
 
 //define global number to start or to stop the program_thread without any problem
 int global_language = 0;							//global_language=0::Chinese global_languaage=1::English
-int global_thread_stop_1 = 0;						//global_thread_stop_1=0::continue global_thread_stop_1=1::exit the thread mouse_message_init and exit break the while 1 global_stop_1=2::exit the program.
-int global_thread_stop_2 = 0;						//global_thread_stop_2=0::continue global_thread_stop_2=1::goto next line. global_thread_stop=2::exit the program.
-int global_judge_thread_mouse_message_init = 0;		//global_judge_thread_mouse_message_init=1::thread mouse_message_init is alive global_judge_thread_mouse_init=0::thread mouse_message_init is dead
-int global_check_files_0 = 0;						//global_check_files_0=0::it has not begun to check files. global_check_files_0=-1::unknown eror this can cause this program exit.global_check_files_0=1,check model.dll finished global_check_files_0=2 check train.dll finished.global_check_files_0=3,check connect.dll finished.global_check_files_0=4 check Test_model.dll finished. global_check_files_0=5 check utils.py finished. global_check_files_0=6 check readme.txt finished. global_check_files_0=7 check Data_Pre.py finished.
-int global_check_python_environment = 0;			//global_check_python_environment=-1::no python environment.global_check_python_environment=0::it has not begun to check python environment global_check_python_environment=1::check torch finished. global_check_python_environment=2::check matplotlib finished. global_check_python_environment=3 check visdom finished.global_check_python_environment=4::check torchvision finished.
-int global_files[7] = { 0 };						//in order to store which file is not exist. if global_files[]=1::means this file is not exist. if global_files[]=0::means this file is exist. global_files[0]->model.dll global_files[1]->train.dll global_files[2]->connect.dll global_files[3]->Test_model.dll global_files[4]->utils.py global_files[5]->readme.txt global_files[6]->Data_Pre.py
-int global_judge_thread_mouse_message_after_1 = 0;	//global_judge_thread_mouse_message_after_1=1::thread mouse_message_after_1 is alive global_judge_thread_mouse_after_1=0::thread mouse_message_after_1 is dead.
+int global_thread_stop_1 = 0;							//global_thread_stop_1=0::continue global_thread_stop_1=1::exit the thread mouse_message_init and exit break the while 1 global_stop_1=2::exit the program.
+int global_thread_stop_2 = 0;							//global_thread_stop_2=0::continue global_thread_stop_2=1::goto next line. global_thread_stop=2::exit the program.
+int global_judge_thread_mouse_message_init = 0;					//global_judge_thread_mouse_message_init=1::thread mouse_message_init is alive global_judge_thread_mouse_init=0::thread mouse_message_init is dead
+int global_check_files_0 = 0;							//global_check_files_0=0::it has not begun to check files. global_check_files_0=-1::unknown eror this can cause this program exit.global_check_files_0=1,check model.dll finished global_check_files_0=2 check train.dll finished.global_check_files_0=3,check connect.dll finished.global_check_files_0=4 check Test_model.dll finished. global_check_files_0=5 check utils.py finished. global_check_files_0=6 check readme.txt finished. global_check_files_0=7 check Data_Pre.py finished.
+int global_check_python_environment = 0;					//global_check_python_environment=-1::no python environment.global_check_python_environment=0::it has not begun to check python environment global_check_python_environment=1::check torch finished. global_check_python_environment=2::check matplotlib finished. global_check_python_environment=3 check visdom finished.global_check_python_environment=4::check torchvision finished.
+int global_files[7] = { 0 };							//in order to store which file is not exist. if global_files[]=1::means this file is not exist. if global_files[]=0::means this file is exist. global_files[0]->model.dll global_files[1]->train.dll global_files[2]->connect.dll global_files[3]->Test_model.dll global_files[4]->utils.py global_files[5]->readme.txt global_files[6]->Data_Pre.py
+int global_judge_thread_mouse_message_after_1 = 0;				//global_judge_thread_mouse_message_after_1=1::thread mouse_message_after_1 is alive global_judge_thread_mouse_after_1=0::thread mouse_message_after_1 is dead.
 int global_position_x = 0;							//get the position of this program(x)
 int global_position_y = 0;							//get the position of this program(y)
-int global_change_thread = 1;						//0::use mouse+message_after_1;1::use mouse_message_from_windows_api
+int global_change_thread = 1;							//0::use mouse+message_after_1;1::use mouse_message_from_windows_api
 /********************************************\
 * this program is powered by lry
 * function	: this program can provide a GUI for the guest
@@ -70,6 +70,7 @@ int global_change_thread = 1;						//0::use mouse+message_after_1;1::use mouse_m
 * 2021.3.12 version 1.0.1 can only run in dos mode.using python script.
 * 2021.7.27 version 2.0.1 this version can fix the wrong files auto.but without any GUI interface.
 * 2021.8.6  version 3.0.1 this version have a GUIinterface,but still have some bugs.
+* 2021.8.10 version 4.0.1 this version has been git to github.com
 \***********************************************/
 
 //function begin.
@@ -137,13 +138,13 @@ void init()
 	cleardevice();
 	_beginthread(get_the_time_now, 0, NULL);
 	_beginthread(mouse_message_init, 0, NULL);
-	wchar_t ch_0_0[] = L"语言：中文,单击此处已更改                                            ";
-	wchar_t ch_1_0[] = L"启动主程序                                                       ";
-	wchar_t ch_2_0[] = L"显示本程序设置以及版权信息                                                             ";
-	wchar_t ch_3_0[] = L"退出本程序                             ";
-	wchar_t ch_0_1[] = L"language : English,click here to change language";
-	wchar_t ch_1_1[] = L"start running the main program";
-	wchar_t ch_2_1[] = L"show the settings of this program and the copyright of the author";
+	wchar_t ch_0_0[] = L"语言：中文,单击此处已更改                    							                        ";
+	wchar_t ch_1_0[] = L"启动主程序                                                							       ";
+	wchar_t ch_2_0[] = L"显示本程序设置以及版权信息                                      				                       ";
+	wchar_t ch_3_0[] = L"退出本程序                          											   ";
+	wchar_t ch_0_1[] = L"language : English,click here to change language									";
+	wchar_t ch_1_1[] = L"start running the main program											";
+	wchar_t ch_2_1[] = L"show the settings of this program and the copyright of the author							";
 	wchar_t ch_3_1[] = L"exit this program";
 	FILE* ffp = fopen("log.log", "a+");
 	while (1)
