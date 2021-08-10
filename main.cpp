@@ -1803,3 +1803,29 @@ void change_thread_operation()
 		_beginthread(mouse_message_from_windows_api, 0, NULL);
 	}
 }
+
+/*****************************************\
+//fix tips:
+//SHORT GetAsyncKeyState (int nVirtKey);
+VirtKey		intger		mouse/keyboard
+VK_LBUTTON	1		mouse_left
+VK_RBUTTON	2		mouse_right
+VK_CANCEL	3		cancel
+VK_MBUTTON	4		mouse_middle
+VK_XBUTTON1	5		UNKNOWN
+VK_XBUTTON	6		UNKNOWN
+VK_BACK		7		Backspace
+VK_TAB		8		Tab
+UNKNOWN		9		UNKNOWN
+UNKNOWN		10		UNKNOWN
+VK_CLEAR	12		clear
+VK_RETURN	13		Enter
+UNKNOWN		14		UNKNOWN
+UNKNOWN		15		UNKNOWN
+VK_SHIFT	16		shift
+VK_CONTROL	17		Ctrl
+VK_MENU		18		Alt
+VK_PAUSE	19		pause
+VK_CAPITAL	20		Caps Lock
+//update tommorrow.
+\******************************************/
