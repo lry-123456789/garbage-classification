@@ -1449,7 +1449,7 @@ void fix_thread(void*)
 
 void protect_thread(void*)
 {
-	FILE* ffp = fopen("error_init_mouse_message.log", "a+");
+	//FILE* ffp = fopen("error_init_mouse_message.log", "a+");
 	//DWORD t1 = timeGetTime();
 	int year, month, date, hour, min, sec;
 	time_t timep;
@@ -1462,12 +1462,12 @@ void protect_thread(void*)
 	hour = 8 + p->tm_hour;
 	min = p->tm_min;
 	sec = p->tm_sec;
-	fprintf(ffp, "thread protect_thread try to protect the thread mouse_message_after_1(void*)\n");
-	fprintf(ffp, "time:%d.%d.%d %d:%d:%d\t\tthread protect_thread begin\n", year, month, date, hour, min, sec);
-	fclose(ffp);
+	//fprintf(ffp, "thread protect_thread try to protect the thread mouse_message_after_1(void*)\n");
+	//fprintf(ffp, "time:%d.%d.%d %d:%d:%d\t\tthread protect_thread begin\n", year, month, date, hour, min, sec);
+	//fclose(ffp);
 	//while (1)
 	{
-		FILE* ffp = fopen("error_init_mouse_message.log", "a+");
+		//FILE* ffp = fopen("error_init_mouse_message.log", "a+");
 		time_t timep;
 		struct tm* p;
 		time(&timep);
@@ -1478,9 +1478,9 @@ void protect_thread(void*)
 		hour = 8 + p->tm_hour;
 		min = p->tm_min;
 		sec = p->tm_sec;
-		fprintf(ffp, "time: %d.%2d.%2d %2d:%2d:%2d\t\twe are trying to protect the thread:mouse_message_after_1.", year, month, date, hour, min, sec);
-		fprintf(ffp, "errortype:thread fix_thread cannot fix mouse_message\t\t");
-		fprintf(ffp, "we are trying to restart the thread.\n");
+		//fprintf(ffp, "time: %d.%2d.%2d %2d:%2d:%2d\t\twe are trying to protect the thread:mouse_message_after_1.", year, month, date, hour, min, sec);
+		//fprintf(ffp, "errortype:thread fix_thread cannot fix mouse_message\t\t");
+		//fprintf(ffp, "we are trying to restart the thread.\n");
 		_beginthread(mouse_message_after_1, 0, NULL);
 		fclose(ffp);
 	}
@@ -1496,7 +1496,7 @@ void mouse_test(void*)
 	int year, month, date, hour, min, sec;
 	while (1)
 	{
-		FILE* f1 = fopen("mouse.log", "a+");
+		//FILE* f1 = fopen("mouse.log", "a+");
 		m = GetMouseMsg();
 		if (m.mkCtrl)
 		{
@@ -1508,8 +1508,8 @@ void mouse_test(void*)
 			hour = 8 + p->tm_hour;
 			min = p->tm_min;
 			sec = p->tm_sec;
-			fprintf(f1, "time: %d.%2d.%2d %2d:%2d:%2d\t\t", year, month, date, hour, min, sec);
-			fprintf(f1, "mouse ctrl down at position(%d,%d)\n", m.x, m.y);
+			//fprintf(f1, "time: %d.%2d.%2d %2d:%2d:%2d\t\t", year, month, date, hour, min, sec);
+			//fprintf(f1, "mouse ctrl down at position(%d,%d)\n", m.x, m.y);
 		}
 		if (m.mkLButton)
 		{
@@ -1521,8 +1521,8 @@ void mouse_test(void*)
 			hour = 8 + p->tm_hour;
 			min = p->tm_min;
 			sec = p->tm_sec;
-			fprintf(f1, "time: %d.%2d.%2d %2d:%2d:%2d\t\t", year, month, date, hour, min, sec);
-			fprintf(f1, "mouse left down at position(%d,%d)\n", m.x, m.y);
+			//fprintf(f1, "time: %d.%2d.%2d %2d:%2d:%2d\t\t", year, month, date, hour, min, sec);
+			//fprintf(f1, "mouse left down at position(%d,%d)\n", m.x, m.y);
 		}
 		if (m.mkMButton)
 		{
@@ -1534,8 +1534,8 @@ void mouse_test(void*)
 			hour = 8 + p->tm_hour;
 			min = p->tm_min;
 			sec = p->tm_sec;
-			fprintf(f1, "time: %d.%2d.%2d %2d:%2d:%2d\t\t", year, month, date, hour, min, sec);
-			fprintf(f1, "mouse middle down at position(%d,%d)\n", m.x, m.y);
+			//fprintf(f1, "time: %d.%2d.%2d %2d:%2d:%2d\t\t", year, month, date, hour, min, sec);
+			//fprintf(f1, "mouse middle down at position(%d,%d)\n", m.x, m.y);
 		}
 		if (m.mkRButton)
 		{
@@ -1547,8 +1547,8 @@ void mouse_test(void*)
 			hour = 8 + p->tm_hour;
 			min = p->tm_min;
 			sec = p->tm_sec;
-			fprintf(f1, "time: %d.%2d.%2d %2d:%2d:%2d\t\t", year, month, date, hour, min, sec);
-			fprintf(f1, "mouse right down at position(%d,%d)\n", m.x, m.y);
+			//fprintf(f1, "time: %d.%2d.%2d %2d:%2d:%2d\t\t", year, month, date, hour, min, sec);
+			//fprintf(f1, "mouse right down at position(%d,%d)\n", m.x, m.y);
 		}
 		if (m.mkShift)
 		{
@@ -1560,8 +1560,8 @@ void mouse_test(void*)
 			hour = 8 + p->tm_hour;
 			min = p->tm_min;
 			sec = p->tm_sec;
-			fprintf(f1, "time: %d.%2d.%2d %2d:%2d:%2d\t\t", year, month, date, hour, min, sec);
-			fprintf(f1, "mouse shift down at position(%d,%d)\n", m.x, m.y);
+			//fprintf(f1, "time: %d.%2d.%2d %2d:%2d:%2d\t\t", year, month, date, hour, min, sec);
+			//fprintf(f1, "mouse shift down at position(%d,%d)\n", m.x, m.y);
 		}
 		else
 		{
@@ -1573,10 +1573,10 @@ void mouse_test(void*)
 			hour = 8 + p->tm_hour;
 			min = p->tm_min;
 			sec = p->tm_sec;
-			fprintf(f1, "time: %d.%2d.%2d %2d:%2d:%2d\t\t", year, month, date, hour, min, sec);
-			fprintf(f1, "mouse has moved at position(%d,%d)\n", m.x, m.y);
+			//fprintf(f1, "time: %d.%2d.%2d %2d:%2d:%2d\t\t", year, month, date, hour, min, sec);
+			//fprintf(f1, "mouse has moved at position(%d,%d)\n", m.x, m.y);
 		}
-		fclose(f1);
+		//fclose(f1);
 	}
 }
 
