@@ -1090,8 +1090,8 @@ void mouse_message_after_1(void*)
 	FlushMouseMsgBuffer();
 	int a = 0;
 	int temp = 0;
-	wchar_t ch_cn[] = L"鼠标事件线程运行正常";
-	wchar_t ch_en[] = L"mouse_message is running ordinary";
+	//wchar_t ch_cn[] = L"鼠标事件线程运行正常";
+	//wchar_t ch_en[] = L"mouse_message is running ordinary";
 	try
 	{
 		while (1)
@@ -1360,7 +1360,7 @@ void clear(void*)
 void fix_thread(void*)
 {
 	_beginthread(mouse_test, 0, NULL);
-	FILE* ffp = fopen("error_init_mouse_message.log", "a+");
+	//FILE* ffp = fopen("error_init_mouse_message.log", "a+");
 	//DWORD t1 = timeGetTime();
 	int year, month, date, hour, min, sec;
 	time_t timep;
@@ -1373,8 +1373,8 @@ void fix_thread(void*)
 	hour = 8 + p->tm_hour;
 	min = p->tm_min;
 	sec = p->tm_sec;
-	fprintf(ffp, "thread fix_thread try to fix the thread mouse_message_after_1(void*)\n");
-	fprintf(ffp, "time:%d.%d.%d %d:%d:%d\t\tthread fix_thread begin\n", year, month, date, hour, min, sec);
+	//fprintf(ffp, "thread fix_thread try to fix the thread mouse_message_after_1(void*)\n");
+	//fprintf(ffp, "time:%d.%d.%d %d:%d:%d\t\tthread fix_thread begin\n", year, month, date, hour, min, sec);
 	fclose(ffp);
 	MOUSEMSG m;
 	while (1)
@@ -1384,7 +1384,7 @@ void fix_thread(void*)
 		{
 			if (global_judge_thread_mouse_message_after_1 == 0)
 			{
-				FILE* ffp = fopen("error_init_mouse_message.log", "a+");
+				//FILE* ffp = fopen("error_init_mouse_message.log", "a+");
 				time_t timep;
 				struct tm* p;
 				time(&timep);
@@ -1395,16 +1395,16 @@ void fix_thread(void*)
 				hour = 8 + p->tm_hour;
 				min = p->tm_min;
 				sec = p->tm_sec;
-				fprintf(ffp, "time: %d.%2d.%2d %2d:%2d:%2d\t\twe are monitoring the thread:mouse_message_after_1.",year, month, date, hour, min, sec);
-				fprintf(ffp, "errortype: no error ");
+				//fprintf(ffp, "time: %d.%2d.%2d %2d:%2d:%2d\t\twe are monitoring the thread:mouse_message_after_1.",year, month, date, hour, min, sec);
+				//fprintf(ffp, "errortype: no error ");
 				//_beginthread(mouse_message_after_1, 0, NULL);
-				fprintf(ffp, "\t\t no need to fix\n");
-				fclose(ffp);
+				//fprintf(ffp, "\t\t no need to fix\n");
+				//fclose(ffp);
 			}
 			//Sleep(500);
 			if (global_judge_thread_mouse_message_after_1 == 1)
 			{
-				FILE* ffp = fopen("error_init_mouse_message.log", "a+");
+				//FILE* ffp = fopen("error_init_mouse_message.log", "a+");
 				time_t timep;
 				struct tm* p;
 				time(&timep);
@@ -1415,15 +1415,15 @@ void fix_thread(void*)
 				hour = 8 + p->tm_hour;
 				min = p->tm_min;
 				sec = p->tm_sec;
-				fprintf(ffp, "time: %d.%2d.%2d %2d:%2d:%2d\t\twe are trying to fix the thread:mouse_message_after_1.", year, month, date, hour, min, sec);
-				fprintf(ffp, "errortype:unknown error");
+				//fprintf(ffp, "time: %d.%2d.%2d %2d:%2d:%2d\t\twe are trying to fix the thread:mouse_message_after_1.", year, month, date, hour, min, sec);
+				//fprintf(ffp, "errortype:unknown error");
 				_beginthread(mouse_message_after_1, 0, NULL);
-				fprintf(ffp, "\t\t fix successfully\n");
-				fclose(ffp);
+				//fprintf(ffp, "\t\t fix successfully\n");
+				//fclose(ffp);
 			}
 			else
 			{
-				FILE* ffp = fopen("error_init_mouse_message.log", "a+");
+				//FILE* ffp = fopen("error_init_mouse_message.log", "a+");
 				time_t timep;
 				struct tm* p;
 				time(&timep);
@@ -1434,10 +1434,10 @@ void fix_thread(void*)
 				hour = 8 + p->tm_hour;
 				min = p->tm_min;
 				sec = p->tm_sec;
-				fprintf(ffp, "time: %d.%2d.%2d %2d:%2d:%2d\t\twe are trying to fix the thread:mouse_message_after_1.", year, month, date, hour, min, sec);
-				fprintf(ffp, "errortype:unknown error");
-				fprintf(ffp, "\t\tfix failed\n");
-				fclose(ffp);
+				//fprintf(ffp, "time: %d.%2d.%2d %2d:%2d:%2d\t\twe are trying to fix the thread:mouse_message_after_1.", year, month, date, hour, min, sec);
+				//fprintf(ffp, "errortype:unknown error");
+				//fprintf(ffp, "\t\tfix failed\n");
+				//fclose(ffp);
 				_beginthread(protect_thread, 0, NULL);
 				_endthread();
 				//exit(0);
