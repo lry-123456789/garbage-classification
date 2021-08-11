@@ -1100,13 +1100,13 @@ void mouse_message_after_1(void*)
 			{
 				break;
 			}
-			if (global_language == 0)
+			//if (global_language == 0)
 			{
-				outtextxy(50, 400, ch_cn);
+				//outtextxy(50, 400, ch_cn);
 			}
-			if (global_language == 1)
+			//if (global_language == 1)
 			{
-				outtextxy(50, 400, ch_en);
+				//outtextxy(50, 400, ch_en);
 			}
 			m = GetMouseMsg();
 			while (m.mkLButton)
