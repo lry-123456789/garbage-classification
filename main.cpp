@@ -1590,9 +1590,9 @@ void mouse_message_from_windows_api(void*)
 	int x, y,real_x,real_y;
 	POINT pt;
 	int temp;
-	FILE* f1 = fopen("mouse_message_from_api.log", "a+");
-	fprintf(f1, "thread mouse_message_from_windows_api begin\n");
-	fclose(f1);
+	//FILE* f1 = fopen("mouse_message_from_api.log", "a+");
+	//fprintf(f1, "thread mouse_message_from_windows_api begin\n");
+	//fclose(f1);
 	time_t timep;
 	MOUSEMSG m;
 	struct tm* p;
@@ -1616,9 +1616,9 @@ void mouse_message_from_windows_api(void*)
 		real_y = pt.y;
 		x = real_x - global_position_x;
 		y = real_y - global_position_y-50;
-		FILE* f1 = fopen("mouse_message_from_api.log", "a+");
-		fprintf(f1, "time: %d.%2d.%2d %2d:%2d:%2d\t\t", year, month, date, hour, min, sec);
-		fprintf(f1, "mouse position :(%d,%d)\n", x, y);
+		//FILE* f1 = fopen("mouse_message_from_api.log", "a+");
+		//fprintf(f1, "time: %d.%2d.%2d %2d:%2d:%2d\t\t", year, month, date, hour, min, sec);
+		//fprintf(f1, "mouse position :(%d,%d)\n", x, y);
 		//VK_LBUTTON	mouse_left_down		0x01
 		//VK_RBUTTON	mouse_right_down	0x02
 		//VK_CANCEL		Ctrl+Break			0x03
@@ -1750,7 +1750,7 @@ void mouse_message_from_windows_api(void*)
 				_endthread();
 			};
 		}
-		fclose(f1);
+		//fclose(f1);
 	}
 	_endthread();
 }
