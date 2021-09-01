@@ -1,6 +1,8 @@
 #define _CRT_SECURE_NO_WARNINGS
+#pragma once
 #include<stdio.h>
 #include<stdlib.h>
+//#include<graphics.h>
 #include<math.h>
 #include<memory.h>
 #include<memory>
@@ -26,26 +28,26 @@ using namespace std;
 
 //define global number to start or to stop the program_thread without any problem
 int global_language = 0;							//global_language=0::Chinese global_languaage=1::English
-int global_thread_stop_1 = 0;							//global_thread_stop_1=0::continue global_thread_stop_1=1::exit the thread mouse_message_init and exit break the while 1 global_stop_1=2::exit the program.
-int global_thread_stop_2 = 0;							//global_thread_stop_2=0::continue global_thread_stop_2=1::goto next line. global_thread_stop=2::exit the program.
-int global_judge_thread_mouse_message_init = 0;					//global_judge_thread_mouse_message_init=1::thread mouse_message_init is alive global_judge_thread_mouse_init=0::thread mouse_message_init is dead
-int global_check_files_0 = 0;							//global_check_files_0=0::it has not begun to check files. global_check_files_0=-1::unknown eror this can cause this program exit.global_check_files_0=1,check model.dll finished global_check_files_0=2 check train.dll finished.global_check_files_0=3,check connect.dll finished.global_check_files_0=4 check Test_model.dll finished. global_check_files_0=5 check utils.py finished. global_check_files_0=6 check readme.txt finished. global_check_files_0=7 check Data_Pre.py finished.
-int global_check_python_environment = 0;					//global_check_python_environment=-1::no python environment.global_check_python_environment=0::it has not begun to check python environment global_check_python_environment=1::check torch finished. global_check_python_environment=2::check matplotlib finished. global_check_python_environment=3 check visdom finished.global_check_python_environment=4::check torchvision finished.
-int global_files[7] = { 0 };							//in order to store which file is not exist. if global_files[]=1::means this file is not exist. if global_files[]=0::means this file is exist. global_files[0]->model.dll global_files[1]->train.dll global_files[2]->connect.dll global_files[3]->Test_model.dll global_files[4]->utils.py global_files[5]->readme.txt global_files[6]->Data_Pre.py
-int global_judge_thread_mouse_message_after_1 = 0;				//global_judge_thread_mouse_message_after_1=1::thread mouse_message_after_1 is alive global_judge_thread_mouse_after_1=0::thread mouse_message_after_1 is dead.
+int global_thread_stop_1 = 0;						//global_thread_stop_1=0::continue global_thread_stop_1=1::exit the thread mouse_message_init and exit break the while 1 global_stop_1=2::exit the program.
+int global_thread_stop_2 = 0;						//global_thread_stop_2=0::continue global_thread_stop_2=1::goto next line. global_thread_stop=2::exit the program.
+int global_judge_thread_mouse_message_init = 0;		//global_judge_thread_mouse_message_init=1::thread mouse_message_init is alive global_judge_thread_mouse_init=0::thread mouse_message_init is dead
+int global_check_files_0 = 0;						//global_check_files_0=0::it has not begun to check files. global_check_files_0=-1::unknown eror this can cause this program exit.global_check_files_0=1,check model.dll finished global_check_files_0=2 check train.dll finished.global_check_files_0=3,check connect.dll finished.global_check_files_0=4 check Test_model.dll finished. global_check_files_0=5 check utils.py finished. global_check_files_0=6 check readme.txt finished. global_check_files_0=7 check Data_Pre.py finished.
+int global_check_python_environment = 0;			//global_check_python_environment=-1::no python environment.global_check_python_environment=0::it has not begun to check python environment global_check_python_environment=1::check torch finished. global_check_python_environment=2::check matplotlib finished. global_check_python_environment=3 check visdom finished.global_check_python_environment=4::check torchvision finished.
+int global_files[7] = { 0 };						//in order to store which file is not exist. if global_files[]=1::means this file is not exist. if global_files[]=0::means this file is exist. global_files[0]->model.dll global_files[1]->train.dll global_files[2]->connect.dll global_files[3]->Test_model.dll global_files[4]->utils.py global_files[5]->readme.txt global_files[6]->Data_Pre.py
+int global_judge_thread_mouse_message_after_1 = 0;	//global_judge_thread_mouse_message_after_1=1::thread mouse_message_after_1 is alive global_judge_thread_mouse_after_1=0::thread mouse_message_after_1 is dead.
 int global_position_x = 0;							//get the position of this program(x)
 int global_position_y = 0;							//get the position of this program(y)
-int global_change_thread = 1;							//0::use mouse+message_after_1;1::use mouse_message_from_windows_api
+int global_change_thread = 1;						//0::use mouse+message_after_1;1::use mouse_message_from_windows_api
 /********************************************\
 * this program is powered by lry
 * function	: this program can provide a GUI for the guest
 * mouse		: this program can be use by mouse 
 * thread	: this program can use in a mutli-threads system
 * what's the function means:
-*		1		:check_python_environment			:this function can check the python environment is completely or not
-*		2		:self_classification				:this function can classify the photograph all by this program itself
+*		1		:check_python_environment	:this function can check the python environment is completely or not
+*		2		:self_classification		:this function can classify the photograph all by this program itself
 *		3		:read_file					:this function can read the files from connect.dll and show on the sereen.
-*		4		:create_operatble_file				:this function can create operatable files for this program to use
+*		4		:create_operatble_file		:this function can create operatable files for this program to use
 *		5		:show						:this function can show the classification by this program or by the users
 *		6		:check_file					:this function can check files is or not fixed successfully.
 *		7		:fix_file_1					:this function can fix the important file this program must use == model.dll
@@ -55,20 +57,19 @@ int global_change_thread = 1;							//0::use mouse+message_after_1;1::use mouse_
 *		11		:fix_file_5					:this function can fix the important file this program must use == utils.py			>>in order to make the program have a better accuracy
 *		12		:fix_file_6					:this function can fix the important file this program must use == readme.txt		>>in order to make sure that the users can have the right choice to use this program.
 *		13		:fix_file_7					:this function can fix the important file this program must use == Data_Pre.py		>>in order to make this program have the prearation to analysis this photograph.
-*		14		:create_update_data				:this function can show the updata log to the users.
-*		15		:mouse_message_init				:this function is a new thread that can run with GUI interface.
-*		16		:mouse_message_after				:this function is a new thread that can give message to this program .in the use of the running time.
-*		17		:GUI_interface_1				:this function is a new thread that can give the users a good usage operation.
-*		18		:GUI_interface_2				:this function is a new thread that can give the users a operatalbe interface.
-*		19		:GUI_interface_3				:this function is a new thread that can give the users a operatable interface.
-*		20		:language_setting				:set the language you use.			//can't use in this version.
-*		21		:get_the_time_now				:get the time now.
-*		22		:show_the_settings				:show the settings of program
+*		14		:create_update_data			:this function can show the updata log to the users.
+*		15		:mouse_message_init			:this function is a new thread that can run with GUI interface.
+*		16		:mouse_message_after		:this function is a new thread that can give message to this program .in the use of the running time.
+*		17		:GUI_interface_1			:this function is a new thread that can give the users a good usage operation.
+*		18		:GUI_interface_2			:this function is a new thread that can give the users a operatalbe interface.
+*		19		:GUI_interface_3			:this function is a new thread that can give the users a operatable interface.
+*		20		:language_setting			:set the language you use.			//can't use in this version.
+*		21		:get_the_time_now			:get the time now.
+*		22		:show_the_settings			:show the settings of program
 * start create time :2021.3.12
 * 2021.3.12 version 1.0.1 can only run in dos mode.using python script.
 * 2021.7.27 version 2.0.1 this version can fix the wrong files auto.but without any GUI interface.
 * 2021.8.6  version 3.0.1 this version have a GUIinterface,but still have some bugs.
-* 2021.8.10 version 4.0.1 this version has been git to github.com
 \***********************************************/
 
 //function begin.
@@ -112,15 +113,33 @@ wchar_t code_license_and_sourse_code[] = L"if you want to see more information(s
 
 //main_thread begin
 
-int main()
+int main(int agrc,char *agrv[])
 {
-	setlocale(LC_ALL, "");
-	create_update_data();
-	init();
-	GUI_interface_1();
-	cleardevice();
-	GUI_interface_2();
-	system("pause");
+	if (agrc == 1)
+	{
+		setlocale(LC_ALL, "");
+		create_update_data();
+		init();
+		GUI_interface_1();
+		cleardevice();
+		GUI_interface_2();
+		system("pause");
+	}
+	else if (agrc > 1)
+	{
+		printf("下面输出导入的参数\n");
+		printf("参数个数：%d\n", agrc);
+		for (int i = 0; i < agrc; i++)
+		{
+			printf("%s\n", agrv[i]);
+		}
+	}
+	else if (agrc < 1)
+	{
+		printf("本程序出现了严重异常，正在处理中，请稍后\n");
+		printf("错误原因：系统参数出错\n");
+		printf("读取参数个数：%d", agrc);
+	}
 }
 
 void init()
@@ -136,13 +155,13 @@ void init()
 	cleardevice();
 	_beginthread(get_the_time_now, 0, NULL);
 	_beginthread(mouse_message_init, 0, NULL);
-	wchar_t ch_0_0[] = L"语言：中文,单击此处已更改                    							                        ";
-	wchar_t ch_1_0[] = L"启动主程序                                                							       ";
-	wchar_t ch_2_0[] = L"显示本程序设置以及版权信息                                      				                       ";
-	wchar_t ch_3_0[] = L"退出本程序                          											   ";
-	wchar_t ch_0_1[] = L"language : English,click here to change language									";
-	wchar_t ch_1_1[] = L"start running the main program											";
-	wchar_t ch_2_1[] = L"show the settings of this program and the copyright of the author							";
+	wchar_t ch_0_0[] = L"语言：中文,单击此处已更改                                            ";
+	wchar_t ch_1_0[] = L"启动主程序                                                       ";
+	wchar_t ch_2_0[] = L"显示本程序设置以及版权信息                                                             ";
+	wchar_t ch_3_0[] = L"退出本程序                             ";
+	wchar_t ch_0_1[] = L"language : English,click here to change language";
+	wchar_t ch_1_1[] = L"start running the main program";
+	wchar_t ch_2_1[] = L"show the settings of this program and the copyright of the author";
 	wchar_t ch_3_1[] = L"exit this program";
 	FILE* ffp = fopen("log.log", "a+");
 	while (1)
@@ -226,8 +245,8 @@ void mouse_message_init(void*)
 
 void show_the_settings(void*)
 {
-	wchar_t ch_0[] = L"本程序由刘仁宇编写\n本程序可以通过内置的模型，进行自动化的垃圾分类操作。\n本程序也可以通过手工分类进行分类操作\n如果出现了鼠标无法操作本程序的情况，请按下空格键后重试";
-	wchar_t ch_1[] = L"this program is powered by lry\n this program can use the model init to classify the garbage auto.\nthis program can also classify by the user\nif this program cannot operated by mouse,please press Space,to restart therad(mouse_message)";
+	wchar_t ch_0[] = L"本程序由刘仁宇编写\n本程序可以通过内置的模型，进行自动化的垃圾分类操作。\n本程序也可以通过手工分类进行分类操作\n如果出现了鼠标无法操作本程序的情况，请按下空格键后重试\n请保证您所使用的python>=3.8.5\n编译支持：Visual Studio 2019 Community\n版本信息：version 7.0.0\n编译时间：2021.9.1\n代码行数：1856\n程序接口以及文件调用：connect.dll Test_model.dll python.exe train.dll resnet.py model.dll Data_pre.py utils.py";
+	wchar_t ch_1[] = L"this program is powered by lry\n this program can use the model init to classify the garbage auto.\nthis program can also classify by the user\nif this program cannot operated by mouse,please press Space,to restart therad(mouse_message)\nplease confirm that python on your computer is >=3.8.5\ncomplier powered by :Visual Studio 2019 Community\nversion :version 7.0.0\ncomplied time :2021.9.1\nthe line of code :1856\nthe files this program have to use :connect.dll Test_model.dll train.dlll resnet.py model.dll Data_pre.py utils.py";
 	wchar_t ch_0_00[] = L"程序设置以及版权信息";
 	wchar_t ch_1_00[] = L"the settings and the copyright of this program";
 	if (global_language == 0)
@@ -948,6 +967,22 @@ void create_update_data()
 		fprintf(f2, "this version has git to github\n");
 		fprintf(f2, "version 4.0.1\n");
 		fprintf(f2, "this version has makes a open sourse license.\n");
+		fprintf(f2, "version 4.1.1\n");
+		fprintf(f2, "this version has added a license for guests to use\n");
+		fprintf(f2, "version 4.1.2\n");
+		fprintf(f2, "this version has added a file that can uninstall this program\n");
+		fprintf(f2, "version 4.1.3\n");
+		fprintf(f2, "this version has fix the problem of uninstall.exe\n");
+		fprintf(f2, "version 4.2.0\n");
+		fprintf(f2, "this version has made a GUI_interface for guests\n");
+		fprintf(f2, "version 5.0.0\n");
+		fprintf(f2, "this version has transform the python script to execlute files\n");
+		fprintf(f2, "version 5.0.1\n");
+		fprintf(f2, "this version has fixed some problems\n");
+		fprintf(f2, "version 6.0.0\n");
+		fprintf(f2, "this version has fixed some known problems\n");
+		fprintf(f2, "version 7.0.0\n");
+		fprintf(f2, "this version has added a function : can read number from command,and fixed some problems\n");
 		fclose(f2);
 	}
 	if (f1 == NULL)
@@ -970,6 +1005,22 @@ void create_update_data()
 		fprintf(f2, "this version has git to github\n");
 		fprintf(f2, "version 4.0.1\n");
 		fprintf(f2, "this version has makes a open sourse license.\n");
+		fprintf(f2, "version 4.1.1\n");
+		fprintf(f2, "this version has added a license for guests to use\n");
+		fprintf(f2, "version 4.1.2\n");
+		fprintf(f2, "this version has added a file that can uninstall this program\n");
+		fprintf(f2, "version 4.1.3\n");
+		fprintf(f2, "this version has fix the problem of uninstall.exe\n");
+		fprintf(f2, "version 4.2.0\n");
+		fprintf(f2, "this version has made a GUI_interface for guests\n");
+		fprintf(f2, "version 5.0.0\n");
+		fprintf(f2, "this version has transform the python script to execlute files\n");
+		fprintf(f2, "version 5.0.1\n");
+		fprintf(f2, "this version has fixed some problems\n");
+		fprintf(f2, "version 6.0.0\n");
+		fprintf(f2, "this version has fixed some known problems\n");
+		fprintf(f2, "version 7.0.0\n");
+		fprintf(f2, "this version has added a function : can read number from command,and fixed some problems\n");
 		fclose(f2);
 	}
 
@@ -1090,8 +1141,8 @@ void mouse_message_after_1(void*)
 	FlushMouseMsgBuffer();
 	int a = 0;
 	int temp = 0;
-	//wchar_t ch_cn[] = L"鼠标事件线程运行正常";
-	//wchar_t ch_en[] = L"mouse_message is running ordinary";
+	wchar_t ch_cn[] = L"鼠标事件线程运行正常";
+	wchar_t ch_en[] = L"mouse_message is running ordinary";
 	try
 	{
 		while (1)
@@ -1100,18 +1151,18 @@ void mouse_message_after_1(void*)
 			{
 				break;
 			}
-			//if (global_language == 0)
+			if (global_language == 0)
 			{
-				//outtextxy(50, 400, ch_cn);
+				outtextxy(50, 400, ch_cn);
 			}
-			//if (global_language == 1)
+			if (global_language == 1)
 			{
-				//outtextxy(50, 400, ch_en);
+				outtextxy(50, 400, ch_en);
 			}
 			m = GetMouseMsg();
 			while (m.mkLButton)
 			{
-				//Sleep(100);		//防止该线程抖动
+				Sleep(100);		//防止该线程抖动
 				if (m.x >= 100 && m.x <= 300 && m.y >= 75 && m.y <= 115)
 				{
 					global_judge_thread_mouse_message_after_1 = 0;
@@ -1360,7 +1411,7 @@ void clear(void*)
 void fix_thread(void*)
 {
 	_beginthread(mouse_test, 0, NULL);
-	//FILE* ffp = fopen("error_init_mouse_message.log", "a+");
+	FILE* ffp = fopen("error_init_mouse_message.log", "a+");
 	//DWORD t1 = timeGetTime();
 	int year, month, date, hour, min, sec;
 	time_t timep;
@@ -1373,8 +1424,8 @@ void fix_thread(void*)
 	hour = 8 + p->tm_hour;
 	min = p->tm_min;
 	sec = p->tm_sec;
-	//fprintf(ffp, "thread fix_thread try to fix the thread mouse_message_after_1(void*)\n");
-	//fprintf(ffp, "time:%d.%d.%d %d:%d:%d\t\tthread fix_thread begin\n", year, month, date, hour, min, sec);
+	fprintf(ffp, "thread fix_thread try to fix the thread mouse_message_after_1(void*)\n");
+	fprintf(ffp, "time:%d.%d.%d %d:%d:%d\t\tthread fix_thread begin\n", year, month, date, hour, min, sec);
 	fclose(ffp);
 	MOUSEMSG m;
 	while (1)
@@ -1384,7 +1435,7 @@ void fix_thread(void*)
 		{
 			if (global_judge_thread_mouse_message_after_1 == 0)
 			{
-				//FILE* ffp = fopen("error_init_mouse_message.log", "a+");
+				FILE* ffp = fopen("error_init_mouse_message.log", "a+");
 				time_t timep;
 				struct tm* p;
 				time(&timep);
@@ -1395,16 +1446,16 @@ void fix_thread(void*)
 				hour = 8 + p->tm_hour;
 				min = p->tm_min;
 				sec = p->tm_sec;
-				//fprintf(ffp, "time: %d.%2d.%2d %2d:%2d:%2d\t\twe are monitoring the thread:mouse_message_after_1.",year, month, date, hour, min, sec);
-				//fprintf(ffp, "errortype: no error ");
+				fprintf(ffp, "time: %d.%2d.%2d %2d:%2d:%2d\t\twe are monitoring the thread:mouse_message_after_1.",year, month, date, hour, min, sec);
+				fprintf(ffp, "errortype: no error ");
 				//_beginthread(mouse_message_after_1, 0, NULL);
-				//fprintf(ffp, "\t\t no need to fix\n");
-				//fclose(ffp);
+				fprintf(ffp, "\t\t no need to fix\n");
+				fclose(ffp);
 			}
 			//Sleep(500);
 			if (global_judge_thread_mouse_message_after_1 == 1)
 			{
-				//FILE* ffp = fopen("error_init_mouse_message.log", "a+");
+				FILE* ffp = fopen("error_init_mouse_message.log", "a+");
 				time_t timep;
 				struct tm* p;
 				time(&timep);
@@ -1415,15 +1466,15 @@ void fix_thread(void*)
 				hour = 8 + p->tm_hour;
 				min = p->tm_min;
 				sec = p->tm_sec;
-				//fprintf(ffp, "time: %d.%2d.%2d %2d:%2d:%2d\t\twe are trying to fix the thread:mouse_message_after_1.", year, month, date, hour, min, sec);
-				//fprintf(ffp, "errortype:unknown error");
+				fprintf(ffp, "time: %d.%2d.%2d %2d:%2d:%2d\t\twe are trying to fix the thread:mouse_message_after_1.", year, month, date, hour, min, sec);
+				fprintf(ffp, "errortype:unknown error");
 				_beginthread(mouse_message_after_1, 0, NULL);
-				//fprintf(ffp, "\t\t fix successfully\n");
-				//fclose(ffp);
+				fprintf(ffp, "\t\t fix successfully\n");
+				fclose(ffp);
 			}
 			else
 			{
-				//FILE* ffp = fopen("error_init_mouse_message.log", "a+");
+				FILE* ffp = fopen("error_init_mouse_message.log", "a+");
 				time_t timep;
 				struct tm* p;
 				time(&timep);
@@ -1434,10 +1485,10 @@ void fix_thread(void*)
 				hour = 8 + p->tm_hour;
 				min = p->tm_min;
 				sec = p->tm_sec;
-				//fprintf(ffp, "time: %d.%2d.%2d %2d:%2d:%2d\t\twe are trying to fix the thread:mouse_message_after_1.", year, month, date, hour, min, sec);
-				//fprintf(ffp, "errortype:unknown error");
-				//fprintf(ffp, "\t\tfix failed\n");
-				//fclose(ffp);
+				fprintf(ffp, "time: %d.%2d.%2d %2d:%2d:%2d\t\twe are trying to fix the thread:mouse_message_after_1.", year, month, date, hour, min, sec);
+				fprintf(ffp, "errortype:unknown error");
+				fprintf(ffp, "\t\tfix failed\n");
+				fclose(ffp);
 				_beginthread(protect_thread, 0, NULL);
 				_endthread();
 				//exit(0);
@@ -1449,7 +1500,7 @@ void fix_thread(void*)
 
 void protect_thread(void*)
 {
-	//FILE* ffp = fopen("error_init_mouse_message.log", "a+");
+	FILE* ffp = fopen("error_init_mouse_message.log", "a+");
 	//DWORD t1 = timeGetTime();
 	int year, month, date, hour, min, sec;
 	time_t timep;
@@ -1467,7 +1518,7 @@ void protect_thread(void*)
 	//fclose(ffp);
 	//while (1)
 	{
-		//FILE* ffp = fopen("error_init_mouse_message.log", "a+");
+		FILE* ffp = fopen("error_init_mouse_message.log", "a+");
 		time_t timep;
 		struct tm* p;
 		time(&timep);
@@ -1803,7 +1854,6 @@ void change_thread_operation()
 		_beginthread(mouse_message_from_windows_api, 0, NULL);
 	}
 }
-
 /*****************************************\
 //fix tips:
 //SHORT GetAsyncKeyState (int nVirtKey);
@@ -1811,7 +1861,7 @@ VirtKey		intger		mouse/keyboard
 VK_LBUTTON	1		mouse_left
 VK_RBUTTON	2		mouse_right
 VK_CANCEL	3		cancel
-VK_MBUTTON	4		mouse_middle
+VK_MBUTTON	4		mouse_middl
 VK_XBUTTON1	5		UNKNOWN
 VK_XBUTTON	6		UNKNOWN
 VK_BACK		7		Backspace
@@ -1827,5 +1877,4 @@ VK_CONTROL	17		Ctrl
 VK_MENU		18		Alt
 VK_PAUSE	19		pause
 VK_CAPITAL	20		Caps Lock
-//update tommorrow.
-\******************************************/
+//u
