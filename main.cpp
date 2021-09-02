@@ -105,7 +105,14 @@ void mouse_message_from_windows_api(void*);
 void get_windows_position(void*);
 void change_thread(void*);
 void change_thread_operation();
-
+void command_help_mode();
+void command_train_mode();
+void thread_start_server_command(void*);
+void command_test_filename(char ch[]);
+void command_test_default_mode();
+void command_check_mode();
+void command_release_mode();
+void command_upgrade_mode();
 //store place
 wchar_t code_license_and_sourse_code[] = L"if you want to see more information(sourse code),please goto this website:\nhttps://blog.csdn.net/liourenyu/article/details/119490901\nopen sourse license\n==========================\nthis program is powered by lry.\nthis program is all provided by lry\n all rights reserved 2021\n=======================\nsourse code:train.dll\nimport torch\nimport visdom\nfrom torch import optim,nn\nfrom utils import Flatten\nfrom Data_Pre import Data\nfrom torch.utils.data import DataLoader\nfrom torchvision.models import resnet18\nbatchsz=32\nlr=1e-4\nepochs=20\ndevice=torch.device('cuda' if torch.cuda.is_available() else 'cpu'\ntorch.manual_seed(1234)\ntrain_db=Data('train_data',224,mode='train')\nval_db=Data('train_data',224,mode='val')\ntest_db=Data('train_data',224,mode='test')\ntrain_loader=DataLoader(train_db,batch_size=batchsz,shuffle=True,num_workers=4)\nval_loader=DataLoader(val_db,batch_size=batchsz,num_worker=4)\ntest_loader=DataLoader(test_db,batchsz,num_worker=4)\nviz=visdom.Visdom()\ndef evalute():\n\tmodel.eval()\n\tcorrect=0\n\ttotal=len(loader.dataset)\n\tfor x,y in loader:\n\t\tx,y=x.to(device),y.to(device)\n\t\twith torch.no_grad():\n\t\t\tlogits=model(x)\n\t\t\tpred=logits.argmax(dim=1)\n\t\tcorrect+=torch.eq(pred,y).sum().float().item()\n\treturn correct/total\ndef main():\n\ttrained_model=resnet18(pretrained=True)\n\tmodel=nn.Sequential(*list(trained_model.children())[:-1],Flatten(),nn.Linear(512,6).to(device)\n\toptimizer=optim.Adam(model.parameters(),lr=lr)\n\tctiteon=nn.CrossEntropyLoss()\n\tbest_acc,best_epoch=0,0\n\tglobal_step=0\n\tviz.line([[0.0,0.0]],[0.],win='test',opts=dict(title='Loss on Training Data and Accuracy on Training Data',xlabel='Epochs',ylabel='Loss and Accuracy',legend=['loss','val_acc']))\n\tfor epoch in range(epochs):\n\t\tfor step,(x,y) in enumerate(train_loader):\n\t\t\tx,y=x.to(device),y.to(device)\n\t\t\tmodel.train()\n\t\t\tlogits=model(x)\n\t\t\tloss=criteon(logits,y)\n\t\t\toptimizer.zero_grad()\n\t\t\tloss.backward()\n\t\t\toptimizer.step()\n\t\t\tviz.line([[loss.item(),evalute(model,val_loader)]],[global_step],win='test',update='append'\n\t\t\tglobal_step+=1\n\t\tif epoch==0:\n\t\t\tprint('the'+str(epoch+1)+'epoch'+'training......'\n\t\t\tval_acc=evaluate(model,val_loader)\n\t\t\t\tif val_acc>best_acc:\n\t\t\t\tbest_epoch=epoch\n\t\t\t\tbest_acc=val_acc\n\t\t\t\ttorch.save(model.state_dict(),'best_trans.mdl')\n\tprint('best accuracy:',best_acc,'best epoch:',(best_epoch+1))\n\ttorch.save(model,'model.dll')\n\tprint('loading model......')\n\ttest_acc=evalute(model,test_loader)\n\\tprint('test accuracy:',test_acc)\n\tprint('successfully save the best model')\nif __name__=='__main__':\n\tmain()\n=========================================\nif you want to see more information(sourse code),please goto this website:\nhttps://blog.csdn.net/liourenyu/article/details/119490901\n)";
 //DWORD threadid_for_mouse_message_after_1;
@@ -132,6 +139,208 @@ int main(int agrc,char *agrv[])
 		for (int i = 0; i < agrc; i++)
 		{
 			printf("%s\n", agrv[i]);
+		}
+		if (agrv[1][0] == '-')
+		{
+			if (agrv[1][1] == 'h')
+			{
+				if (agrv[1][2] == 'e')
+				{
+					if (agrv[1][3] == 'l')
+					{
+						if (agrv[1][4] == 'p')
+						{
+							if (agrv[1][5] == '\0')
+							{
+								if (agrc == 2)
+								{
+									printf("help mode started:\n");
+									command_help_mode();
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		if (agrv[1][0] == '-')
+		{
+			if (agrv[1][1] == 't')
+			{
+				if (agrv[1][2] == 'r')
+				{
+					if (agrv[1][3] == 'a')
+					{
+						if (agrv[1][4] == 'i')
+						{
+							if (agrv[1][5] == 'n')
+							{
+								if (agrv[1][6] == '\0')
+								{
+									if (agrc == 2)
+									{
+										printf("train mode started:\n");
+										command_train_mode();
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		if (agrv[1][0] == '-')
+		{
+			if (agrv[1][1] == 't')
+			{
+				if (agrv[1][2] == 'e')
+				{
+					if (agrv[1][3] == 's')
+					{
+						if (agrv[1][4] == 't')
+						{
+							if (agrv[1][5] == '\0')
+							{
+								if (agrc == 2)
+								{
+									printf("test mode started:\n");
+									printf("warning ! no filename! use default mode\n");
+									printf("default mode: /test/1.jpg\n");
+									//command_test_default_mode();
+								}
+								if (agrc == 3)
+								{
+									printf("test mode started:\n");
+									printf("you are now using your mode:\n");
+									printf("filename and place:%s", agrv[2]);
+									//command_test_filename(agrv[2]);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		if (agrv[1][0] == '-')
+		{
+			if (agrv[1][1] == 'c')
+			{
+				if (agrv[1][2] == 'h')
+				{
+					if (agrv[1][3] == 'e')
+					{
+						if (agrv[1][4] == 'c')
+						{
+							if (agrv[1][5] == 'k')
+							{
+								if (agrv[1][6] == '\0')
+								{
+									if (agrc == 2)
+									{
+										printf("check mode started:\n");
+										//command_check_mode();
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		if (agrv[1][0] == '-')
+		{
+			if (agrv[1][1] == 'r')
+			{
+				if (agrv[1][2] == 'e')
+				{
+					if (agrv[1][3] == 'l')
+					{
+						if (agrv[1][4] == 'e')
+						{
+							if (agrv[1][5] == 'a')
+							{
+								if (agrv[1][6] == 's')
+								{
+									if (agrv[1][7] == 'e')
+									{
+										if (agrv[1][8] == '\0')
+										{
+											if (agrc == 2)
+											{
+												printf("release mode started:\n");
+												//command_release_mode();
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		if (agrv[1][0] == '-')
+		{
+			if (agrv[1][1] == 'u')
+			{
+				if (agrv[1][2] == 'p')
+				{
+					if (agrv[1][3] == 'g')
+					{
+						if (agrv[1][4] == 'r')
+						{
+							if (agrv[1][5] == 'a')
+							{
+								if (agrv[1][6] == 'd')
+								{
+									if (agrv[1][7] == 'e')
+									{
+										if (agrv[1][8] == '\0')
+										{
+											if (agrc == 2)
+											{
+												printf("upgrade mode started:\n");
+												//command_upgrade_mode();
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		if (agrv[1][0] == '-')
+		{
+			if (agrv[1][1] == 'v')
+			{
+				if (agrv[1][2] == 'e')
+				{
+					if (agrv[1][3] == 'r')
+					{
+						if (agrv[1][4] == 's')
+						{
+							if (agrv[1][5] == 'i')
+							{
+								if (agrv[1][6] == 'o')
+								{
+									if (agrv[1][7] == 'n')
+									{
+										if (agrv[1][8] == '\0')
+										{
+											if (agrc == 2)
+											{
+												printf("version 7.0.1");
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 	else if (agrc < 1)
@@ -245,8 +454,8 @@ void mouse_message_init(void*)
 
 void show_the_settings(void*)
 {
-	wchar_t ch_0[] = L"本程序由刘仁宇编写\n本程序可以通过内置的模型，进行自动化的垃圾分类操作。\n本程序也可以通过手工分类进行分类操作\n如果出现了鼠标无法操作本程序的情况，请按下空格键后重试\n请保证您所使用的python>=3.8.5\n编译支持：Visual Studio 2019 Community\n版本信息：version 7.0.0\n编译时间：2021.9.1\n代码行数：1856\n程序接口以及文件调用：connect.dll Test_model.dll python.exe train.dll resnet.py model.dll Data_pre.py utils.py";
-	wchar_t ch_1[] = L"this program is powered by lry\n this program can use the model init to classify the garbage auto.\nthis program can also classify by the user\nif this program cannot operated by mouse,please press Space,to restart therad(mouse_message)\nplease confirm that python on your computer is >=3.8.5\ncomplier powered by :Visual Studio 2019 Community\nversion :version 7.0.0\ncomplied time :2021.9.1\nthe line of code :1856\nthe files this program have to use :connect.dll Test_model.dll train.dlll resnet.py model.dll Data_pre.py utils.py";
+	wchar_t ch_0[] = L"本程序由刘仁宇编写\n本程序可以通过内置的模型，进行自动化的垃圾分类操作。\n本程序也可以通过手工分类进行分类操作\n如果出现了鼠标无法操作本程序的情况，请按下空格键后重试\n请保证您所使用的python>=3.8.5\n编译支持：Visual Studio 2019 Community\n版本信息：version 7.0.1\n编译时间：2021.9.1\n代码行数：2131\n程序接口以及文件调用：connect.dll Test_model.dll python.exe train.dll resnet.py model.dll Data_pre.py utils.py";
+	wchar_t ch_1[] = L"this program is powered by lry\n this program can use the model init to classify the garbage auto.\nthis program can also classify by the user\nif this program cannot operated by mouse,please press Space,to restart therad(mouse_message)\nplease confirm that python on your computer is >=3.8.5\ncomplier powered by :Visual Studio 2019 Community\nversion :version 7.0.1\ncomplied time :2021.9.1\nthe line of code :2131\nthe files this program have to use :connect.dll Test_model.dll train.dlll resnet.py model.dll Data_pre.py utils.py";
 	wchar_t ch_0_00[] = L"程序设置以及版权信息";
 	wchar_t ch_1_00[] = L"the settings and the copyright of this program";
 	if (global_language == 0)
@@ -983,6 +1192,8 @@ void create_update_data()
 		fprintf(f2, "this version has fixed some known problems\n");
 		fprintf(f2, "version 7.0.0\n");
 		fprintf(f2, "this version has added a function : can read number from command,and fixed some problems\n");
+		fprintf(f2, "version 7.0.1\n");
+		fprintf(f2, "this version has added api to commandline.\n");
 		fclose(f2);
 	}
 	if (f1 == NULL)
@@ -1021,6 +1232,8 @@ void create_update_data()
 		fprintf(f2, "this version has fixed some known problems\n");
 		fprintf(f2, "version 7.0.0\n");
 		fprintf(f2, "this version has added a function : can read number from command,and fixed some problems\n");
+		fprintf(f2, "version 7.0.1\n");
+		fprintf(f2, "this version has added api to commandline.\n");
 		fclose(f2);
 	}
 
@@ -1854,14 +2067,51 @@ void change_thread_operation()
 		_beginthread(mouse_message_from_windows_api, 0, NULL);
 	}
 }
-/*****************************************\
-//fix tips:
-//SHORT GetAsyncKeyState (int nVirtKey);
+void command_help_mode()
+{
+	printf("this program is powered by lry\n");
+	printf("you are now using the help mode\n");
+	printf("help mode version 1.0.0\n");
+	printf("you can use these below command to command this program\n");
+	printf("1.\t\t-help\t\t\tyou can use this command to get help\n");
+	printf("2.\t\t-train\t\t\tyou can use this command to train the model\n");
+	printf("3.\t\t-test [filename]\tyou can use this command to get the result of the photo\n");
+	printf("4.\t\t-check\t\t\tyou can use this command to check the files and the environment\n");
+	printf("5.\t\t-release\t\tyou can use this command to release the files in this program\n");
+	printf("6.\t\t-upgrade\t\tyou can use this command to updata the program\n");
+	printf("7.\t\t-version\t\tyou can use this command to show the version of this program\n");
+	printf("more command will be added soon,waiting for new version!\n");
+	printf("you can go to https://github.com/lry-123456789/garbage-classification to see all the code\n");
+	printf("help mode ended\n");
+}
+void command_train_mode()
+{
+	printf("start to start visdom.server \n");
+	_beginthread(thread_start_server_command, 0, NULL);
+	Sleep(2000);
+	printf("begin to start internet explorer goto localhost:8097\n");
+	wchar_t ch[] = L"open";
+	wchar_t ch1[] = L"https://localhost:8097";
+	ShellExecute(NULL, ch, ch1, NULL, NULL, SW_MAXIMIZE);				//SW_MAXIMIZE 最大化 SW_MINIMIZE 最小化 SW_HIDE 隐藏
+	Sleep(5000);
+	printf("start running the python script\n");
+	system("python train.dll");
+}
+
+void thread_start_server_command(void*)
+{
+	system("python -m visdom.server");
+	_endthread();
+}
+
+/***************************\
+fix tips:
+SHORT GetAsyncKeyState (int nVirtKey);
 VirtKey		intger		mouse/keyboard
 VK_LBUTTON	1		mouse_left
 VK_RBUTTON	2		mouse_right
 VK_CANCEL	3		cancel
-VK_MBUTTON	4		mouse_middl
+VK_MBUTTON	4		mouse_middle
 VK_XBUTTON1	5		UNKNOWN
 VK_XBUTTON	6		UNKNOWN
 VK_BACK		7		Backspace
@@ -1877,4 +2127,5 @@ VK_CONTROL	17		Ctrl
 VK_MENU		18		Alt
 VK_PAUSE	19		pause
 VK_CAPITAL	20		Caps Lock
-//u
+update tommorrow.
+\******************************************/
