@@ -14,7 +14,7 @@ all of you can commit new file and commit changes to this project
 edit time:2021.9.6
 editor:lry-123456789
 
-===================================
+
 this program can run in dos mode
 you can use below command to control this program.
 ====================================================
@@ -25,5 +25,5 @@ you can use below command to control this program.
 5.    -release              release all the files from this program
 6.    -upgrade              update the program
 7.    -version              get the program version
-=====================================================
+
 all the people can use these code.
