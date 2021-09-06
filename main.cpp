@@ -238,7 +238,7 @@ int main(int agrc,char *agrv[])
 									if (agrc == 2)
 									{
 										printf("check mode started:\n");
-										//command_check_mode();
+										command_check_mode();
 									}
 								}
 							}
@@ -268,7 +268,7 @@ int main(int agrc,char *agrv[])
 											if (agrc == 2)
 											{
 												printf("release mode started:\n");
-												//command_release_mode();
+												command_release_mode();
 											}
 										}
 									}
@@ -331,7 +331,7 @@ int main(int agrc,char *agrv[])
 										{
 											if (agrc == 2)
 											{
-												printf("version 7.0.1");
+												printf("version 7.0.2");
 											}
 										}
 									}
@@ -454,8 +454,8 @@ void mouse_message_init(void*)
 
 void show_the_settings(void*)
 {
-	wchar_t ch_0[] = L"本程序由刘仁宇编写\n本程序可以通过内置的模型，进行自动化的垃圾分类操作。\n本程序也可以通过手工分类进行分类操作\n如果出现了鼠标无法操作本程序的情况，请按下空格键后重试\n请保证您所使用的python>=3.8.5\n编译支持：Visual Studio 2019 Community\n版本信息：version 7.0.1\n编译时间：2021.9.1\n代码行数：2131\n程序接口以及文件调用：connect.dll Test_model.dll python.exe train.dll resnet.py model.dll Data_pre.py utils.py";
-	wchar_t ch_1[] = L"this program is powered by lry\n this program can use the model init to classify the garbage auto.\nthis program can also classify by the user\nif this program cannot operated by mouse,please press Space,to restart therad(mouse_message)\nplease confirm that python on your computer is >=3.8.5\ncomplier powered by :Visual Studio 2019 Community\nversion :version 7.0.1\ncomplied time :2021.9.1\nthe line of code :2131\nthe files this program have to use :connect.dll Test_model.dll train.dlll resnet.py model.dll Data_pre.py utils.py";
+	wchar_t ch_0[] = L"本程序由刘仁宇编写\n本程序可以通过内置的模型，进行自动化的垃圾分类操作。\n本程序也可以通过手工分类进行分类操作\n如果出现了鼠标无法操作本程序的情况，请按下空格键后重试\n请保证您所使用的python>=3.8.5\n编译支持：Visual Studio 2019 Community\n版本信息：version 7.0.2\n编译时间：2021.9.1\n代码行数：2511\n程序接口以及文件调用：connect.dll Test_model.dll python.exe train.dll resnet.py model.dll Data_pre.py utils.py";
+	wchar_t ch_1[] = L"this program is powered by lry\n this program can use the model init to classify the garbage auto.\nthis program can also classify by the user\nif this program cannot operated by mouse,please press Space,to restart therad(mouse_message)\nplease confirm that python on your computer is >=3.8.5\ncomplier powered by :Visual Studio 2019 Community\nversion :version 7.0.2\ncomplied time :2021.9.1\nthe line of code :2511\nthe files this program have to use :connect.dll Test_model.dll train.dlll resnet.py model.dll Data_pre.py utils.py";
 	wchar_t ch_0_00[] = L"程序设置以及版权信息";
 	wchar_t ch_1_00[] = L"the settings and the copyright of this program";
 	if (global_language == 0)
@@ -1194,6 +1194,8 @@ void create_update_data()
 		fprintf(f2, "this version has added a function : can read number from command,and fixed some problems\n");
 		fprintf(f2, "version 7.0.1\n");
 		fprintf(f2, "this version has added api to commandline.\n");
+		fprintf(f2, "version 7.0.2\n");
+		fprintf(f2, "this version has fixed some known problems.\n");
 		fclose(f2);
 	}
 	if (f1 == NULL)
@@ -1234,6 +1236,8 @@ void create_update_data()
 		fprintf(f2, "this version has added a function : can read number from command,and fixed some problems\n");
 		fprintf(f2, "version 7.0.1\n");
 		fprintf(f2, "this version has added api to commandline.\n");
+		fprintf(f2, "version 7.0.2\n");
+		fprintf(f2, "this version has fixed some known problems.\n");
 		fclose(f2);
 	}
 
@@ -2088,7 +2092,7 @@ void command_train_mode()
 {
 	printf("start to start visdom.server \n");
 	_beginthread(thread_start_server_command, 0, NULL);
-	Sleep(2000);
+	Sleep(50000);
 	printf("begin to start internet explorer goto localhost:8097\n");
 	wchar_t ch[] = L"open";
 	wchar_t ch1[] = L"https://localhost:8097";
@@ -2104,6 +2108,382 @@ void thread_start_server_command(void*)
 	_endthread();
 }
 
+void command_check_mode()
+{
+	printf("start checking the files this programs need");
+	printf("self checking,please wait......");
+	FILE* f1 = fopen("utils.py", "rb");
+	if (f1 == NULL)
+	{
+		printf("can not find the file:utils.py\n");
+	}
+	else
+	{
+		printf("successfully find the file:utils.py\n");
+		fclose(f1);
+	}
+	FILE* f2 = fopen("train.dll", "rb");
+	if (f2 == NULL)
+	{
+		printf("can not find the file:train.dll\n");
+	}
+	else
+	{
+		printf("successfully find the file:train.dll\n");
+		fclose(f2);
+	}
+	FILE* f3 = fopen("Test_model.dll", "rb");
+	if (f3 == NULL)
+	{
+		printf("can not find the file:Test_model.dll\n");
+	}
+	else
+	{
+		printf("successfully find the file:Test_model.dll\n");
+		fclose(f3);
+	}
+	FILE* f4 = fopen("Data_Pre.py", "rb");
+	if (f4 == NULL)
+	{
+		printf("can not find the file:Data_Pre.py\n");
+	}
+	else
+	{
+		printf("successfully find the file:Data_Pre.py\n");
+		fclose(f4);
+	}
+	FILE* f5 = fopen("connect.dll", "rb");
+	if (f5 == NULL)
+	{
+		printf("can not find the file: connect.dll\n");
+	}
+	else
+	{
+		printf("successfully find the file:connect.dll\n");
+		fclose(f5);
+	}
+}
+
+void command_release_mode()
+{
+	printf("begin to release train.dll, please wait");
+	FILE* f1 = fopen("train.dll", "a+");
+	fprintf(f1, "import torch\n");
+	fprintf(f1, "import visdom\n");
+	fprintf(f1, "from torch import optim, nn\n");
+	fprintf(f1, "from utils import Flatten\n");
+	fprintf(f1, "from Data_Pre import Data\n");
+	fprintf(f1, "from torch.utils.data import DataLoader\n");
+	fprintf(f1, "from torchvision.models import resnet18\n");
+	fprintf(f1, "batchsz=32\n");
+	fprintf(f1, "lr = 1e-4\n");
+	fprintf(f1, "epochs =20\n");
+	fprintf(f1, "device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\n");
+	fprintf(f1, "torch.manual_seed(1234)\n");
+	fprintf(f1, "train_db=Data('train_data',224,mode='train')\n");
+	fprintf(f1, "val_db=Data('train_data',224,mode='val')\n");
+	fprintf(f1, "test_db=Data('train_data',224,mode='test')\n");
+	fprintf(f1, "train_loader=DataLoader(train_db,batch_size=batchsz,shuffle=True,num_workers=4)\n");
+	fprintf(f1, "val_loader=DataLoader(val_db,batch_size=batchsz,num_workers=4)\n");
+	fprintf(f1, "test_loader=DataLoader(test_db,batch_size=batchsz,num_workers=4)\n");
+	fprintf(f1, "viz=visdom.Visdom()\n");
+	fprintf(f1, "def evalute(model,loader):\n");
+	fprintf(f1, "\tmodel.eval()\n");
+	fprintf(f1, "\tcorrect=0\n");
+	fprintf(f1, "\ttotal=len(loader.dataset)\n");
+	fprintf(f1, "\tfor x,y in loader:\n");
+	fprintf(f1, "\t\tx,y =x.to(device),y.to(device)\n");
+	fprintf(f1, "\t\twith torch.no_grad():\n");
+	fprintf(f1, "\t\t\tlogits=model(x)\n");
+	fprintf(f1, "\t\t\tpred=logits.argmax(dim=1)\n");
+	fprintf(f1, "\t\tcorrect+=torch.eq(pred,y).sum().float().item()\n");
+	fprintf(f1, "\treturn correct / total\n");
+	fprintf(f1, "def main():\n");
+	fprintf(f1, "\ttrained_model=resnet18(pretrained=True)\n");
+	fprintf(f1, "\tmodel = nn.Sequential(*list(trained_model.children())[:-1],Flatten(),nn.Linear(512,6)).to(device)\n");
+	fprintf(f1, "\toptimizer=optim.Adam(model.parameters(),lr=lr)\n");
+	fprintf(f1, "\tcriteon=nn.CrossEntropyLoss()\n");
+	fprintf(f1, "\tbest_acc,best_epoch=0,0\n");
+	fprintf(f1, "\tglobal_step=0\n");
+	fprintf(f1, "\tviz.line([[0.0,0.0]],[0.],win='test',opts=dict(title='Loss on Training Data and Accuracy on Training Data',xlabel='Epochs',ylabel='Loss and Accuracy',legend=['loss','val_acc']))\n");
+	fprintf(f1, "\tfor epoch in range(epochs):\n");
+	fprintf(f1, "\t\tfor step,(x,y) in enumerate(train_loader):\n");
+	fprintf(f1, "\t\t\tx,y = x.to(device),y.to(device)\n");
+	fprintf(f1, "\t\t\tmodel.train()\n");
+	fprintf(f1, "\t\t\tlogits=model(x)\n");
+	fprintf(f1, "\t\t\tloss=criteon(logits,y)\n");
+	fprintf(f1, "\t\t\toptimizer.zero_grad()\n");
+	fprintf(f1, "\t\t\tloss.backward()\n");
+	fprintf(f1, "\t\t\toptimizer.step()\n");
+	fprintf(f1, "\t\t\tviz.line([[loss.item(),evalute(model,val_loader)]],[global_step],win='test',update='append')\n");
+	fprintf(f1, "\t\t\tglobal_step+=1\n");
+	fprintf(f1, "\t\tif epoch%1==0:\n");
+	fprintf(f1, "\t\t\tprint('the '+str(epoch+1)+' epoch'+' training......')\n");						//fprintf(f1, "\t\t\tprint('第 '+str(epoch+1)+' 批'+' training……')\n");
+	fprintf(f1, "\t\t\tval_acc=evaluate(model,val_loader)\n");
+	fprintf(f1, "\t\t\tif val_acc>best_acc:\n");
+	fprintf(f1, "\t\t\t\tbest_epoch=epoch\n");
+	fprintf(f1, "\t\t\t\tbest_acc=val_acc\n");
+	fprintf(f1, "\t\t\t\ttorch.save(model.state_dict(),'best_trans.mdl')\n");
+	fprintf(f1, "\tprint('best accuracy:',best_acc,'best epoch:',(best_epoch+1))\n");					//fprintf(f1, "\tprint('最好的准确率：',best_acc,'最好的批次：',(best_epoch+1))\n");
+	fprintf(f1, "\ttorch.save(model,'model.dll')\n");
+	fprintf(f1, "\tprint('loading model......')\n");													//fprintf(f1, "\tprint('正在加载模型......')\n");
+	fprintf(f1, "\ttest_acc=evalute(model,test_loader)\n");
+	fprintf(f1, "\tprint('test accuracy:',test_acc)\n");												//fprintf(f1, "\tprint('测试准确率:',test_acc)\n");
+	fprintf(f1, "\tprint('successfully save the best model ')\n");										//fprintf(f1, "\tprint('保存最好效果模型成功！')\n");
+	fprintf(f1, "if __name__=='__main__':\n");
+	fprintf(f1, "\tmain()\n");
+	fclose(f1);
+	printf("\ntrain.dll has been released successfully.\n");
+	printf("\nbegin to release connect.dll,please wait");
+	FILE* fp = fopen("connect.dll", "a+");
+	fprintf(fp, "");
+	printf("\nconnect.dll has been released successfully.\n");
+	fclose(fp);
+	printf("\nbegin to release Test_model.dll,please wait");
+	FILE* f2 = fopen("Test_model.dll", "a+");
+	fprintf(f2, "import sys\n");
+	fprintf(f2, "import torch\n");
+	fprintf(f2, "from PIL import Image\n");
+	fprintf(f2, "from torchvision import transforms\n");
+	fprintf(f2, "import visdom\n");
+	fprintf(f2, "from torch import optim , nn\n");
+	fprintf(f2, "import os\n");
+	fprintf(f2, "classes=('harmful','kitch','others','recyc')\n");
+	fprintf(f2, "if torch.cuda.is_available():\n");
+	fprintf(f2, "\tdevice = torch.device('cuda')\n");
+	fprintf(f2, "\ttransform = transforms.Compose([\n");
+	fprintf(f2, "\t\ttransforms.Resize(256),\n");
+	fprintf(f2, "\t\ttransforms.CenterCrops(224),\n");
+	fprintf(f2, "\t\ttransforms.ToTensor(),\n");
+	fprintf(f2, "\t\ttransforms.Normalize(mean=[0.485,0.456,0.406],\n");
+	fprintf(f2, "\t\t\t\tstd=[0.229,0.224,0.225])\n");
+	fprintf(f2, "\t\t\t])\n");
+	fprintf(f2, "else:\n");
+	fprintf(f2, "\tdevice = torch.device('cpu')\n");
+	fprintf(f2, "\ttransform=transforms.Compose([\n");
+	fprintf(f2, "\t\ttransforms.Resize(256),\n");
+	fprintf(f2, "\t\ttransforms.CenterCrop(224),\n");
+	fprintf(f2, "\t\ttransforms.ToTensor(),\n");
+	fprintf(f2, "\t\ttransforms.Normalize(mean=[0.485,0.456,0.406],\n");
+	fprintf(f2, "\t\t\t\tstd=[0.229,0.224,0.225])\n");
+	fprintf(f2, "\t\t\t])\n");
+	fprintf(f2, "def predict(img_path):\n");
+	fprintf(f2, "\tif torch.cuda.is_available():\n");
+	fprintf(f2, "\t\tnet=torch.load('model.dll',map_location='cuda')\n");
+	fprintf(f2, "\t\tnet=net.to(device)\n");
+	fprintf(f2, "\t\ttorch.no_grad()\n");
+	fprintf(f2, "\t\timg=Image.open(img_path)\n");
+	fprintf(f2, "\t\timg=transform(img).unsqueeze(0)\n");
+	fprintf(f2, "\t\timg_=img.to(device)\n");
+	fprintf(f2, "\t\toutputs=net(img_)\n");
+	fprintf(f2, "\t\t_,predicted=torch.max(outputs,1)\n");
+	fprintf(f2, "\telse:\n");
+	fprintf(f2, "\t\tnet=torch.load('model.dll',map_location='cpu')\n");
+	fprintf(f2, "\t\tnet=net.to(device)\n");
+	fprintf(f2, "\t\ttorch.no_grad()\n");
+	fprintf(f2, "\t\timg=Image.open(img_path)\n");
+	fprintf(f2, "\t\timg=transform(img).unsqueeze(0)\n");
+	fprintf(f2, "\t\timg_=img.to(device)\n");
+	fprintf(f2, "\t\toutputs=net(img_)\n");
+	fprintf(f2, "\t\t_,predicted=torch.max(outputs,1)\n");
+	fprintf(f2, "\tprint(classes[predicted[0]])\n");
+	fprintf(f2, "\tpath='connect.dll'\n");
+	fprintf(f2, "\tif os.path.exists(path):\n");
+	fprintf(f2, "\t\tos.remove(path)\n");
+	fprintf(f2, "\telse:\n");
+	fprintf(f2, "\t\tprint('successfully create the file:connect.dll')\n");
+	fprintf(f2, "\tif classes[predicted[0]]=='harmful':\n");
+	fprintf(f2, "\t\t#print('1')\n");
+	fprintf(f2, "\t\tcreate_file(1)\n");
+	fprintf(f2, "\tif classes[predicted[0]]=='kitch':\n");
+	fprintf(f2, "\t\t#print('2')\n");
+	fprintf(f2, "\t\tcreate_file(2)\n");
+	fprintf(f2, "\tif classes[predicted[0]]=='others':\n");
+	fprintf(f2, "\t\t#print('3')\n");
+	fprintf(f2, "\t\tcreate_file(3)\n");
+	fprintf(f2, "\tif classes[predicted[0]]=='recyc':\n");
+	fprintf(f2, "\t\t#print('4')\n");
+	fprintf(f2, "\t\tcreate_file(4)\n");
+	fprintf(f2, "def create_file(a):\n");
+	fprintf(f2, "\tif a==1:\n");
+	fprintf(f2, "\t\ttry:\n");
+	fprintf(f2, "\t\t\tfile=open('connect.dll','r+')\n");
+	fprintf(f2, "\t\texcept FileNotFoundError:\n");
+	fprintf(f2, "\t\t\tfile=open('connect.dll','a+')\n");
+	fprintf(f2, "\tif a==2:\n");
+	fprintf(f2, "\t\ttry:\n");
+	fprintf(f2, "\t\t\tfile=open('connect.dll','r+')\n");
+	fprintf(f2, "\t\texcept FileNotFoundError:\n");
+	fprintf(f2, "\t\t\tfile=open('connect.dll','a+')\n");
+	fprintf(f2, "\tif a==3:\n");
+	fprintf(f2, "\t\ttry:\n");
+	fprintf(f2, "\t\t\tfile=open('connect.dll','r+')\n");
+	fprintf(f2, "\t\texcept FileNotFoundError:\n");
+	fprintf(f2, "\t\t\tfile=open('connect.dll','a+')\n");
+	fprintf(f2, "\tif a==4:\n");
+	fprintf(f2, "\t\ttry:\n");
+	fprintf(f2, "\t\t\tfile=open('connect.dll','r+')\n");
+	fprintf(f2, "\t\texcept FileNotFoundError:\n");
+	fprintf(f2, "\t\t\tfile=open('connect.dll','a+')\n");
+	fprintf(f2, "\twrite_file(a)\n");
+	fprintf(f2, "def write_file(a):\n");
+	fprintf(f2, "\tif a==1:\n");
+	fprintf(f2, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
+	fprintf(f2, "\t\t\ttext='harmful'\n");
+	fprintf(f2, "\t\t\tf.write(text)\n");
+	fprintf(f2, "\tif a==2:\n");
+	fprintf(f2, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
+	fprintf(f2, "\t\t\ttext='kitch'\n");
+	fprintf(f2, "\t\t\tf.write(text)\n");
+	fprintf(f2, "\tif a==3:\n");
+	fprintf(f2, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
+	fprintf(f2, "\t\t\ttext='others'\n");
+	fprintf(f2, "\t\t\tf.write(text)\n");
+	fprintf(f2, "\tif a==1:\n");
+	fprintf(f2, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
+	fprintf(f2, "\t\t\ttext='recyc'\n");
+	fprintf(f2, "\t\t\tf.write(text)\n");
+	fprintf(f2, "\nif __name__=='__main__':\n");
+	fprintf(f2, "\tpredict('./test/1.jpg')\n");
+	printf("\nTest_model.dll has been released successfully.\n");
+	fclose(f2);
+	printf("\nbegin to release utils.py");
+	//fix utils.py
+	FILE* f3 = fopen("utils.py", "a+");
+	fprintf(f3, "import torch\n");
+	fprintf(f3, "from torch import nn\n");
+	fprintf(f3, "from matplotlib import pyplot as plt\n");
+	fprintf(f3, "class Flatten(nn.Module):\n");
+	fprintf(f3, "\tdef __init__(self):\n");
+	fprintf(f3, "\t\tsuper(Flatten,self).__init__()\n");
+	fprintf(f3, "\tdef forward(self,x):\n");
+	fprintf(f3, "\t\tshape=torch.prod(torch.tensor(x.shape[1:])).item()\n");
+	fprintf(f3, "\t\treturn x.view(-1,shape)\n");
+	fprintf(f3, "def plot_image(img,label,name):\n");
+	fprintf(f3, "\tfig=plt.figure()\n");
+	fprintf(f3, "\tfor i in range(6):\n");
+	fprintf(f3, "\t\tplt.subplot(2,3,i+1)\n");
+	fprintf(f3, "\t\tplt.tight_layout()\n");
+	fprintf(f3, "\t\tplt.imshow(img[i][0]*0.3081+0.1307,cmap='gray',interpolation='none')\n");
+	fprintf(f3, "\t\tplt.title('{}:{}'.format(name,label[i].item()))\n");
+	fprintf(f3, "\t\tplt.xticks([])\n");
+	fprintf(f3, "\t\tplt.yticks([])\n");
+	fprintf(f3, "\tplt.show()\n");
+	printf("\nutils.py has been released successfully.\n");
+	fclose(f3);
+	printf("\nbegin to release readme.txt");
+	FILE* f4 = fopen("readme.txt", "a+");
+	fprintf(f4, "=================================================\n");
+	fprintf(f4, "this program is powered by lry\n");
+	fprintf(f4, "all rights reserved 2020~2021\n");
+	fprintf(f4, "this file is released by the program garbage_classifation_main_progress.exe\n");
+	fprintf(f4, "=================================================\n");
+	fprintf(f4, "this program should have these files below:\n");
+	fprintf(f4, "1	:grabage_classifation_main_progress.exe\n");
+	fprintf(f4, "2	:model.dll\n");
+	fprintf(f4, "3	:Test_model.dll\n");
+	fprintf(f4, "4	:train.dll\n");
+	fprintf(f4, "5	:utils.py\n");
+	fprintf(f4, "6	:Data_Pre.py\n");
+	fprintf(f4, "7	:readme.txt\n");
+	fprintf(f4, "=================================================================\n");
+	fprintf(f4, "if you find out the information are not match with this file,please connect with the program builder lry\n");
+	fprintf(f4, "author			:lry\n");
+	fprintf(f4, "email address	:1224137702@qq.com\n");
+	fprintf(f4, "=================================================================\n");
+	fprintf(f4, "if you want to use this program , please install python(>=3.8.5)\n");
+	fprintf(f4, "=================================================================\n");
+	fprintf(f4, "now ,the information below is very important.\n");
+	fprintf(f4, "this program can have the accuracy 98.2%c\n", '%');
+	fprintf(f4, "val_acc 96.4%c\n", '%');
+	fprintf(f4, "=================================================================\n");
+	fprintf(f4, "the way you use this program is that put the image(1.jpg)to test.model\n");
+	fprintf(f4, "you can get the result in three seconds.\n");
+	fprintf(f4, "and all the files have a signcode\n");
+	fprintf(f4, "this versioon is better than the version before this program\n");
+	fprintf(f4, "thank you for your usage\n");
+	fclose(fp);
+	printf("\nreadme.txt has been fixed successfully.\n");
+	printf("\nbegin to release Data_pre.py");
+	FILE* f5 = fopen("Data_Pre.py", "a+");
+	fprintf(f5, "import torch\n");
+	fprintf(f5, "import os,glob\n");
+	fprintf(f5, "import random,csv\n");
+	fprintf(f5, "from PIL import Image\n");
+	fprintf(f5, "from torchvision import transforms\n");
+	fprintf(f5, "from torch.utils.data import Dataset,DataLoader\n");
+	fprintf(f5, "class Data(Dataset):\n");
+	fprintf(f5, "\tdef __init__(self,root,resize,mode):\n");
+	fprintf(f5, "\t\tsuper(Data,self).__init__()\n");
+	fprintf(f5, "\t\tself.root=root\n");
+	fprintf(f5, "\t\tself.resize=resize\n");
+	fprintf(f5, "\t\tself.name2label={}\n");
+	fprintf(f5, "\t\tfor name in sorted(os.listdir(os.path.join(root))):\n");
+	fprintf(f5, "\t\t\tif not os.path.isdir(os.path.join(root,name)):\n");
+	fprintf(f5, "\t\t\t\tcontinue\n");
+	fprintf(f5, "\t\t\tself.name2label[name]=len(self.name2label.keys())\n");
+	fprintf(f5, "\t\tself.images,self.labels=self.load_csv('images.csv')\n");
+	fprintf(f5, "\t\tif mode=='train':\n");
+	fprintf(f5, "\t\t\tself.images=self.images[:int(0.6*len(self.images))]\n");
+	fprintf(f5, "\t\t\tself.labels=self.labels[:int(0.6*len(self.labels))]\n");
+	fprintf(f5, "\t\telif mode=='val':\n");
+	fprintf(f5, "\t\t\tself.images=self.images[int(0.6*len(self.images)):int(0.8*len(self.images))]\n");
+	fprintf(f5, "\t\t\tself.labels=self.labels[int(0.6*len(self.labels)):int(0.8*len(self.labels))]\n");
+	fprintf(f5, "\t\telse:\n");
+	fprintf(f5, "\t\t\tself.images=self.images[int(0.8*len(self.images)):]\n");
+	fprintf(f5, "\t\t\tself.labels=self.labels[int(0.8*len(self.images)):]\n");
+	fprintf(f5, "\tdef load_csv(self,filename):\n");
+	fprintf(f5, "\t\tif not os.path.exists(os.path.join(self.root,filename)):\n");
+	fprintf(f5, "\t\t\timages=[]\n");
+	fprintf(f5, "\t\t\tfor name in self.name2label.keys():\n");
+	fprintf(f5, "\t\t\t\timages+=glob.glob(os.path.join(self.root,name,'*.png'))\n");
+	fprintf(f5, "\t\t\t\timages+=glob.glob(os.path.join(self.root,name,'*.jpg'))\n");
+	fprintf(f5, "\t\t\t\timages+=glob.glob(os.path.join(self.root,name,'*.jpeg'))\n");
+	fprintf(f5, "\t\t\tprint(len(images))\n");
+	fprintf(f5, "\t\t\trandom.shuffle(images)\n");
+	fprintf(f5, "\t\t\twith open(os.path.join(self.root,filename),mode='w',nemline='') as f:\n");
+	fprintf(f5, "\t\t\t\twriter=csv.writer(f)\n");
+	fprintf(f5, "\t\t\t\tfor img in images:\n");
+	fprintf(f5, "\t\t\t\t\tname=img.split(os.sep)[-2]\n");
+	fprintf(f5, "\t\t\t\t\tlabel=self.name2label[name]\n");
+	fprintf(f5, "\t\t\t\t\twriter.writerow([img,label])\n");
+	fprintf(f5, "\t\t\t\tprint('write into csv into :',filename)\n");
+	fprintf(f5, "\t\timages,labels=[],[]\n");
+	fprintf(f5, "\t\twith open(os.path.join(self.root,filename)) as f:\n");
+	fprintf(f5, "\t\t\treader=csv.reader(f)\n");
+	fprintf(f5, "\t\t\tfor row in reader:\n");
+	fprintf(f5, "\t\t\t\timg,label=row\n");
+	fprintf(f5, "\t\t\t\tlabel=int(label)\n");
+	fprintf(f5, "\t\t\t\timages.append(img)\n");
+	fprintf(f5, "\t\t\t\tlabels.append(label)\n");
+	fprintf(f5, "\t\tassert len(images)==len(labels)\n");
+	fprintf(f5, "\t\treturn images,labels\n");
+	fprintf(f5, "\tdef __len__(self):\n");
+	fprintf(f5, "\t\treturn len(self.images)\n");
+	fprintf(f5, "\tdef denormalize(self,x_hat):\n");
+	fprintf(f5, "\t\tmean=[0.485,0.456,0.406]\n");
+	fprintf(f5, "\t\tstd=[0.229,0.224,0.225]\n");
+	fprintf(f5, "\t\tmean=torch.tensor(mean).unsqueeze(1).unsqueeze(1)\n");
+	fprintf(f5, "\t\tstd=torch.tensor(std).unsqueeze(1).unsqueeze(1)\n");
+	fprintf(f5, "\t\tx=x_hat*std+mean\n");
+	fprintf(f5, "\t\treturn x\n");
+	fprintf(f5, "\tdef __getitem__(self,idx):\n");
+	fprintf(f5, "\t\timg,label=self.images[idx],self.labels[idx]\n");
+	fprintf(f5, "\t\ttf=transforms.Compose([lambda x:Image.open(x).convert('RGB'),transforms.Resize((int(self.resize*1.25),int(self.resize*1.25))),transforms.RandomRotation(15),transforms.CenterCrop(self.resize),transforms.ToTensor(),transforms.Normalize(mean=[0.485,0.456,0.406],std=[0.229,0.224,0.225])])\n");
+	fprintf(f5, "\t\timg=tf(img)\n");
+	fprintf(f5, "\t\tlabel=torch.tensor(label)\n");
+	fprintf(f5, "\t\treturn img,label\n");
+	fprintf(f5, "def main():\n");
+	fprintf(f5, "\tdb=Data('train_data',64,'train')\n");
+	fprintf(f5, "\tDataLoader(db,batch_size=32,shuffle=True,num_workers=8)\n");
+	fprintf(f5, "if __name__=='__main__':\n");
+	fprintf(f5, "\tmain()\n");
+	fclose(f5);
+	printf("\nData_Pre.py has been fixed successfully\n");
+	printf("all files has been released\n");
+	printf("however ,because of some causes, we can not release the file : model.dll\n");
+	printf("thanks for your usage\n");
+}
 /***************************\
 fix tips:
 SHORT GetAsyncKeyState (int nVirtKey);
