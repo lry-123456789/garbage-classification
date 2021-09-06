@@ -206,14 +206,14 @@ int main(int agrc,char *agrv[])
 									printf("test mode started:\n");
 									printf("warning ! no filename! use default mode\n");
 									printf("default mode: /test/1.jpg\n");
-									//command_test_default_mode();
+									command_test_default_mode();
 								}
 								if (agrc == 3)
 								{
 									printf("test mode started:\n");
 									printf("you are now using your mode:\n");
 									printf("filename and place:%s", agrv[2]);
-									//command_test_filename(agrv[2]);
+									command_test_filename(agrv[2]);
 								}
 							}
 						}
@@ -300,7 +300,7 @@ int main(int agrc,char *agrv[])
 											if (agrc == 2)
 											{
 												printf("upgrade mode started:\n");
-												//command_upgrade_mode();
+												command_upgrade_mode();
 											}
 										}
 									}
@@ -331,7 +331,7 @@ int main(int agrc,char *agrv[])
 										{
 											if (agrc == 2)
 											{
-												printf("version 7.0.2");
+												printf("version 7.0.3");
 											}
 										}
 									}
@@ -454,8 +454,8 @@ void mouse_message_init(void*)
 
 void show_the_settings(void*)
 {
-	wchar_t ch_0[] = L"本程序由刘仁宇编写\n本程序可以通过内置的模型，进行自动化的垃圾分类操作。\n本程序也可以通过手工分类进行分类操作\n如果出现了鼠标无法操作本程序的情况，请按下空格键后重试\n请保证您所使用的python>=3.8.5\n编译支持：Visual Studio 2019 Community\n版本信息：version 7.0.2\n编译时间：2021.9.1\n代码行数：2511\n程序接口以及文件调用：connect.dll Test_model.dll python.exe train.dll resnet.py model.dll Data_pre.py utils.py";
-	wchar_t ch_1[] = L"this program is powered by lry\n this program can use the model init to classify the garbage auto.\nthis program can also classify by the user\nif this program cannot operated by mouse,please press Space,to restart therad(mouse_message)\nplease confirm that python on your computer is >=3.8.5\ncomplier powered by :Visual Studio 2019 Community\nversion :version 7.0.2\ncomplied time :2021.9.1\nthe line of code :2511\nthe files this program have to use :connect.dll Test_model.dll train.dlll resnet.py model.dll Data_pre.py utils.py";
+	wchar_t ch_0[] = L"本程序由刘仁宇编写\n本程序可以通过内置的模型，进行自动化的垃圾分类操作。\n本程序也可以通过手工分类进行分类操作\n如果出现了鼠标无法操作本程序的情况，请按下空格键后重试\n请保证您所使用的python>=3.8.5\n编译支持：Visual Studio 2019 Community\n版本信息：version 7.0.3\n编译时间：2021.9.6\n代码行数：2750\n程序接口以及文件调用：connect.dll Test_model.dll python.exe train.dll resnet.py model.dll Data_pre.py utils.py";
+	wchar_t ch_1[] = L"this program is powered by lry\n this program can use the model init to classify the garbage auto.\nthis program can also classify by the user\nif this program cannot operated by mouse,please press Space,to restart therad(mouse_message)\nplease confirm that python on your computer is >=3.8.5\ncomplier powered by :Visual Studio 2019 Community\nversion :version 7.0.3\ncomplied time :2021.9.6\nthe line of code :2750\nthe files this program have to use :connect.dll Test_model.dll train.dlll resnet.py model.dll Data_pre.py utils.py";
 	wchar_t ch_0_00[] = L"程序设置以及版权信息";
 	wchar_t ch_1_00[] = L"the settings and the copyright of this program";
 	if (global_language == 0)
@@ -2108,6 +2108,238 @@ void thread_start_server_command(void*)
 	_endthread();
 }
 
+void command_test_filename(char ch[])
+{
+	remove("Test_model_user_setting_mode.dll");
+	FILE* f1 = fopen("Test_model_user_setting_mode.dll", "a+");
+	fprintf(f1, "import sys\n");
+	fprintf(f1, "import torch\n");
+	fprintf(f1, "from PIL import Image\n");
+	fprintf(f1, "from torchvision import transforms\n");
+	fprintf(f1, "import visdom\n");
+	fprintf(f1, "from torch import optim , nn\n");
+	fprintf(f1, "import os\n");
+	fprintf(f1, "classes=('harmful','kitch','others','recyc')\n");
+	fprintf(f1, "if torch.cuda.is_available():\n");
+	fprintf(f1, "\tdevice = torch.device('cuda')\n");
+	fprintf(f1, "\ttransform = transforms.Compose([\n");
+	fprintf(f1, "\t\ttransforms.Resize(256),\n");
+	fprintf(f1, "\t\ttransforms.CenterCrops(224),\n");
+	fprintf(f1, "\t\ttransforms.ToTensor(),\n");
+	fprintf(f1, "\t\ttransforms.Normalize(mean=[0.485,0.456,0.406],\n");
+	fprintf(f1, "\t\t\t\tstd=[0.229,0.224,0.225])\n");
+	fprintf(f1, "\t\t\t])\n");
+	fprintf(f1, "else:\n");
+	fprintf(f1, "\tdevice = torch.device('cpu')\n");
+	fprintf(f1, "\ttransform=transforms.Compose([\n");
+	fprintf(f1, "\t\ttransforms.Resize(256),\n");
+	fprintf(f1, "\t\ttransforms.CenterCrop(224),\n");
+	fprintf(f1, "\t\ttransforms.ToTensor(),\n");
+	fprintf(f1, "\t\ttransforms.Normalize(mean=[0.485,0.456,0.406],\n");
+	fprintf(f1, "\t\t\t\tstd=[0.229,0.224,0.225])\n");
+	fprintf(f1, "\t\t\t])\n");
+	fprintf(f1, "def predict(img_path):\n");
+	fprintf(f1, "\tif torch.cuda.is_available():\n");
+	fprintf(f1, "\t\tnet=torch.load('model.dll',map_location='cuda')\n");
+	fprintf(f1, "\t\tnet=net.to(device)\n");
+	fprintf(f1, "\t\ttorch.no_grad()\n");
+	fprintf(f1, "\t\timg=Image.open(img_path)\n");
+	fprintf(f1, "\t\timg=transform(img).unsqueeze(0)\n");
+	fprintf(f1, "\t\timg_=img.to(device)\n");
+	fprintf(f1, "\t\toutputs=net(img_)\n");
+	fprintf(f1, "\t\t_,predicted=torch.max(outputs,1)\n");
+	fprintf(f1, "\telse:\n");
+	fprintf(f1, "\t\tnet=torch.load('model.dll',map_location='cpu')\n");
+	fprintf(f1, "\t\tnet=net.to(device)\n");
+	fprintf(f1, "\t\ttorch.no_grad()\n");
+	fprintf(f1, "\t\timg=Image.open(img_path)\n");
+	fprintf(f1, "\t\timg=transform(img).unsqueeze(0)\n");
+	fprintf(f1, "\t\timg_=img.to(device)\n");
+	fprintf(f1, "\t\toutputs=net(img_)\n");
+	fprintf(f1, "\t\t_,predicted=torch.max(outputs,1)\n");
+	fprintf(f1, "\tprint(classes[predicted[0]])\n");
+	fprintf(f1, "\tpath='connect.dll'\n");
+	fprintf(f1, "\tif os.path.exists(path):\n");
+	fprintf(f1, "\t\tos.remove(path)\n");
+	fprintf(f1, "\telse:\n");
+	fprintf(f1, "\t\tprint('successfully create the file:connect.dll')\n");
+	fprintf(f1, "\tif classes[predicted[0]]=='harmful':\n");
+	fprintf(f1, "\t\t#print('1')\n");
+	fprintf(f1, "\t\tcreate_file(1)\n");
+	fprintf(f1, "\tif classes[predicted[0]]=='kitch':\n");
+	fprintf(f1, "\t\t#print('2')\n");
+	fprintf(f1, "\t\tcreate_file(2)\n");
+	fprintf(f1, "\tif classes[predicted[0]]=='others':\n");
+	fprintf(f1, "\t\t#print('3')\n");
+	fprintf(f1, "\t\tcreate_file(3)\n");
+	fprintf(f1, "\tif classes[predicted[0]]=='recyc':\n");
+	fprintf(f1, "\t\t#print('4')\n");
+	fprintf(f1, "\t\tcreate_file(4)\n");
+	fprintf(f1, "def create_file(a):\n");
+	fprintf(f1, "\tif a==1:\n");
+	fprintf(f1, "\t\ttry:\n");
+	fprintf(f1, "\t\t\tfile=open('connect.dll','r+')\n");
+	fprintf(f1, "\t\texcept FileNotFoundError:\n");
+	fprintf(f1, "\t\t\tfile=open('connect.dll','a+')\n");
+	fprintf(f1, "\tif a==2:\n");
+	fprintf(f1, "\t\ttry:\n");
+	fprintf(f1, "\t\t\tfile=open('connect.dll','r+')\n");
+	fprintf(f1, "\t\texcept FileNotFoundError:\n");
+	fprintf(f1, "\t\t\tfile=open('connect.dll','a+')\n");
+	fprintf(f1, "\tif a==3:\n");
+	fprintf(f1, "\t\ttry:\n");
+	fprintf(f1, "\t\t\tfile=open('connect.dll','r+')\n");
+	fprintf(f1, "\t\texcept FileNotFoundError:\n");
+	fprintf(f1, "\t\t\tfile=open('connect.dll','a+')\n");
+	fprintf(f1, "\tif a==4:\n");
+	fprintf(f1, "\t\ttry:\n");
+	fprintf(f1, "\t\t\tfile=open('connect.dll','r+')\n");
+	fprintf(f1, "\t\texcept FileNotFoundError:\n");
+	fprintf(f1, "\t\t\tfile=open('connect.dll','a+')\n");
+	fprintf(f1, "\twrite_file(a)\n");
+	fprintf(f1, "def write_file(a):\n");
+	fprintf(f1, "\tif a==1:\n");
+	fprintf(f1, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
+	fprintf(f1, "\t\t\ttext='harmful'\n");
+	fprintf(f1, "\t\t\tf.write(text)\n");
+	fprintf(f1, "\tif a==2:\n");
+	fprintf(f1, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
+	fprintf(f1, "\t\t\ttext='kitch'\n");
+	fprintf(f1, "\t\t\tf.write(text)\n");
+	fprintf(f1, "\tif a==3:\n");
+	fprintf(f1, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
+	fprintf(f1, "\t\t\ttext='others'\n");
+	fprintf(f1, "\t\t\tf.write(text)\n");
+	fprintf(f1, "\tif a==1:\n");
+	fprintf(f1, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
+	fprintf(f1, "\t\t\ttext='recyc'\n");
+	fprintf(f1, "\t\t\tf.write(text)\n");
+	fprintf(f1, "\nif __name__=='__main__':\n");
+	fprintf(f1, "\tpredict(sys.argv[1])\n");
+	fclose(f1);
+	printf("begin to link  %s to Test_model_user_setting_mode.dll\n", ch);
+	printf("start to run python script and the model.dll\n");
+	printf("please wait......\n");
+	char ch1[512] = { '\0' };
+	strcpy(ch1, "python Test_model_user_setting_mode.dll ");
+	strcat(ch1, ch);
+	system(ch1);
+}
+
+void command_test_default_mode()
+{
+	remove("Test_model_default_mode.dll");
+	FILE* f1 = fopen("Test_model_default_mode.dll", "a+");
+	fprintf(f1, "import sys\n");
+	fprintf(f1, "import torch\n");
+	fprintf(f1, "from PIL import Image\n");
+	fprintf(f1, "from torchvision import transforms\n");
+	fprintf(f1, "import visdom\n");
+	fprintf(f1, "from torch import optim , nn\n");
+	fprintf(f1, "import os\n");
+	fprintf(f1, "classes=('harmful','kitch','others','recyc')\n");
+	fprintf(f1, "if torch.cuda.is_available():\n");
+	fprintf(f1, "\tdevice = torch.device('cuda')\n");
+	fprintf(f1, "\ttransform = transforms.Compose([\n");
+	fprintf(f1, "\t\ttransforms.Resize(256),\n");
+	fprintf(f1, "\t\ttransforms.CenterCrops(224),\n");
+	fprintf(f1, "\t\ttransforms.ToTensor(),\n");
+	fprintf(f1, "\t\ttransforms.Normalize(mean=[0.485,0.456,0.406],\n");
+	fprintf(f1, "\t\t\t\tstd=[0.229,0.224,0.225])\n");
+	fprintf(f1, "\t\t\t])\n");
+	fprintf(f1, "else:\n");
+	fprintf(f1, "\tdevice = torch.device('cpu')\n");
+	fprintf(f1, "\ttransform=transforms.Compose([\n");
+	fprintf(f1, "\t\ttransforms.Resize(256),\n");
+	fprintf(f1, "\t\ttransforms.CenterCrop(224),\n");
+	fprintf(f1, "\t\ttransforms.ToTensor(),\n");
+	fprintf(f1, "\t\ttransforms.Normalize(mean=[0.485,0.456,0.406],\n");
+	fprintf(f1, "\t\t\t\tstd=[0.229,0.224,0.225])\n");
+	fprintf(f1, "\t\t\t])\n");
+	fprintf(f1, "def predict(img_path):\n");
+	fprintf(f1, "\tif torch.cuda.is_available():\n");
+	fprintf(f1, "\t\tnet=torch.load('model.dll',map_location='cuda')\n");
+	fprintf(f1, "\t\tnet=net.to(device)\n");
+	fprintf(f1, "\t\ttorch.no_grad()\n");
+	fprintf(f1, "\t\timg=Image.open(img_path)\n");
+	fprintf(f1, "\t\timg=transform(img).unsqueeze(0)\n");
+	fprintf(f1, "\t\timg_=img.to(device)\n");
+	fprintf(f1, "\t\toutputs=net(img_)\n");
+	fprintf(f1, "\t\t_,predicted=torch.max(outputs,1)\n");
+	fprintf(f1, "\telse:\n");
+	fprintf(f1, "\t\tnet=torch.load('model.dll',map_location='cpu')\n");
+	fprintf(f1, "\t\tnet=net.to(device)\n");
+	fprintf(f1, "\t\ttorch.no_grad()\n");
+	fprintf(f1, "\t\timg=Image.open(img_path)\n");
+	fprintf(f1, "\t\timg=transform(img).unsqueeze(0)\n");
+	fprintf(f1, "\t\timg_=img.to(device)\n");
+	fprintf(f1, "\t\toutputs=net(img_)\n");
+	fprintf(f1, "\t\t_,predicted=torch.max(outputs,1)\n");
+	fprintf(f1, "\tprint(classes[predicted[0]])\n");
+	fprintf(f1, "\tpath='connect.dll'\n");
+	fprintf(f1, "\tif os.path.exists(path):\n");
+	fprintf(f1, "\t\tos.remove(path)\n");
+	fprintf(f1, "\telse:\n");
+	fprintf(f1, "\t\tprint('successfully create the file:connect.dll')\n");
+	fprintf(f1, "\tif classes[predicted[0]]=='harmful':\n");
+	fprintf(f1, "\t\t#print('1')\n");
+	fprintf(f1, "\t\tcreate_file(1)\n");
+	fprintf(f1, "\tif classes[predicted[0]]=='kitch':\n");
+	fprintf(f1, "\t\t#print('2')\n");
+	fprintf(f1, "\t\tcreate_file(2)\n");
+	fprintf(f1, "\tif classes[predicted[0]]=='others':\n");
+	fprintf(f1, "\t\t#print('3')\n");
+	fprintf(f1, "\t\tcreate_file(3)\n");
+	fprintf(f1, "\tif classes[predicted[0]]=='recyc':\n");
+	fprintf(f1, "\t\t#print('4')\n");
+	fprintf(f1, "\t\tcreate_file(4)\n");
+	fprintf(f1, "def create_file(a):\n");
+	fprintf(f1, "\tif a==1:\n");
+	fprintf(f1, "\t\ttry:\n");
+	fprintf(f1, "\t\t\tfile=open('connect.dll','r+')\n");
+	fprintf(f1, "\t\texcept FileNotFoundError:\n");
+	fprintf(f1, "\t\t\tfile=open('connect.dll','a+')\n");
+	fprintf(f1, "\tif a==2:\n");
+	fprintf(f1, "\t\ttry:\n");
+	fprintf(f1, "\t\t\tfile=open('connect.dll','r+')\n");
+	fprintf(f1, "\t\texcept FileNotFoundError:\n");
+	fprintf(f1, "\t\t\tfile=open('connect.dll','a+')\n");
+	fprintf(f1, "\tif a==3:\n");
+	fprintf(f1, "\t\ttry:\n");
+	fprintf(f1, "\t\t\tfile=open('connect.dll','r+')\n");
+	fprintf(f1, "\t\texcept FileNotFoundError:\n");
+	fprintf(f1, "\t\t\tfile=open('connect.dll','a+')\n");
+	fprintf(f1, "\tif a==4:\n");
+	fprintf(f1, "\t\ttry:\n");
+	fprintf(f1, "\t\t\tfile=open('connect.dll','r+')\n");
+	fprintf(f1, "\t\texcept FileNotFoundError:\n");
+	fprintf(f1, "\t\t\tfile=open('connect.dll','a+')\n");
+	fprintf(f1, "\twrite_file(a)\n");
+	fprintf(f1, "def write_file(a):\n");
+	fprintf(f1, "\tif a==1:\n");
+	fprintf(f1, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
+	fprintf(f1, "\t\t\ttext='harmful'\n");
+	fprintf(f1, "\t\t\tf.write(text)\n");
+	fprintf(f1, "\tif a==2:\n");
+	fprintf(f1, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
+	fprintf(f1, "\t\t\ttext='kitch'\n");
+	fprintf(f1, "\t\t\tf.write(text)\n");
+	fprintf(f1, "\tif a==3:\n");
+	fprintf(f1, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
+	fprintf(f1, "\t\t\ttext='others'\n");
+	fprintf(f1, "\t\t\tf.write(text)\n");
+	fprintf(f1, "\tif a==1:\n");
+	fprintf(f1, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
+	fprintf(f1, "\t\t\ttext='recyc'\n");
+	fprintf(f1, "\t\t\tf.write(text)\n");
+	fprintf(f1, "\nif __name__=='__main__':\n");
+	fprintf(f1, "\tpredict('./test/1.jpg')\n");
+	fclose(f1);
+	printf("begin to link and connect with Test_model_default_mode.dll\n");
+	printf("please wait\n");
+	system("python Test_model_default_mode.dll");
+}
+
 void command_check_mode()
 {
 	printf("start checking the files this programs need");
@@ -2483,6 +2715,13 @@ void command_release_mode()
 	printf("all files has been released\n");
 	printf("however ,because of some causes, we can not release the file : model.dll\n");
 	printf("thanks for your usage\n");
+}
+void command_upgrade_mode()
+{
+	printf("we will open the internet explorer you can download from this wedsite\n");
+	wchar_t ch[] = L"open";
+	wchar_t ch1[] = L"https://github.com/lry-123456789/garbage-classification";
+	ShellExecute(NULL, ch, ch1, NULL, NULL, SW_MAXIMIZE);
 }
 /***************************\
 fix tips:
