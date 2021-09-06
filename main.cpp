@@ -28,26 +28,26 @@ using namespace std;
 
 //define global number to start or to stop the program_thread without any problem
 int global_language = 0;							//global_language=0::Chinese global_languaage=1::English
-int global_thread_stop_1 = 0;						//global_thread_stop_1=0::continue global_thread_stop_1=1::exit the thread mouse_message_init and exit break the while 1 global_stop_1=2::exit the program.
-int global_thread_stop_2 = 0;						//global_thread_stop_2=0::continue global_thread_stop_2=1::goto next line. global_thread_stop=2::exit the program.
-int global_judge_thread_mouse_message_init = 0;		//global_judge_thread_mouse_message_init=1::thread mouse_message_init is alive global_judge_thread_mouse_init=0::thread mouse_message_init is dead
-int global_check_files_0 = 0;						//global_check_files_0=0::it has not begun to check files. global_check_files_0=-1::unknown eror this can cause this program exit.global_check_files_0=1,check model.dll finished global_check_files_0=2 check train.dll finished.global_check_files_0=3,check connect.dll finished.global_check_files_0=4 check Test_model.dll finished. global_check_files_0=5 check utils.py finished. global_check_files_0=6 check readme.txt finished. global_check_files_0=7 check Data_Pre.py finished.
-int global_check_python_environment = 0;			//global_check_python_environment=-1::no python environment.global_check_python_environment=0::it has not begun to check python environment global_check_python_environment=1::check torch finished. global_check_python_environment=2::check matplotlib finished. global_check_python_environment=3 check visdom finished.global_check_python_environment=4::check torchvision finished.
-int global_files[7] = { 0 };						//in order to store which file is not exist. if global_files[]=1::means this file is not exist. if global_files[]=0::means this file is exist. global_files[0]->model.dll global_files[1]->train.dll global_files[2]->connect.dll global_files[3]->Test_model.dll global_files[4]->utils.py global_files[5]->readme.txt global_files[6]->Data_Pre.py
-int global_judge_thread_mouse_message_after_1 = 0;	//global_judge_thread_mouse_message_after_1=1::thread mouse_message_after_1 is alive global_judge_thread_mouse_after_1=0::thread mouse_message_after_1 is dead.
+int global_thread_stop_1 = 0;							//global_thread_stop_1=0::continue global_thread_stop_1=1::exit the thread mouse_message_init and exit break the while 1 global_stop_1=2::exit the program.
+int global_thread_stop_2 = 0;							//global_thread_stop_2=0::continue global_thread_stop_2=1::goto next line. global_thread_stop=2::exit the program.
+int global_judge_thread_mouse_message_init = 0;					//global_judge_thread_mouse_message_init=1::thread mouse_message_init is alive global_judge_thread_mouse_init=0::thread mouse_message_init is dead
+int global_check_files_0 = 0;							//global_check_files_0=0::it has not begun to check files. global_check_files_0=-1::unknown eror this can cause this program exit.global_check_files_0=1,check model.dll finished global_check_files_0=2 check train.dll finished.global_check_files_0=3,check connect.dll finished.global_check_files_0=4 check Test_model.dll finished. global_check_files_0=5 check utils.py finished. global_check_files_0=6 check readme.txt finished. global_check_files_0=7 check Data_Pre.py finished.
+int global_check_python_environment = 0;					//global_check_python_environment=-1::no python environment.global_check_python_environment=0::it has not begun to check python environment global_check_python_environment=1::check torch finished. global_check_python_environment=2::check matplotlib finished. global_check_python_environment=3 check visdom finished.global_check_python_environment=4::check torchvision finished.
+int global_files[7] = { 0 };							//in order to store which file is not exist. if global_files[]=1::means this file is not exist. if global_files[]=0::means this file is exist. global_files[0]->model.dll global_files[1]->train.dll global_files[2]->connect.dll global_files[3]->Test_model.dll global_files[4]->utils.py global_files[5]->readme.txt global_files[6]->Data_Pre.py
+int global_judge_thread_mouse_message_after_1 = 0;				//global_judge_thread_mouse_message_after_1=1::thread mouse_message_after_1 is alive global_judge_thread_mouse_after_1=0::thread mouse_message_after_1 is dead.
 int global_position_x = 0;							//get the position of this program(x)
 int global_position_y = 0;							//get the position of this program(y)
-int global_change_thread = 1;						//0::use mouse+message_after_1;1::use mouse_message_from_windows_api
+int global_change_thread = 1;							//0::use mouse+message_after_1;1::use mouse_message_from_windows_api
 /********************************************\
 * this program is powered by lry
 * function	: this program can provide a GUI for the guest
 * mouse		: this program can be use by mouse 
 * thread	: this program can use in a mutli-threads system
 * what's the function means:
-*		1		:check_python_environment	:this function can check the python environment is completely or not
-*		2		:self_classification		:this function can classify the photograph all by this program itself
+*		1		:check_python_environment			:this function can check the python environment is completely or not
+*		2		:self_classification				:this function can classify the photograph all by this program itself
 *		3		:read_file					:this function can read the files from connect.dll and show on the sereen.
-*		4		:create_operatble_file		:this function can create operatable files for this program to use
+*		4		:create_operatble_file				:this function can create operatable files for this program to use
 *		5		:show						:this function can show the classification by this program or by the users
 *		6		:check_file					:this function can check files is or not fixed successfully.
 *		7		:fix_file_1					:this function can fix the important file this program must use == model.dll
@@ -57,19 +57,20 @@ int global_change_thread = 1;						//0::use mouse+message_after_1;1::use mouse_m
 *		11		:fix_file_5					:this function can fix the important file this program must use == utils.py			>>in order to make the program have a better accuracy
 *		12		:fix_file_6					:this function can fix the important file this program must use == readme.txt		>>in order to make sure that the users can have the right choice to use this program.
 *		13		:fix_file_7					:this function can fix the important file this program must use == Data_Pre.py		>>in order to make this program have the prearation to analysis this photograph.
-*		14		:create_update_data			:this function can show the updata log to the users.
-*		15		:mouse_message_init			:this function is a new thread that can run with GUI interface.
-*		16		:mouse_message_after		:this function is a new thread that can give message to this program .in the use of the running time.
-*		17		:GUI_interface_1			:this function is a new thread that can give the users a good usage operation.
-*		18		:GUI_interface_2			:this function is a new thread that can give the users a operatalbe interface.
-*		19		:GUI_interface_3			:this function is a new thread that can give the users a operatable interface.
-*		20		:language_setting			:set the language you use.			//can't use in this version.
-*		21		:get_the_time_now			:get the time now.
-*		22		:show_the_settings			:show the settings of program
+*		14		:create_update_data				:this function can show the updata log to the users.
+*		15		:mouse_message_init				:this function is a new thread that can run with GUI interface.
+*		16		:mouse_message_after				:this function is a new thread that can give message to this program .in the use of the running time.
+*		17		:GUI_interface_1				:this function is a new thread that can give the users a good usage operation.
+*		18		:GUI_interface_2				:this function is a new thread that can give the users a operatalbe interface.
+*		19		:GUI_interface_3				:this function is a new thread that can give the users a operatable interface.
+*		20		:language_setting				:set the language you use.			//can't use in this version.
+*		21		:get_the_time_now				:get the time now.
+*		22		:show_the_settings				:show the settings of program
 * start create time :2021.3.12
 * 2021.3.12 version 1.0.1 can only run in dos mode.using python script.
 * 2021.7.27 version 2.0.1 this version can fix the wrong files auto.but without any GUI interface.
 * 2021.8.6  version 3.0.1 this version have a GUIinterface,but still have some bugs.
+* 2021.9.6  version update to version 7.0.3 this version can run in dos mode and get information from commandline
 \***********************************************/
 
 //function begin.
@@ -879,12 +880,12 @@ void fix_file_2()
 	fprintf(f1, "\t\t\t\tbest_epoch=epoch\n");
 	fprintf(f1, "\t\t\t\tbest_acc=val_acc\n");
 	fprintf(f1, "\t\t\t\ttorch.save(model.state_dict(),'best_trans.mdl')\n");
-	fprintf(f1, "\tprint('best accuracy:',best_acc,'best epoch:',(best_epoch+1))\n");					//fprintf(f1, "\tprint('最好的准确率：',best_acc,'最好的批次：',(best_epoch+1))\n");
+	fprintf(f1, "\tprint('best accuracy:',best_acc,'best epoch:',(best_epoch+1))\n");									//fprintf(f1, "\tprint('最好的准确率：',best_acc,'最好的批次：',(best_epoch+1))\n");
 	fprintf(f1, "\ttorch.save(model,'model.dll')\n");
 	fprintf(f1, "\tprint('loading model......')\n");													//fprintf(f1, "\tprint('正在加载模型......')\n");
 	fprintf(f1, "\ttest_acc=evalute(model,test_loader)\n");
-	fprintf(f1, "\tprint('test accuracy:',test_acc)\n");												//fprintf(f1, "\tprint('测试准确率:',test_acc)\n");
-	fprintf(f1, "\tprint('successfully save the best model ')\n");										//fprintf(f1, "\tprint('保存最好效果模型成功！')\n");
+	fprintf(f1, "\tprint('test accuracy:',test_acc)\n");													//fprintf(f1, "\tprint('测试准确率:',test_acc)\n");
+	fprintf(f1, "\tprint('successfully save the best model ')\n");												//fprintf(f1, "\tprint('保存最好效果模型成功！')\n");
 	fprintf(f1, "if __name__=='__main__':\n");
 	fprintf(f1, "\tmain()\n");
 	fclose(f1);
@@ -2096,7 +2097,7 @@ void command_train_mode()
 	printf("begin to start internet explorer goto localhost:8097\n");
 	wchar_t ch[] = L"open";
 	wchar_t ch1[] = L"https://localhost:8097";
-	ShellExecute(NULL, ch, ch1, NULL, NULL, SW_MAXIMIZE);				//SW_MAXIMIZE 最大化 SW_MINIMIZE 最小化 SW_HIDE 隐藏
+	ShellExecute(NULL, ch, ch1, NULL, NULL, SW_MAXIMIZE);											//SW_MAXIMIZE 最大化 SW_MINIMIZE 最小化 SW_HIDE 隐藏
 	Sleep(5000);
 	printf("start running the python script\n");
 	system("python train.dll");
@@ -2450,18 +2451,18 @@ void command_release_mode()
 	fprintf(f1, "\t\t\tviz.line([[loss.item(),evalute(model,val_loader)]],[global_step],win='test',update='append')\n");
 	fprintf(f1, "\t\t\tglobal_step+=1\n");
 	fprintf(f1, "\t\tif epoch%1==0:\n");
-	fprintf(f1, "\t\t\tprint('the '+str(epoch+1)+' epoch'+' training......')\n");						//fprintf(f1, "\t\t\tprint('第 '+str(epoch+1)+' 批'+' training……')\n");
+	fprintf(f1, "\t\t\tprint('the '+str(epoch+1)+' epoch'+' training......')\n");										//fprintf(f1, "\t\t\tprint('第 '+str(epoch+1)+' 批'+' training……')\n");
 	fprintf(f1, "\t\t\tval_acc=evaluate(model,val_loader)\n");
 	fprintf(f1, "\t\t\tif val_acc>best_acc:\n");
 	fprintf(f1, "\t\t\t\tbest_epoch=epoch\n");
 	fprintf(f1, "\t\t\t\tbest_acc=val_acc\n");
 	fprintf(f1, "\t\t\t\ttorch.save(model.state_dict(),'best_trans.mdl')\n");
-	fprintf(f1, "\tprint('best accuracy:',best_acc,'best epoch:',(best_epoch+1))\n");					//fprintf(f1, "\tprint('最好的准确率：',best_acc,'最好的批次：',(best_epoch+1))\n");
+	fprintf(f1, "\tprint('best accuracy:',best_acc,'best epoch:',(best_epoch+1))\n");									//fprintf(f1, "\tprint('最好的准确率：',best_acc,'最好的批次：',(best_epoch+1))\n");
 	fprintf(f1, "\ttorch.save(model,'model.dll')\n");
 	fprintf(f1, "\tprint('loading model......')\n");													//fprintf(f1, "\tprint('正在加载模型......')\n");
 	fprintf(f1, "\ttest_acc=evalute(model,test_loader)\n");
-	fprintf(f1, "\tprint('test accuracy:',test_acc)\n");												//fprintf(f1, "\tprint('测试准确率:',test_acc)\n");
-	fprintf(f1, "\tprint('successfully save the best model ')\n");										//fprintf(f1, "\tprint('保存最好效果模型成功！')\n");
+	fprintf(f1, "\tprint('test accuracy:',test_acc)\n");													//fprintf(f1, "\tprint('测试准确率:',test_acc)\n");
+	fprintf(f1, "\tprint('successfully save the best model ')\n");												//fprintf(f1, "\tprint('保存最好效果模型成功！')\n");
 	fprintf(f1, "if __name__=='__main__':\n");
 	fprintf(f1, "\tmain()\n");
 	fclose(f1);
@@ -2634,7 +2635,7 @@ void command_release_mode()
 	fprintf(f4, "and all the files have a signcode\n");
 	fprintf(f4, "this versioon is better than the version before this program\n");
 	fprintf(f4, "thank you for your usage\n");
-	fclose(fp);
+	fclose(f4);														//fixed bug fp->f4
 	printf("\nreadme.txt has been fixed successfully.\n");
 	printf("\nbegin to release Data_pre.py");
 	FILE* f5 = fopen("Data_Pre.py", "a+");
