@@ -332,7 +332,7 @@ int main(int agrc,char *agrv[])
 										{
 											if (agrc == 2)
 											{
-												printf("version 7.0.3");
+												printf("version 7.0.6");
 											}
 										}
 									}
@@ -455,8 +455,8 @@ void mouse_message_init(void*)
 
 void show_the_settings(void*)
 {
-	wchar_t ch_0[] = L"本程序由刘仁宇编写\n本程序可以通过内置的模型，进行自动化的垃圾分类操作。\n本程序也可以通过手工分类进行分类操作\n如果出现了鼠标无法操作本程序的情况，请按下空格键后重试\n请保证您所使用的python>=3.8.5\n编译支持：Visual Studio 2019 Community\n版本信息：version 7.0.6\n编译时间：2021.9.6\n代码行数：2750\n程序接口以及文件调用：connect.dll Test_model.dll python.exe train.dll resnet.py model.dll Data_pre.py utils.py";
-	wchar_t ch_1[] = L"this program is powered by lry\n this program can use the model init to classify the garbage auto.\nthis program can also classify by the user\nif this program cannot operated by mouse,please press Space,to restart therad(mouse_message)\nplease confirm that python on your computer is >=3.8.5\ncomplier powered by :Visual Studio 2019 Community\nversion :version 7.0.6\ncomplied time :2021.9.6\nthe line of code :2750\nthe files this program have to use :connect.dll Test_model.dll train.dlll resnet.py model.dll Data_pre.py utils.py";
+	wchar_t ch_0[] = L"本程序由刘仁宇编写\n本程序可以通过内置的模型，进行自动化的垃圾分类操作。\n本程序也可以通过手工分类进行分类操作\n如果出现了鼠标无法操作本程序的情况，请按下空格键后重试\n请保证您所使用的python>=3.8.5\n编译支持：Visual Studio 2019 Community\n版本信息：version 7.0.6\n编译时间：2021.9.9\n代码行数：2771\n程序接口以及文件调用：connect.dll Test_model.dll python.exe train.dll resnet.py model.dll Data_pre.py utils.py";
+	wchar_t ch_1[] = L"this program is powered by lry\n this program can use the model init to classify the garbage auto.\nthis program can also classify by the user\nif this program cannot operated by mouse,please press Space,to restart therad(mouse_message)\nplease confirm that python on your computer is >=3.8.5\ncomplier powered by :Visual Studio 2019 Community\nversion :version 7.0.6\ncomplied time :2021.9.9\nthe line of code :2771\nthe files this program have to use :connect.dll Test_model.dll train.dlll resnet.py model.dll Data_pre.py utils.py";
 	wchar_t ch_0_00[] = L"程序设置以及版权信息";
 	wchar_t ch_1_00[] = L"the settings and the copyright of this program";
 	if (global_language == 0)
