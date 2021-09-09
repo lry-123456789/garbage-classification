@@ -1002,7 +1002,7 @@ void fix_file_4()
 	fprintf(f1, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
 	fprintf(f1, "\t\t\ttext='others'\n");
 	fprintf(f1, "\t\t\tf.write(text)\n");
-	fprintf(f1, "\tif a==1:\n");
+	fprintf(f1, "\tif a==4:\n");
 	fprintf(f1, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
 	fprintf(f1, "\t\t\ttext='recyc'\n");
 	fprintf(f1, "\t\t\tf.write(text)\n");
@@ -2213,7 +2213,7 @@ void command_test_filename(char ch[])
 	fprintf(f1, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
 	fprintf(f1, "\t\t\ttext='others'\n");
 	fprintf(f1, "\t\t\tf.write(text)\n");
-	fprintf(f1, "\tif a==1:\n");
+	fprintf(f1, "\tif a==4:\n");
 	fprintf(f1, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
 	fprintf(f1, "\t\t\ttext='recyc'\n");
 	fprintf(f1, "\t\t\tf.write(text)\n");
@@ -2331,7 +2331,7 @@ void command_test_default_mode()
 	fprintf(f1, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
 	fprintf(f1, "\t\t\ttext='others'\n");
 	fprintf(f1, "\t\t\tf.write(text)\n");
-	fprintf(f1, "\tif a==1:\n");
+	fprintf(f1, "\tif a==4:\n");
 	fprintf(f1, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
 	fprintf(f1, "\t\t\ttext='recyc'\n");
 	fprintf(f1, "\t\t\tf.write(text)\n");
@@ -2575,7 +2575,7 @@ void command_release_mode()
 	fprintf(f2, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
 	fprintf(f2, "\t\t\ttext='others'\n");
 	fprintf(f2, "\t\t\tf.write(text)\n");
-	fprintf(f2, "\tif a==1:\n");
+	fprintf(f2, "\tif a==4:\n");
 	fprintf(f2, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
 	fprintf(f2, "\t\t\ttext='recyc'\n");
 	fprintf(f2, "\t\t\tf.write(text)\n");
