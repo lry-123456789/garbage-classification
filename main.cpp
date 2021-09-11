@@ -135,8 +135,8 @@ int main(int agrc,char *agrv[])
 	}
 	else if (agrc > 1)
 	{
-		printf("ä¸‹é¢è¾“å‡ºå¯¼å…¥çš„å‚æ•°\n");
-		printf("å‚æ•°ä¸ªæ•°ï¼š%d\n", agrc);
+		printf("ÏÂÃæÊä³öµ¼ÈëµÄ²ÎÊı\n");
+		printf("²ÎÊı¸öÊı£º%d\n", agrc);
 		for (int i = 0; i < agrc; i++)
 		{
 			printf("%s\n", agrv[i]);
@@ -346,17 +346,17 @@ int main(int agrc,char *agrv[])
 	}
 	else if (agrc < 1)
 	{
-		printf("æœ¬ç¨‹åºå‡ºç°äº†ä¸¥é‡å¼‚å¸¸ï¼Œæ­£åœ¨å¤„ç†ä¸­ï¼Œè¯·ç¨å\n");
-		printf("é”™è¯¯åŸå› ï¼šç³»ç»Ÿå‚æ•°å‡ºé”™\n");
-		printf("è¯»å–å‚æ•°ä¸ªæ•°ï¼š%d", agrc);
+		printf("±¾³ÌĞò³öÏÖÁËÑÏÖØÒì³££¬ÕıÔÚ´¦ÀíÖĞ£¬ÇëÉÔºó\n");
+		printf("´íÎóÔ­Òò£ºÏµÍ³²ÎÊı³ö´í\n");
+		printf("¶ÁÈ¡²ÎÊı¸öÊı£º%d", agrc);
 	}
 }
 
 void init()
 {
-	//wchar_t ch[] = L"åƒåœ¾åˆ†ç±»ç¨‹åº";
+	//wchar_t ch[] = L"À¬»ø·ÖÀà³ÌĞò";
 	HWND hwnd = initgraph(640, 480);
-	SetWindowTextA(hwnd, "åƒåœ¾åˆ†ç±»ç¨‹åº");
+	SetWindowTextA(hwnd, "À¬»ø·ÖÀà³ÌĞò");
 	_beginthread(get_windows_position, 0, NULL);
 	setbkcolor(WHITE);
 	setlinecolor(GREEN);
@@ -365,10 +365,10 @@ void init()
 	cleardevice();
 	_beginthread(get_the_time_now, 0, NULL);
 	_beginthread(mouse_message_init, 0, NULL);
-	wchar_t ch_0_0[] = L"è¯­è¨€ï¼šä¸­æ–‡,å•å‡»æ­¤å¤„å·²æ›´æ”¹                                            ";
-	wchar_t ch_1_0[] = L"å¯åŠ¨ä¸»ç¨‹åº                                                       ";
-	wchar_t ch_2_0[] = L"æ˜¾ç¤ºæœ¬ç¨‹åºè®¾ç½®ä»¥åŠç‰ˆæƒä¿¡æ¯                                                             ";
-	wchar_t ch_3_0[] = L"é€€å‡ºæœ¬ç¨‹åº                             ";
+	wchar_t ch_0_0[] = L"ÓïÑÔ£ºÖĞÎÄ,µ¥»÷´Ë´¦ÒÑ¸ü¸Ä                                            ";
+	wchar_t ch_1_0[] = L"Æô¶¯Ö÷³ÌĞò                                                       ";
+	wchar_t ch_2_0[] = L"ÏÔÊ¾±¾³ÌĞòÉèÖÃÒÔ¼°°æÈ¨ĞÅÏ¢                                                             ";
+	wchar_t ch_3_0[] = L"ÍË³ö±¾³ÌĞò                             ";
 	wchar_t ch_0_1[] = L"language : English,click here to change language";
 	wchar_t ch_1_1[] = L"start running the main program";
 	wchar_t ch_2_1[] = L"show the settings of this program and the copyright of the author";
@@ -408,16 +408,20 @@ void init()
 void mouse_message_init(void*)
 {
 	global_judge_thread_mouse_message_init = 1;
-	MOUSEMSG m;
-	FlushMouseMsgBuffer();
+	//MOUSEMSG m;						//this struct cannot use in easyx20210730
+	ExMessage m;						//this struct can run in Easyx20210730 fixedsuccessfully	
+	//FlushMouseMsgBuffer();			//this function cannot use in easyx20210730
+	flushmessage();						//this function can run in Easyx20210730 fixed successfully
 	int a = 0;
 	int temp = 0;
 	while (1)
 	{
-		m = GetMouseMsg();
-		while (m.mkLButton)
+		//m = GetMouseMsg();			//this function cannot use in easyx20210730
+		m = getmessage(-1);				//this function can run in Easyx20210730 fixed successfully
+		//while (m.mkLButton)			//this function cannot use in easyx20210730
+		while (m.lbutton)				//this function can run in easyx20210730 fixed successfully
 		{
-			Sleep(100);		//é˜²æ­¢è¯¥çº¿ç¨‹æŠ–åŠ¨
+			Sleep(100);		//·ÀÖ¹¸ÃÏß³Ì¶¶¶¯
 			if (m.x >= 100 && m.x <= 200 && m.y >= 70 && m.y <= 130)
 			{
 				if (global_language == 0)
@@ -455,9 +459,9 @@ void mouse_message_init(void*)
 
 void show_the_settings(void*)
 {
-	wchar_t ch_0[] = L"æœ¬ç¨‹åºç”±åˆ˜ä»å®‡ç¼–å†™\næœ¬ç¨‹åºå¯ä»¥é€šè¿‡å†…ç½®çš„æ¨¡å‹ï¼Œè¿›è¡Œè‡ªåŠ¨åŒ–çš„åƒåœ¾åˆ†ç±»æ“ä½œã€‚\næœ¬ç¨‹åºä¹Ÿå¯ä»¥é€šè¿‡æ‰‹å·¥åˆ†ç±»è¿›è¡Œåˆ†ç±»æ“ä½œ\nå¦‚æœå‡ºç°äº†é¼ æ ‡æ— æ³•æ“ä½œæœ¬ç¨‹åºçš„æƒ…å†µï¼Œè¯·æŒ‰ä¸‹ç©ºæ ¼é”®åé‡è¯•\nè¯·ä¿è¯æ‚¨æ‰€ä½¿ç”¨çš„python>=3.8.5\nç¼–è¯‘æ”¯æŒï¼šVisual Studio 2019 Community\nç‰ˆæœ¬ä¿¡æ¯ï¼šversion 7.0.6\nç¼–è¯‘æ—¶é—´ï¼š2021.9.9\nä»£ç è¡Œæ•°ï¼š2771\nç¨‹åºæ¥å£ä»¥åŠæ–‡ä»¶è°ƒç”¨ï¼šconnect.dll Test_model.dll python.exe train.dll resnet.py model.dll Data_pre.py utils.py";
-	wchar_t ch_1[] = L"this program is powered by lry\n this program can use the model init to classify the garbage auto.\nthis program can also classify by the user\nif this program cannot operated by mouse,please press Space,to restart therad(mouse_message)\nplease confirm that python on your computer is >=3.8.5\ncomplier powered by :Visual Studio 2019 Community\nversion :version 7.0.6\ncomplied time :2021.9.9\nthe line of code :2771\nthe files this program have to use :connect.dll Test_model.dll train.dlll resnet.py model.dll Data_pre.py utils.py";
-	wchar_t ch_0_00[] = L"ç¨‹åºè®¾ç½®ä»¥åŠç‰ˆæƒä¿¡æ¯";
+	wchar_t ch_0[] = L"±¾³ÌĞòÓÉÁõÈÊÓî±àĞ´\n±¾³ÌĞò¿ÉÒÔÍ¨¹ıÄÚÖÃµÄÄ£ĞÍ£¬½øĞĞ×Ô¶¯»¯µÄÀ¬»ø·ÖÀà²Ù×÷¡£\n±¾³ÌĞòÒ²¿ÉÒÔÍ¨¹ıÊÖ¹¤·ÖÀà½øĞĞ·ÖÀà²Ù×÷\nÈç¹û³öÏÖÁËÊó±êÎŞ·¨²Ù×÷±¾³ÌĞòµÄÇé¿ö£¬Çë°´ÏÂ¿Õ¸ñ¼üºóÖØÊÔ\nÇë±£Ö¤ÄúËùÊ¹ÓÃµÄpython>=3.8.5\n±àÒëÖ§³Ö£ºVisual Studio 2019 Community->Visual Studio 2019 Professional\n°æ±¾ĞÅÏ¢£ºversion 7.1.0\n±àÒëÊ±¼ä£º2021.9.11\n´úÂëĞĞÊı£º2793\n³ÌĞò½Ó¿ÚÒÔ¼°ÎÄ¼şµ÷ÓÃ£ºconnect.dll Test_model.dll python.exe train.dll resnet.py model.dll Data_pre.py utils.py\nÖØÒªĞÅÏ¢£º1.±¾´Î±àÒëÆ÷ÒÑ¾­¸ü¸ÄÎªVS2019 professional 16.4.5\n2.ÓÉÓÚEasyxÔ´´úÂë½øĞĞÁË°²È«¸üĞÂ£¬±¾´ÎÊ¹ÓÃµÄEasyx°æ±¾ÓëÉÏ´Î²¢²»¼æÈİ£º°æ±¾£º20200924->20210730";
+	wchar_t ch_1[] = L"this program is powered by lry\n this program can use the model init to classify the garbage auto.\nthis program can also classify by the user\nif this program cannot operated by mouse,please press Space,to restart therad(mouse_message)\nplease confirm that python on your computer is >=3.8.5\ncomplier powered by :Visual Studio 2019 Community->Visual Studio 2019 Professional \nversion :version 7.1.0\ncomplied time :2021.9.11\nthe line of code :2793\nthe files this program have to use :connect.dll Test_model.dll train.dlll resnet.py model.dll Data_pre.py utils.py\ninportant informtion:the complier has been changed to Visual Studio 2019 Professional 16.4.5\n owing to the security update, the code cannot run in the earlier version : version 20200924->20210730";
+	wchar_t ch_0_00[] = L"³ÌĞòÉèÖÃÒÔ¼°°æÈ¨ĞÅÏ¢";
 	wchar_t ch_1_00[] = L"the settings and the copyright of this program";
 	if (global_language == 0)
 	{
@@ -472,39 +476,39 @@ void show_the_settings(void*)
 void GUI_interface_1()
 {
 	cleardevice();
-	wchar_t ch_init_0[] = L"è¯·ç¨å                                                                 ";
+	wchar_t ch_init_0[] = L"ÇëÉÔºó                                                                 ";
 	wchar_t ch_init_1[] = L"please wait a while                                                    ";
-	wchar_t ch_0_0[] = L"æ£€æŸ¥æœ¬ç¨‹åºæ‰€å¿…é¡»çš„æ–‡ä»¶ï¼Œè¯·ç¨å                                            ";
+	wchar_t ch_0_0[] = L"¼ì²é±¾³ÌĞòËù±ØĞëµÄÎÄ¼ş£¬ÇëÉÔºó                                            ";
 	wchar_t ch_0_1[] = L"checking the files this program must have,please wait                     ";
-	wchar_t ch_1_0[] = L"æ­£åœ¨æ£€æŸ¥pythonç¯å¢ƒï¼Œè¯·ç¨å...                                             ";
+	wchar_t ch_1_0[] = L"ÕıÔÚ¼ì²épython»·¾³£¬ÇëÉÔºó...                                             ";
 	wchar_t ch_1_1[] = L"checking python environment now ,please wait a while                      ";
-	wchar_t ch_2_0[] = L"æ­£åœ¨æ£€æŸ¥python ç¯å¢ƒé…ç½®ï¼štorch                                            ";
+	wchar_t ch_2_0[] = L"ÕıÔÚ¼ì²épython »·¾³ÅäÖÃ£ºtorch                                            ";
 	wchar_t ch_2_1[] = L"checking pyhton environment settings :torch                               ";
-	wchar_t ch_3_0[] = L"æ­£åœ¨æ£€æŸ¥python ç¯å¢ƒé…ç½®ï¼šmatplotlib                                       ";
+	wchar_t ch_3_0[] = L"ÕıÔÚ¼ì²épython »·¾³ÅäÖÃ£ºmatplotlib                                       ";
 	wchar_t ch_3_1[] = L"checking python environment settings : matplotlib                         ";
-	wchar_t ch_4_0[] = L"æ­£åœ¨æ£€æŸ¥python ç¯å¢ƒé…ç½®ï¼švisdom                                           ";
+	wchar_t ch_4_0[] = L"ÕıÔÚ¼ì²épython »·¾³ÅäÖÃ£ºvisdom                                           ";
 	wchar_t ch_4_1[] = L"checking python environment settings :visdom                              ";
-	wchar_t ch_5_0[] = L"æ­£åœ¨æ£€æŸ¥python ç¯å¢ƒé…ç½®ï¼štorchvision                                      ";
+	wchar_t ch_5_0[] = L"ÕıÔÚ¼ì²épython »·¾³ÅäÖÃ£ºtorchvision                                      ";
 	wchar_t ch_5_1[] = L"checking python environment settings :torchvision                         ";
-	wchar_t ch_6_0[] = L"æ­£åœ¨æ£€æŸ¥æœ¬ç¨‹åºæ‰€å¿…éœ€çš„æ–‡ä»¶ï¼Œè¯·ç¨å                                        ";
+	wchar_t ch_6_0[] = L"ÕıÔÚ¼ì²é±¾³ÌĞòËù±ØĞèµÄÎÄ¼ş£¬ÇëÉÔºó                                        ";
 	wchar_t ch_6_1[] = L"checking the files this program must have to start this program ,please wait a while";
-	wchar_t ch_7_0[] = L"æ­£åœ¨æ£€æŸ¥æœ¬ç¨‹åºæ‰€å¿…éœ€çš„æ–‡ä»¶ï¼šmodel.dll                                                              ";
+	wchar_t ch_7_0[] = L"ÕıÔÚ¼ì²é±¾³ÌĞòËù±ØĞèµÄÎÄ¼ş£ºmodel.dll                                                              ";
 	wchar_t ch_7_1[] = L"checking the essential files this program must have used : model.dll                               ";
-	wchar_t ch_8_0[] = L"æ­£åœ¨æ£€æŸ¥æœ¬ç¨‹åºæ‰€å¿…éœ€çš„æ–‡ä»¶ï¼štrain.dll                                                              ";
+	wchar_t ch_8_0[] = L"ÕıÔÚ¼ì²é±¾³ÌĞòËù±ØĞèµÄÎÄ¼ş£ºtrain.dll                                                              ";
 	wchar_t ch_8_1[] = L"checking the essential files this program must have used : train.dll                               ";
-	wchar_t ch_9_0[] = L"æ­£åœ¨æ£€æŸ¥æœ¬ç¨‹åºæ‰€å¿…éœ€çš„æ–‡ä»¶ï¼šconnect.dll                                                            ";
+	wchar_t ch_9_0[] = L"ÕıÔÚ¼ì²é±¾³ÌĞòËù±ØĞèµÄÎÄ¼ş£ºconnect.dll                                                            ";
 	wchar_t ch_9_1[] = L"checking the essential files this program must have used :connect.dll                              ";
-	wchar_t ch_10_0[] = L"æ­£åœ¨æ£€æŸ¥æœ¬ç¨‹åºæ‰€å¿…éœ€çš„æ–‡ä»¶ï¼šTest_model.dll                                                        ";
+	wchar_t ch_10_0[] = L"ÕıÔÚ¼ì²é±¾³ÌĞòËù±ØĞèµÄÎÄ¼ş£ºTest_model.dll                                                        ";
 	wchar_t ch_10_1[] = L"checking the essential files this program must have used : Test_model.dll                         ";
-	wchar_t ch_11_0[] = L"æ­£åœ¨æ£€æŸ¥æœ¬ç¨‹åºæ‰€å¿…éœ€çš„æ–‡ä»¶ï¼šutils.py                                                              ";
+	wchar_t ch_11_0[] = L"ÕıÔÚ¼ì²é±¾³ÌĞòËù±ØĞèµÄÎÄ¼ş£ºutils.py                                                              ";
 	wchar_t ch_11_1[] = L"checking the essential files this program must have used : utils.py                               ";
-	wchar_t ch_12_0[] = L"æ­£åœ¨æ£€æŸ¥æœ¬ç¨‹åºæ‰€å¿…éœ€çš„æ–‡ä»¶ï¼šreadme.txt                                                            ";
+	wchar_t ch_12_0[] = L"ÕıÔÚ¼ì²é±¾³ÌĞòËù±ØĞèµÄÎÄ¼ş£ºreadme.txt                                                            ";
 	wchar_t ch_12_1[] = L"checking the essential files this program must have used : readme.txt                             ";
-	wchar_t ch_13_0[] = L"æ­£åœ¨æ£€æŸ¥æœ¬ç¨‹åºæ‰€å¿…éœ€çš„æ–‡ä»¶ï¼šData_Pre.py                                                           ";
+	wchar_t ch_13_0[] = L"ÕıÔÚ¼ì²é±¾³ÌĞòËù±ØĞèµÄÎÄ¼ş£ºData_Pre.py                                                           ";
 	wchar_t ch_13_1[] = L"checking the essential files this program must have used : Data_Pre.py                            ";
-	wchar_t ch_finish_cn_0[] = L"æ£€æŸ¥æœ¬ç¨‹åºå¿…é¡»çš„æ–‡ä»¶å·²ç»å®Œæˆï¼Œè¯·ç­‰å¾…åç»­æ“ä½œ";
+	wchar_t ch_finish_cn_0[] = L"¼ì²é±¾³ÌĞò±ØĞëµÄÎÄ¼şÒÑ¾­Íê³É£¬ÇëµÈ´ıºóĞø²Ù×÷";
 	wchar_t ch_finish_en_0[] = L"checking the essential files this program must have is finished .please wait for other operation finish";
-	wchar_t ch_finish_cn_1[] = L"pythonç¯å¢ƒæ£€æŸ¥å·²ç»å®Œæˆï¼Œå³å°†è¿›å…¥ä¸‹ä¸€ä¸ªç•Œé¢";
+	wchar_t ch_finish_cn_1[] = L"python»·¾³¼ì²éÒÑ¾­Íê³É£¬¼´½«½øÈëÏÂÒ»¸ö½çÃæ";
 	wchar_t ch_finish_en_1[] = L"we have successfully checked the environment of python.we will goto next interface ,please wait";
 	if (global_language == 0)
 	{
@@ -604,8 +608,8 @@ void GUI_interface_1()
 			}
 			if (global_check_python_environment == -1)
 			{
-				wchar_t ch[] = L"è¯·æ­£ç¡®å®‰è£…pythonï¼Œæœ¬ç¨‹åºæ— æ³•è¯†åˆ«python\né”™è¯¯ä»£ç 0x01";
-				wchar_t ch1[] = L"é”™è¯¯ä¿¡æ¯";
+				wchar_t ch[] = L"ÇëÕıÈ·°²×°python£¬±¾³ÌĞòÎŞ·¨Ê¶±ğpython\n´íÎó´úÂë0x01";
+				wchar_t ch1[] = L"´íÎóĞÅÏ¢";
 				MessageBox(NULL, ch, ch1, MB_OK);
 				exit(0);
 			}
@@ -684,8 +688,8 @@ void GUI_interface_1()
 			}
 			if (global_check_python_environment == -1)
 			{
-				wchar_t ch[] = L"è¯·æ­£ç¡®å®‰è£…pythonï¼Œæœ¬ç¨‹åºæ— æ³•è¯†åˆ«python\né”™è¯¯ä»£ç 0x01";
-				wchar_t ch1[] = L"é”™è¯¯ä¿¡æ¯";
+				wchar_t ch[] = L"ÇëÕıÈ·°²×°python£¬±¾³ÌĞòÎŞ·¨Ê¶±ğpython\n´íÎó´úÂë0x01";
+				wchar_t ch1[] = L"´íÎóĞÅÏ¢";
 				MessageBox(NULL, ch, ch1, MB_OK);
 				exit(0);
 			}
@@ -805,8 +809,8 @@ void fix_file_1()
 	FILE* fp = fopen("error.txt", "a+");
 	fprintf(fp, "can not create the file : model.dll\n");
 	fprintf(fp, "fix file failed,please go into the choice and choose the choice 3 to remake the file.\n");
-	wchar_t ch_cn_0[] = L"ä¿®å¤æ¨¡å‹model.dllå¤±è´¥ï¼Œè¯·è¿›å…¥ä¸»ç•Œé¢åæŒ‰ç…§æç¤ºè®­ç»ƒæ¨¡å‹";
-	wchar_t ch_cn_1[] = L"è­¦å‘Š";
+	wchar_t ch_cn_0[] = L"ĞŞ¸´Ä£ĞÍmodel.dllÊ§°Ü£¬Çë½øÈëÖ÷½çÃæºó°´ÕÕÌáÊ¾ÑµÁ·Ä£ĞÍ";
+	wchar_t ch_cn_1[] = L"¾¯¸æ";
 	wchar_t ch_en_0[] = L"fix model::model.dll failed ,please goto the main process train a new model with the tips";
 	wchar_t ch_en_1[] = L"warning";
 	if (global_language == 0)
@@ -874,19 +878,19 @@ void fix_file_2()
 	fprintf(f1, "\t\t\tviz.line([[loss.item(),evalute(model,val_loader)]],[global_step],win='test',update='append')\n");
 	fprintf(f1, "\t\t\tglobal_step+=1\n");
 	fprintf(f1, "\t\tif epoch%1==0:\n");
-	fprintf(f1, "\t\t\tprint('the '+str(epoch+1)+' epoch'+' training......')\n");						//fprintf(f1, "\t\t\tprint('ç¬¬ '+str(epoch+1)+' æ‰¹'+' trainingâ€¦â€¦')\n");
+	fprintf(f1, "\t\t\tprint('the '+str(epoch+1)+' epoch'+' training......')\n");						//fprintf(f1, "\t\t\tprint('µÚ '+str(epoch+1)+' Åú'+' training¡­¡­')\n");
 	fprintf(f1, "\t\t\tval_acc=evalute(model,val_loader)\n");
 	//fixed bug that cause python script stop running 
 	fprintf(f1, "\t\t\tif val_acc>best_acc:\n");
 	fprintf(f1, "\t\t\t\tbest_epoch=epoch\n");
 	fprintf(f1, "\t\t\t\tbest_acc=val_acc\n");
 	fprintf(f1, "\t\t\t\ttorch.save(model.state_dict(),'best_trans.mdl')\n");
-	fprintf(f1, "\tprint('best accuracy:',best_acc,'best epoch:',(best_epoch+1))\n");									//fprintf(f1, "\tprint('æœ€å¥½çš„å‡†ç¡®ç‡ï¼š',best_acc,'æœ€å¥½çš„æ‰¹æ¬¡ï¼š',(best_epoch+1))\n");
+	fprintf(f1, "\tprint('best accuracy:',best_acc,'best epoch:',(best_epoch+1))\n");									//fprintf(f1, "\tprint('×îºÃµÄ×¼È·ÂÊ£º',best_acc,'×îºÃµÄÅú´Î£º',(best_epoch+1))\n");
 	fprintf(f1, "\ttorch.save(model,'model.dll')\n");
-	fprintf(f1, "\tprint('loading model......')\n");													//fprintf(f1, "\tprint('æ­£åœ¨åŠ è½½æ¨¡å‹......')\n");
+	fprintf(f1, "\tprint('loading model......')\n");													//fprintf(f1, "\tprint('ÕıÔÚ¼ÓÔØÄ£ĞÍ......')\n");
 	fprintf(f1, "\ttest_acc=evalute(model,test_loader)\n");
-	fprintf(f1, "\tprint('test accuracy:',test_acc)\n");													//fprintf(f1, "\tprint('æµ‹è¯•å‡†ç¡®ç‡:',test_acc)\n");
-	fprintf(f1, "\tprint('successfully save the best model ')\n");												//fprintf(f1, "\tprint('ä¿å­˜æœ€å¥½æ•ˆæœæ¨¡å‹æˆåŠŸï¼')\n");
+	fprintf(f1, "\tprint('test accuracy:',test_acc)\n");													//fprintf(f1, "\tprint('²âÊÔ×¼È·ÂÊ:',test_acc)\n");
+	fprintf(f1, "\tprint('successfully save the best model ')\n");												//fprintf(f1, "\tprint('±£´æ×îºÃĞ§¹ûÄ£ĞÍ³É¹¦£¡')\n");
 	fprintf(f1, "if __name__=='__main__':\n");
 	fprintf(f1, "\tmain()\n");
 	fclose(f1);
@@ -1206,6 +1210,8 @@ void create_update_data()
 		fprintf(f2,"this version has fixed some bugs that can make this program stop running\n");
 		fprintf(f2,"version 7.0.6\n");
 		fprintf(f2,"this version has fixed a serious bug that cannot recognize recyclable garbage.\ni have changed python script\n");
+		fprintf(f2, "version 7.1.0\n");
+		fprintf(f2, "this version has fixed some known problems\nthis version has fixed some bugs \n security update\n");
 		fclose(f2);
 	}
 	if (f1 == NULL)
@@ -1256,6 +1262,8 @@ void create_update_data()
 		fprintf(f2,"this version has fixed some bugs that can make this program stop running\n");
 		fprintf(f2,"version 7.0.6\n");
 		fprintf(f2,"this version has fixed a serious bug that cannot recognize recyclable garbage.\ni have changed python script\n");
+		fprintf(f2, "version 7.1.0\n");
+		fprintf(f2, "this version has fixed some known problems\nthis version has fixed some bugs \n security update\n");
 		fclose(f2);
 	}
 
@@ -1273,7 +1281,7 @@ void get_the_time_now(void*)
 	wchar_t ch_[] = L"/";
 	wchar_t ch__[] = L":";
 	wchar_t ch_timegettime[64] = { ' ' };
-	wchar_t ch_mechine_time_cn[] = L"ç³»ç»Ÿè¿è¡Œæ—¶é—´(ms)";
+	wchar_t ch_mechine_time_cn[] = L"ÏµÍ³ÔËĞĞÊ±¼ä(ms)";
 	wchar_t ch_mechine_time_en[] = L"time begin from start the computer system(ms)";
 	_beginthread(clear, 0, NULL);
 	while (1)
@@ -1321,17 +1329,17 @@ void get_the_time_now(void*)
 
 void GUI_interface_2()
 {
-	wchar_t ch_1_cn[] = L"é€€å‡ºæœ¬ç¨‹åº                                                                   ";
+	wchar_t ch_1_cn[] = L"ÍË³ö±¾³ÌĞò                                                                   ";
 	wchar_t ch_1_en[] = L"exit this program                                                            ";
-	wchar_t ch_2_cn[] = L"ä½¿ç”¨æœ¬ç¨‹åºè‡ªåŠ¨åˆ†ç±»                                                           ";
+	wchar_t ch_2_cn[] = L"Ê¹ÓÃ±¾³ÌĞò×Ô¶¯·ÖÀà                                                           ";
 	wchar_t ch_2_en[] = L"use this program and classify auto.                                          ";
-	wchar_t ch_3_cn[] = L"é‡æ–°è®­ç»ƒæ¨¡å‹ å¹¶ä¿å­˜ä¸ºmodel.dll                                               ";
+	wchar_t ch_3_cn[] = L"ÖØĞÂÑµÁ·Ä£ĞÍ ²¢±£´æÎªmodel.dll                                               ";
 	wchar_t ch_3_en[] = L"train the model again and save as model.dll                                  ";
-	wchar_t ch_4_cn[] = L"å¼€æ”¾æºä»£ç è®¸å¯åŠéƒ¨åˆ†æºä»£ç                                                    ";
+	wchar_t ch_4_cn[] = L"¿ª·ÅÔ´´úÂëĞí¿É¼°²¿·ÖÔ´´úÂë                                                   ";
 	wchar_t ch_4_en[] = L"Open Sourse Lincese and part of sourse code                                  ";
-	wchar_t ch_5_cn[] = L"è¯­è¨€è®¾ç½®:ä¸­æ–‡ï¼ˆå•å‡»æ­¤å¤„ä»¥æ›´æ”¹ï¼‰                                              ";
+	wchar_t ch_5_cn[] = L"ÓïÑÔÉèÖÃ:ÖĞÎÄ£¨µ¥»÷´Ë´¦ÒÔ¸ü¸Ä£©                                              ";
 	wchar_t ch_5_en[] = L"language setting:English(click here to change)                               ";
-	wchar_t ch_6_cn[] = L"è‡ªå·±åˆ†ç±»                                                                     ";
+	wchar_t ch_6_cn[] = L"×Ô¼º·ÖÀà                                                                     ";
 	wchar_t ch_6_en[] = L"classify by yourself                                                         ";
 	//_beginthread(mouse_message_after_1, 0, NULL);
 	//_beginthread(fix_thread, 0, NULL);
@@ -1372,11 +1380,13 @@ void GUI_interface_2()
 void mouse_message_after_1(void*)
 {
 	global_judge_thread_mouse_message_after_1 = 1;
-	MOUSEMSG m;
-	FlushMouseMsgBuffer();
+	//MOUSEMSG m;					//this struct cannot run in easyx20210730
+	ExMessage m;					//this struct can run in easyx20210730 fixed successfully
+	//FlushMouseMsgBuffer();		//this function cannot run in easyx20210730
+	flushmessage();					//this function can run in easyx20210730 fixed successfully
 	int a = 0;
 	int temp = 0;
-	wchar_t ch_cn[] = L"é¼ æ ‡äº‹ä»¶çº¿ç¨‹è¿è¡Œæ­£å¸¸";
+	wchar_t ch_cn[] = L"Êó±êÊÂ¼şÏß³ÌÔËĞĞÕı³£";
 	wchar_t ch_en[] = L"mouse_message is running ordinary";
 	try
 	{
@@ -1394,10 +1404,12 @@ void mouse_message_after_1(void*)
 			{
 				outtextxy(50, 400, ch_en);
 			}
-			m = GetMouseMsg();
-			while (m.mkLButton)
+			//m = GetMouseMsg();			//this function cannot run in easyx20210730
+			m = getmessage(-1);				//this function can run in easyx20210730 fixed successfully
+			//while (m.mkLButton)			//this function cannot run in easyx20210730
+			while(m.lbutton)				//this function can run in easyx20210730 fixed successfully
 			{
-				Sleep(100);		//é˜²æ­¢è¯¥çº¿ç¨‹æŠ–åŠ¨
+				Sleep(100);		//·ÀÖ¹¸ÃÏß³Ì¶¶¶¯
 				if (m.x >= 100 && m.x <= 300 && m.y >= 75 && m.y <= 115)
 				{
 					global_judge_thread_mouse_message_after_1 = 0;
@@ -1408,9 +1420,9 @@ void mouse_message_after_1(void*)
 					FILE* f1 = fopen("model.dll", "rb");
 					if (f1 == NULL)
 					{
-						wchar_t ch_cn_0[] = L"æœ¬ç¨‹åºç¼ºå¤±model.dllç»„ä»¶ï¼Œè¯·åˆ°è®­ç»ƒæ¨¡å‹æ¨¡å—ä¸­é‡æ–°ç”Ÿæˆåæ–¹å¯ä½¿ç”¨";
+						wchar_t ch_cn_0[] = L"±¾³ÌĞòÈ±Ê§model.dll×é¼ş£¬Çëµ½ÑµÁ·Ä£ĞÍÄ£¿éÖĞÖØĞÂÉú³Éºó·½¿ÉÊ¹ÓÃ";
 						wchar_t ch_en_0[] = L"because of loss model.dll,this program cannot run this part.you can use it after remake in train part.";
-						wchar_t ch_cn_1[] = L"æ¨¡å—ç¼ºå¤±è­¦å‘Š";
+						wchar_t ch_cn_1[] = L"Ä£¿éÈ±Ê§¾¯¸æ";
 						wchar_t ch_en_1[] = L"the warning of loss of part of this program";
 						if (global_language == 0)
 						{
@@ -1425,9 +1437,9 @@ void mouse_message_after_1(void*)
 					}
 					else if (f1 != NULL)
 					{
-						wchar_t ch_cn_1_0[] = L"è¯·ç¡®ä¿æ‰€æ£€æµ‹å›¾ç‰‡ä½äº./test/1.jpg";
+						wchar_t ch_cn_1_0[] = L"ÇëÈ·±£Ëù¼ì²âÍ¼Æ¬Î»ÓÚ./test/1.jpg";
 						wchar_t ch_en_1_0[] = L"please make sure that the photograph you want to predict is in\n./test/1.jpg";
-						wchar_t ch_cn_1_1[] = L"æç¤ºä¿¡æ¯";
+						wchar_t ch_cn_1_1[] = L"ÌáÊ¾ĞÅÏ¢";
 						wchar_t ch_en_1_1[] = L"the information this program provided for users";
 						if (global_language == 0)
 						{
@@ -1445,9 +1457,9 @@ void mouse_message_after_1(void*)
 				}
 				if (m.x >= 100 && m.x <= 300 && m.y >= 175 && m.y <= 215)
 				{
-					wchar_t ch_cn_0[] = L"ç¨‹åºä¸­æœ¬æ¨¡å—ä¸å‘æ™®é€šäººæä¾›ï¼Œä»…å¼€å‘äººå‘˜å¯ç”¨\nå¼€å‘äººå‘˜è¯·è½¬åˆ°æœ¬ç¨‹åºç›®å½•ä¸‹åˆ©ç”¨pythonç”Ÿæˆæ¨¡å‹";
+					wchar_t ch_cn_0[] = L"³ÌĞòÖĞ±¾Ä£¿é²»ÏòÆÕÍ¨ÈËÌá¹©£¬½ö¿ª·¢ÈËÔ±¿ÉÓÃ\n¿ª·¢ÈËÔ±Çë×ªµ½±¾³ÌĞòÄ¿Â¼ÏÂÀûÓÃpythonÉú³ÉÄ£ĞÍ";
 					wchar_t ch_en_0[] = L"this program is not provided for ordinary people.only available for developers.\nif you are developer please goto this dir to release model.";
-					wchar_t ch_cn_1[] = L"æç¤º";
+					wchar_t ch_cn_1[] = L"ÌáÊ¾";
 					wchar_t ch_en_1[] = L"tips";
 					global_judge_thread_mouse_message_after_1 = 0;
 					if (global_language == 0)
@@ -1484,11 +1496,11 @@ void mouse_message_after_1(void*)
 				}
 				if (m.x >= 100 && m.x <= 300 && m.y >= 325 && m.y <= 365)
 				{
-					wchar_t ch_cn_0[] = L"è¯·è¾“å…¥æ‰€æ”¾ç½®çš„åƒåœ¾ç§ç±»ï¼š1.æœ‰å®³åƒåœ¾.2.å¨ä½™åƒåœ¾.3.å¯å›æ”¶åƒåœ¾.4.å…¶ä»–åƒåœ¾";
+					wchar_t ch_cn_0[] = L"ÇëÊäÈëËù·ÅÖÃµÄÀ¬»øÖÖÀà£º1.ÓĞº¦À¬»ø.2.³øÓàÀ¬»ø.3.¿É»ØÊÕÀ¬»ø.4.ÆäËûÀ¬»ø";
 					wchar_t ch_en_0[] = L"please input which kind of garbage you put in .1.harmful 2.kitchen.3.recyclable.4.others";
-					wchar_t ch_cn_1[] = L"è¾“å…¥é€‰é¡¹å‰çš„æ•°å­—å³å¯,å¦åˆ™ä¼šä½¿æœ¬ç¨‹åºæŠ¥é”™";
+					wchar_t ch_cn_1[] = L"ÊäÈëÑ¡ÏîÇ°µÄÊı×Ö¼´¿É,·ñÔò»áÊ¹±¾³ÌĞò±¨´í";
 					wchar_t ch_en_1[] = L"you can only input the number before all the choices,else it will go to some errors.";
-					wchar_t ch_cn_2[] = L"è¯·è¾“å…¥æ•°å­—";
+					wchar_t ch_cn_2[] = L"ÇëÊäÈëÊı×Ö";
 					wchar_t ch_en_2[] = L"please input the number";
 					wchar_t ch[10] = { '\0' };
 					if (global_language == 0)
@@ -1526,9 +1538,9 @@ void mouse_message_after_1(void*)
 	}
 	catch(std::exception)
 	{
-		wchar_t ch_cn[] = L"æœ¬ç¨‹åºå¯èƒ½é‡åˆ°äº†æŸäº›é—®é¢˜ï¼Œè¯·å°è¯•é‡å¯æœ¬ç¨‹åºï¼Œæˆ‘ä»¬æ­£åœ¨å°è¯•ä¿®å¤è¿™ä¸€é”™è¯¯ï¼Œè¯·ç¨å";
+		wchar_t ch_cn[] = L"±¾³ÌĞò¿ÉÄÜÓöµ½ÁËÄ³Ğ©ÎÊÌâ£¬Çë³¢ÊÔÖØÆô±¾³ÌĞò£¬ÎÒÃÇÕıÔÚ³¢ÊÔĞŞ¸´ÕâÒ»´íÎó£¬ÇëÉÔºó";
 		wchar_t ch_en[] = L"this program may run into some program please restart it,we are trying to fix this bug,please wait a while to use this program";
-		wchar_t ch_cn_0[] = L"è­¦å‘Š";
+		wchar_t ch_cn_0[] = L"¾¯¸æ";
 		wchar_t ch_en_0[] = L"warnings";
 		if (global_language == 0)
 		{
@@ -1553,9 +1565,9 @@ void read_file(int a)
 	if (ch[0] == 'h')
 	{
 		//printf("get the result :harmful\n");
-		wchar_t ch_cn_0[] = L"è¯†åˆ«ç»“æœï¼šæœ‰å®³åƒåœ¾";
+		wchar_t ch_cn_0[] = L"Ê¶±ğ½á¹û£ºÓĞº¦À¬»ø";
 		wchar_t ch_en_0[] = L"get the result from the program:harmful garbage";
-		wchar_t ch_cn_1[] = L"è¯†åˆ«ç»“æœ";
+		wchar_t ch_cn_1[] = L"Ê¶±ğ½á¹û";
 		wchar_t ch_en_1[] = L"the result this program predicted";
 		if (global_language == 0)
 		{
@@ -1570,9 +1582,9 @@ void read_file(int a)
 	if (ch[0] == 'k')
 	{
 		//printf("get the result :kitchen\n");
-		wchar_t ch_cn_0[] = L"è¯†åˆ«ç»“æœï¼šå¨ä½™åƒåœ¾";
+		wchar_t ch_cn_0[] = L"Ê¶±ğ½á¹û£º³øÓàÀ¬»ø";
 		wchar_t ch_en_0[] = L"get the result from the program:kitchen garbage";
-		wchar_t ch_cn_1[] = L"è¯†åˆ«ç»“æœ";
+		wchar_t ch_cn_1[] = L"Ê¶±ğ½á¹û";
 		wchar_t ch_en_1[] = L"the result this program predicted";
 		if (global_language == 0)
 		{
@@ -1587,9 +1599,9 @@ void read_file(int a)
 	if (ch[0] == 'r')
 	{
 		//printf("get the result :recyclable\n");
-		wchar_t ch_cn_0[] = L"è¯†åˆ«ç»“æœï¼šå¯å›æ”¶åƒåœ¾";
+		wchar_t ch_cn_0[] = L"Ê¶±ğ½á¹û£º¿É»ØÊÕÀ¬»ø";
 		wchar_t ch_en_0[] = L"get the result from the program:recyclable garbage";
-		wchar_t ch_cn_1[] = L"è¯†åˆ«ç»“æœ";
+		wchar_t ch_cn_1[] = L"Ê¶±ğ½á¹û";
 		wchar_t ch_en_1[] = L"the result this program predicted";
 		if (global_language == 0)
 		{
@@ -1604,9 +1616,9 @@ void read_file(int a)
 	if (ch[0] == 'o')
 	{
 		//printf("get the result : others\n");
-		wchar_t ch_cn_0[] = L"è¯†åˆ«ç»“æœï¼šå…¶ä»–åƒåœ¾";
+		wchar_t ch_cn_0[] = L"Ê¶±ğ½á¹û£ºÆäËûÀ¬»ø";
 		wchar_t ch_en_0[] = L"get the result from the program:other garbage";
-		wchar_t ch_cn_1[] = L"è¯†åˆ«ç»“æœ";
+		wchar_t ch_cn_1[] = L"Ê¶±ğ½á¹û";
 		wchar_t ch_en_1[] = L"the result this program predicted";
 		if (global_language == 0)
 		{
@@ -1623,9 +1635,9 @@ void read_file(int a)
 	if (b != 1 && b != 2 && b != 3 && b != 4)
 	{
 		//printf("[ERROR : read connect.dll failed] can't read at 0x0000000000000000\n");
-		wchar_t ch_cn_1_1[] = L"æ— æ³•è¯»å–connect.dll,0x0000000000000000å†…å­˜æ“ä½œå¼‚å¸¸";
+		wchar_t ch_cn_1_1[] = L"ÎŞ·¨¶ÁÈ¡connect.dll,0x0000000000000000ÄÚ´æ²Ù×÷Òì³£";
 		wchar_t ch_en_1_1[] = L"[ERROR : read connect.dll failed ] can't read at 0x0000000000000000";
-		wchar_t ch_cn_1_2[] = L"è­¦å‘Š";
+		wchar_t ch_cn_1_2[] = L"¾¯¸æ";
 		wchar_t ch_en_1_2[] = L"warning";
 	}
 	//create_operatble_file(a);
@@ -1662,11 +1674,14 @@ void fix_thread(void*)
 	fprintf(ffp, "thread fix_thread try to fix the thread mouse_message_after_1(void*)\n");
 	fprintf(ffp, "time:%d.%d.%d %d:%d:%d\t\tthread fix_thread begin\n", year, month, date, hour, min, sec);
 	fclose(ffp);
-	MOUSEMSG m;
+	//MOUSEMSG m;				//this struct cannot run in easyx20210730
+	ExMessage m;				//this struct can run in easyx20210730 fixed successfully
 	while (1)
 	{
-		m = GetMouseMsg();
-		if (m.mkLButton)
+		//m = GetMouseMsg();	//this function cannot run in easyx20210730
+		m = getmessage(-1);		//this function can run in easyx20210730 fixed successfully
+		//if (m.mkLButton)		//this function cannot run in easyx20210730
+		if(m.lbutton)			//this function can run in easyx20210730 fixed successfully
 		{
 			if (global_judge_thread_mouse_message_after_1 == 0)
 			{
@@ -1777,14 +1792,17 @@ void mouse_test(void*)
 {
 	
 	time_t timep;
-	MOUSEMSG m;
+	//MOUSEMSG m;				//this struct cannot run in easyx20210730
+	ExMessage m;				//this struct can run in easyx20210730 fixed successfully
 	struct tm* p;
 	int year, month, date, hour, min, sec;
 	while (1)
 	{
 		//FILE* f1 = fopen("mouse.log", "a+");
-		m = GetMouseMsg();
-		if (m.mkCtrl)
+		//m = GetMouseMsg();	//this function cannot run in easyx20210730
+		m = getmessage(-1);		//this function can run in easyx20210730 fixed successfully
+		//if (m.mkCtrl)			//this function cannot run in easyx20210730
+		if(m.ctrl)				//this function can run in easyx20210730 fixed successfully
 		{
 			time(&timep);
 			p = gmtime(&timep);
@@ -1797,7 +1815,8 @@ void mouse_test(void*)
 			//fprintf(f1, "time: %d.%2d.%2d %2d:%2d:%2d\t\t", year, month, date, hour, min, sec);
 			//fprintf(f1, "mouse ctrl down at position(%d,%d)\n", m.x, m.y);
 		}
-		if (m.mkLButton)
+		//if (m.mkLButton)		//this function cannot run in easyx20210730
+		if(m.lbutton)			//this function can run in easyx20210730 fixed successfully
 		{
 			time(&timep);
 			p = gmtime(&timep);
@@ -1810,7 +1829,8 @@ void mouse_test(void*)
 			//fprintf(f1, "time: %d.%2d.%2d %2d:%2d:%2d\t\t", year, month, date, hour, min, sec);
 			//fprintf(f1, "mouse left down at position(%d,%d)\n", m.x, m.y);
 		}
-		if (m.mkMButton)
+		//if (m.mkMButton)		//this function cannot run in easyx20210730
+		if(m.mbutton)			//this function can run in easyx20210730 fixed successfully
 		{
 			time(&timep);
 			p = gmtime(&timep);
@@ -1823,7 +1843,8 @@ void mouse_test(void*)
 			//fprintf(f1, "time: %d.%2d.%2d %2d:%2d:%2d\t\t", year, month, date, hour, min, sec);
 			//fprintf(f1, "mouse middle down at position(%d,%d)\n", m.x, m.y);
 		}
-		if (m.mkRButton)
+		//if (m.mkRButton)		//this function cannot run in easyx20210730
+		if(m.rbutton)			//this function can run in easyx20210730 fixed successfully
 		{
 			time(&timep);
 			p = gmtime(&timep);
@@ -1836,7 +1857,8 @@ void mouse_test(void*)
 			//fprintf(f1, "time: %d.%2d.%2d %2d:%2d:%2d\t\t", year, month, date, hour, min, sec);
 			//fprintf(f1, "mouse right down at position(%d,%d)\n", m.x, m.y);
 		}
-		if (m.mkShift)
+		//if (m.mkShift)		//this function cannot run in easyx20210730
+		if(m.shift)				//this function can run in easyx20210730 fixed successfully
 		{
 			time(&timep);
 			p = gmtime(&timep);
@@ -1880,7 +1902,7 @@ void mouse_message_from_windows_api(void*)
 	//fprintf(f1, "thread mouse_message_from_windows_api begin\n");
 	//fclose(f1);
 	time_t timep;
-	MOUSEMSG m;
+	//MOUSEMSG m;			//this struct is useless close it.
 	struct tm* p;
 	int year, month, date, hour, min, sec;
 	while (1)
@@ -1922,9 +1944,9 @@ void mouse_message_from_windows_api(void*)
 				FILE* f1 = fopen("model.dll", "rb");
 				if (f1 == NULL)
 				{
-					wchar_t ch_cn_0[] = L"æœ¬ç¨‹åºç¼ºå¤±model.dllç»„ä»¶ï¼Œè¯·åˆ°è®­ç»ƒæ¨¡å‹æ¨¡å—ä¸­é‡æ–°ç”Ÿæˆåæ–¹å¯ä½¿ç”¨";
+					wchar_t ch_cn_0[] = L"±¾³ÌĞòÈ±Ê§model.dll×é¼ş£¬Çëµ½ÑµÁ·Ä£ĞÍÄ£¿éÖĞÖØĞÂÉú³Éºó·½¿ÉÊ¹ÓÃ";
 					wchar_t ch_en_0[] = L"because of loss model.dll,this program cannot run this part.you can use it after remake in train part.";
-					wchar_t ch_cn_1[] = L"æ¨¡å—ç¼ºå¤±è­¦å‘Š";
+					wchar_t ch_cn_1[] = L"Ä£¿éÈ±Ê§¾¯¸æ";
 					wchar_t ch_en_1[] = L"the warning of loss of part of this program";
 					if (global_language == 0)
 					{
@@ -1939,9 +1961,9 @@ void mouse_message_from_windows_api(void*)
 				}
 				else if (f1 != NULL)
 				{
-					wchar_t ch_cn_1_0[] = L"è¯·ç¡®ä¿æ‰€æ£€æµ‹å›¾ç‰‡ä½äº./test/1.jpg";
+					wchar_t ch_cn_1_0[] = L"ÇëÈ·±£Ëù¼ì²âÍ¼Æ¬Î»ÓÚ./test/1.jpg";
 					wchar_t ch_en_1_0[] = L"please make sure that the photograph you want to predict is in\n./test/1.jpg";
-					wchar_t ch_cn_1_1[] = L"æç¤ºä¿¡æ¯";
+					wchar_t ch_cn_1_1[] = L"ÌáÊ¾ĞÅÏ¢";
 					wchar_t ch_en_1_1[] = L"the information this program provided for users";
 					if (global_language == 0)
 					{
@@ -1959,9 +1981,9 @@ void mouse_message_from_windows_api(void*)
 			}
 			if (x >= 100 && x <= 300 && y >= 175 && y <= 215)
 			{
-				wchar_t ch_cn_0[] = L"ç¨‹åºä¸­æœ¬æ¨¡å—ä¸å‘æ™®é€šäººæä¾›ï¼Œä»…å¼€å‘äººå‘˜å¯ç”¨\nå¼€å‘äººå‘˜è¯·è½¬åˆ°æœ¬ç¨‹åºç›®å½•ä¸‹åˆ©ç”¨pythonç”Ÿæˆæ¨¡å‹";
+				wchar_t ch_cn_0[] = L"³ÌĞòÖĞ±¾Ä£¿é²»ÏòÆÕÍ¨ÈËÌá¹©£¬½ö¿ª·¢ÈËÔ±¿ÉÓÃ\n¿ª·¢ÈËÔ±Çë×ªµ½±¾³ÌĞòÄ¿Â¼ÏÂÀûÓÃpythonÉú³ÉÄ£ĞÍ";
 				wchar_t ch_en_0[] = L"this program is not provided for ordinary people.only available for developers.\nif you are developer please goto this dir to release model.";
-				wchar_t ch_cn_1[] = L"æç¤º";
+				wchar_t ch_cn_1[] = L"ÌáÊ¾";
 				wchar_t ch_en_1[] = L"tips";
 				global_judge_thread_mouse_message_after_1 = 0;
 				if (global_language == 0)
@@ -1998,11 +2020,11 @@ void mouse_message_from_windows_api(void*)
 			}
 			if (x >= 100 && x <= 300 && y >= 325 && y <= 365)
 			{
-				wchar_t ch_cn_0[] = L"è¯·è¾“å…¥æ‰€æ”¾ç½®çš„åƒåœ¾ç§ç±»ï¼š1.æœ‰å®³åƒåœ¾.2.å¨ä½™åƒåœ¾.3.å¯å›æ”¶åƒåœ¾.4.å…¶ä»–åƒåœ¾";
+				wchar_t ch_cn_0[] = L"ÇëÊäÈëËù·ÅÖÃµÄÀ¬»øÖÖÀà£º1.ÓĞº¦À¬»ø.2.³øÓàÀ¬»ø.3.¿É»ØÊÕÀ¬»ø.4.ÆäËûÀ¬»ø";
 				wchar_t ch_en_0[] = L"please input which kind of garbage you put in .1.harmful 2.kitchen.3.recyclable.4.others";
-				wchar_t ch_cn_1[] = L"è¾“å…¥é€‰é¡¹å‰çš„æ•°å­—å³å¯,å¦åˆ™ä¼šä½¿æœ¬ç¨‹åºæŠ¥é”™";
+				wchar_t ch_cn_1[] = L"ÊäÈëÑ¡ÏîÇ°µÄÊı×Ö¼´¿É,·ñÔò»áÊ¹±¾³ÌĞò±¨´í";
 				wchar_t ch_en_1[] = L"you can only input the number before all the choices,else it will go to some errors.";
-				wchar_t ch_cn_2[] = L"è¯·è¾“å…¥æ•°å­—";
+				wchar_t ch_cn_2[] = L"ÇëÊäÈëÊı×Ö";
 				wchar_t ch_en_2[] = L"please input the number";
 				wchar_t ch[10] = { '\0' };
 				if (global_language == 0)
@@ -2043,7 +2065,7 @@ void mouse_message_from_windows_api(void*)
 
 void get_windows_position(void*)
 {
-	wchar_t ch[] = L"åƒåœ¾åˆ†ç±»ç¨‹åº";
+	wchar_t ch[] = L"À¬»ø·ÖÀà³ÌĞò";
 	HWND hq = FindWindow(NULL,ch);
 	RECT rect;
 	while (1)
@@ -2115,7 +2137,7 @@ void command_train_mode()
 	printf("begin to start internet explorer goto localhost:8097\n");
 	wchar_t ch[] = L"open";
 	wchar_t ch1[] = L"https://localhost:8097";
-	ShellExecute(NULL, ch, ch1, NULL, NULL, SW_MAXIMIZE);											//SW_MAXIMIZE æœ€å¤§åŒ– SW_MINIMIZE æœ€å°åŒ– SW_HIDE éšè—
+	ShellExecute(NULL, ch, ch1, NULL, NULL, SW_MAXIMIZE);											//SW_MAXIMIZE ×î´ó»¯ SW_MINIMIZE ×îĞ¡»¯ SW_HIDE Òş²Ø
 	Sleep(5000);
 	printf("start running the python script\n");
 	system("python train.dll");
@@ -2469,19 +2491,19 @@ void command_release_mode()
 	fprintf(f1, "\t\t\tviz.line([[loss.item(),evalute(model,val_loader)]],[global_step],win='test',update='append')\n");
 	fprintf(f1, "\t\t\tglobal_step+=1\n");
 	fprintf(f1, "\t\tif epoch%1==0:\n");
-	fprintf(f1, "\t\t\tprint('the '+str(epoch+1)+' epoch'+' training......')\n");										//fprintf(f1, "\t\t\tprint('ç¬¬ '+str(epoch+1)+' æ‰¹'+' trainingâ€¦â€¦')\n");
+	fprintf(f1, "\t\t\tprint('the '+str(epoch+1)+' epoch'+' training......')\n");										//fprintf(f1, "\t\t\tprint('µÚ '+str(epoch+1)+' Åú'+' training¡­¡­')\n");
 	fprintf(f1, "\t\t\tval_acc=evalute(model,val_loader)\n");
 	//fixed bugs that cause python script stop running.
 	fprintf(f1, "\t\t\tif val_acc>best_acc:\n");
 	fprintf(f1, "\t\t\t\tbest_epoch=epoch\n");
 	fprintf(f1, "\t\t\t\tbest_acc=val_acc\n");
 	fprintf(f1, "\t\t\t\ttorch.save(model.state_dict(),'best_trans.mdl')\n");
-	fprintf(f1, "\tprint('best accuracy:',best_acc,'best epoch:',(best_epoch+1))\n");									//fprintf(f1, "\tprint('æœ€å¥½çš„å‡†ç¡®ç‡ï¼š',best_acc,'æœ€å¥½çš„æ‰¹æ¬¡ï¼š',(best_epoch+1))\n");
+	fprintf(f1, "\tprint('best accuracy:',best_acc,'best epoch:',(best_epoch+1))\n");									//fprintf(f1, "\tprint('×îºÃµÄ×¼È·ÂÊ£º',best_acc,'×îºÃµÄÅú´Î£º',(best_epoch+1))\n");
 	fprintf(f1, "\ttorch.save(model,'model.dll')\n");
-	fprintf(f1, "\tprint('loading model......')\n");													//fprintf(f1, "\tprint('æ­£åœ¨åŠ è½½æ¨¡å‹......')\n");
+	fprintf(f1, "\tprint('loading model......')\n");													//fprintf(f1, "\tprint('ÕıÔÚ¼ÓÔØÄ£ĞÍ......')\n");
 	fprintf(f1, "\ttest_acc=evalute(model,test_loader)\n");
-	fprintf(f1, "\tprint('test accuracy:',test_acc)\n");													//fprintf(f1, "\tprint('æµ‹è¯•å‡†ç¡®ç‡:',test_acc)\n");
-	fprintf(f1, "\tprint('successfully save the best model ')\n");												//fprintf(f1, "\tprint('ä¿å­˜æœ€å¥½æ•ˆæœæ¨¡å‹æˆåŠŸï¼')\n");
+	fprintf(f1, "\tprint('test accuracy:',test_acc)\n");													//fprintf(f1, "\tprint('²âÊÔ×¼È·ÂÊ:',test_acc)\n");
+	fprintf(f1, "\tprint('successfully save the best model ')\n");												//fprintf(f1, "\tprint('±£´æ×îºÃĞ§¹ûÄ£ĞÍ³É¹¦£¡')\n");
 	fprintf(f1, "if __name__=='__main__':\n");
 	fprintf(f1, "\tmain()\n");
 	fclose(f1);
