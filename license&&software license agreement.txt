@@ -1,0 +1,87 @@
+中文版本：
+垃圾分类7.1.0安装协议
+请务必认真阅读和理解本《垃圾分类安装许可使用协议》（以下简称“《协议》”）中规定的所有权利和限制。除非您接受本《协议》条款，否则您无权下载、安装或使用随附本《协议》的垃圾分类软件（以下简称“本软件”）及其相关服务。您一旦安装、复制、下载、访问或以其它方式使用本软件产品，将视为对本《协议》的接受，即表示您同意接受本《协议》各项条款的约束。如果您不同意本《协议》中的条款，请不要安装、复制或使用本软件。
+本《协议》是用户与本软件开发者之间关于用户下载、安装、使用、复制本软件的法律协议。
+1.权利声明
+
+本软件的一切知识产权，以及与本软件相关的所有信息内容，包括但不限于：文字表述及其组合、图标、图饰、图像、图表、色彩、界面设计、版面框架、有关数据、附加程序、印刷材料或电子文档等均为本软件开发者所有，受著作权法和国际著作权条约以及其他知识产权法律法规的保护。
+
+2.许可范围
+
+2.1 下载、安装和使用：本软件为免费软件，用户可以非商业性、无限制数量地下载、安装及使用本软件。
+2.2 复制、分发和传播：用户可以非商业性、无限制数量地复制、分发和传播本软件产品。但必须保证每一份复制、分发和传播都是完整和真实的,包括所有有关本软件产品的软件、电子文档,版权和商标，亦包括本协议。
+
+3.权利限制
+
+3.1 禁止反向工程、反向编译和反向汇编：用户不得对本软件产品进行反向工程（ReverseEngineer）、反向编译（Decompile）或反向汇编（Disassemble），同时不得改动编译在程序文件内部的任何资源。除法律、法规明文规定允许上述活动外，用户必须遵守此协议限制。
+3.2 组件分割:本软件产品是作为一个单一产品而被授予许可使用,用户不得将各个部分分开用于任何目的。
+3.3 个别授权:如需进行商业性的销售、复制、分发，包括但不限于软件销售、预装、捆绑等，必须获得本软件开发者的书面授权和许可。
+3.4 保留权利：本协议未明示授权的其他一切权利仍归本软件开发者所有，用户使用其他权利时必须获得本软件开发者的书面同意。
+
+4.用户使用须知
+本程序并不能完全代替人工垃圾分类，使用本软件时，您应该确认本程序识别是否正确，您也可以使用手动分类，本程序仅仅保证在大部分的情况下分类正确。
+
+5．免责与责任限制
+
+5.1 用户确认，其知悉本软件所有功能及本软件开发者为实现本软件各功能所进行的必要操作，其根据自身需求自愿选择使用本软件及相关服务，因使用本软件及相关服务所存在的风险和一切后果将完全由其自己承担，本软件开发者不承担任何责任。
+5.2 本软件经过详细的测试，但不能保证与所有的软硬件系统完全兼容，不能保证本软件完全没有错误。如果出现不兼容及软件错误的情况，用户可发送邮件至1224137702@qq.com将情况报告本软件开发者，获得技术支持。如果无法解决兼容性问题，用户可以删除本软件。
+5.3 在适用法律允许的最大范围内，对因使用或不能使用本软件所产生的损害及风险，包括但不限于直接或间接的个人损害、商业赢利的丧失、贸易中断、商业信息的丢失或任何其它经济损失，本软件开发者不承担任何责任。
+5.4 对于因电信系统或互联网网络故障、计算机故障或病毒、信息损坏或丢失、计算机系统问题或其它任何不可抗力原因而产生损失，本软件开发者不承担任何责任。
+5.5 用户违反本协议规定，本软件开发者有权采取包括但不限于中断使用许可、停止提供服务、限制使用、法律追究等措施。
+
+6.法律及争议解决
+
+6.1 本协议适用中华人民共和国法律。
+6.2 因本协议引起的或与本协议有关的任何争议，各方应友好协商解决；协商不成的，任何一方均可将有关争议提交至被告住所地有管辖权的法院诉讼解决。
+
+7.其他条款
+
+7.1 如果本协议中的任何条款无论因何种原因完全或部分无效或不具有执行力，或违反任何适用的法律，则该条款被视为删除，但本协议的其余条款仍应有效并且有约束力。
+7.2 本软件开发者有权随时根据有关法律、法规的变化以及公司经营状况和经营策略的调整等修改本协议。修改后的协议会在github网站https://github.com/lry-123456789/garbage-classification上公布，并随附于新版本软件。当发生有关争议时，以最新的协议文本为准。如果不同意改动的内容，用户可以自行删除本软件。如果用户继续使用本软件，则视为您接受本协议的变动。
+7.3 本软件开发者在法律允许最大范围内对本协议拥有解释权与修改权。
+
+8.如果您确定使用本软件，则自动视为同意本软件的所有条款。
+
+English version:
+Garbage Sorting 7.1.0 Installation Agreement
+Please be sure to carefully read and understand all the rights and restrictions stipulated in this Garbage Sorting Installation License Agreement (hereinafter referred to as the "Agreement"). Unless you accept the terms of this Agreement, you have no right to download, install or use the garbage classification software attached to this Agreement (hereinafter referred to as the "Software") and related services. Once you install, copy, download, access or use this software product in other ways, you will be deemed to have accepted this "Agreement", which means that you agree to be bound by the terms of this "Agreement". If you do not agree to the terms in this Agreement, please do not install, copy or use this software.
+This "Agreement" is a legal agreement between the user and the software developer regarding the user to download, install, use, and copy the software.
+1. Statement of Rights
+
+All intellectual property rights of this software, and all information related to this software, including but not limited to: text expressions and their combinations, icons, graphics, images, charts, colors, interface design, layout framework, related data, additional programs , Printed materials or electronic documents, etc. are owned by the software developer, and are protected by copyright laws, international copyright treaties, and other intellectual property laws and regulations.
+
+2. Scope of License
+
+2.1 Download, installation and use: This software is free software, and users can download, install and use this software in a non-commercial and unlimited amount.
+2.2 Copying, distribution and dissemination: Users can copy, distribute and disseminate this software product in a non-commercial and unlimited amount. But it must be ensured that every copy, distribution and dissemination are complete and true, including all software, electronic documents, copyrights and trademarks related to this software product, as well as this agreement.
+
+3. Restrictions on Rights
+
+3.1 Reverse engineering, reverse compilation and reverse assembly are prohibited: users are not allowed to reverse engineer (ReverseEngineer), decompile (Decompile) or reverse assembly (Disassemble) of this software product, and at the same time, they are not allowed to modify the compiled files in the program file. Any resources. In addition to laws and regulations expressly allowing the above activities, users must abide by the restrictions of this agreement.
+3.2 Division of components: This software product is licensed as a single product, and users are not allowed to separate each part for any purpose.
+3.3 Individual authorization: For commercial sales, copying, and distribution, including but not limited to software sales, pre-installation, bundling, etc., written authorization and permission from the software developer must be obtained.
+3.4 Reserved rights: All other rights not expressly authorized in this agreement still belong to the software developer, and the user must obtain the written consent of the software developer when using other rights.
+
+4. User instructions
+This program does not completely replace manual garbage classification. When using this software, you should confirm whether the program recognition is correct. You can also use manual classification. This program only guarantees that the classification is correct in most cases.
+
+5. Disclaimer and limitation of liability
+
+5.1 The user confirms that he is aware of all the functions of the software and the necessary operations performed by the software developer to realize the functions of the software, and he voluntarily chooses to use the software and related services according to his own needs. The risk and all consequences will be entirely borne by itself, and the software developer does not bear any responsibility.
+5.2 The software has been tested in detail, but it cannot be guaranteed to be fully compatible with all software and hardware systems, and it cannot be guaranteed that the software is completely error-free. In the event of incompatibility and software errors, users can send an email to 1224137702@qq.com to report the situation to the software developer for technical support. If the compatibility problem cannot be solved, the user can delete the software.
+5.3 To the maximum extent permitted by applicable laws, damages and risks arising from the use or inability to use this software include but are not limited to direct or indirect personal damage, loss of commercial profits, interruption of trade, loss of commercial information or any For other economic losses, the software developer does not bear any responsibility.
+5.4 The software developer does not assume any responsibility for losses caused by telecommunication system or Internet network failures, computer failures or viruses, information damage or loss, computer system problems or any other force majeure reasons.
+5.5 If the user violates the provisions of this agreement, the software developer has the right to take measures including, but not limited to, suspension of the use license, suspension of service provision, restriction of use, and legal investigation.
+
+6. Legal and dispute resolution
+
+6.1 This agreement is governed by the laws of the People's Republic of China.
+6.2 Any dispute arising from this agreement or related to this agreement shall be settled through friendly negotiation between the parties; if the negotiation fails, either party may submit the relevant dispute to the court with jurisdiction in the defendant's domicile for settlement.
+
+7. Other terms
+
+7.1 If any clause in this agreement is completely or partially invalid or unenforceable for any reason, or violates any applicable law, the clause will be deemed deleted, but the remaining clauses of this agreement shall still be valid and binding force.
+7.2 The software developer has the right to modify this agreement at any time in accordance with changes in relevant laws and regulations, as well as the company's operating conditions and business strategy adjustments. The revised agreement will be announced on the github website https://github.com/lry-123456789/garbage-classification and will be attached to the new version of the software. In the event of a dispute, the latest agreement text shall prevail. If you do not agree with the changed content, the user can delete the software by himself. If the user continues to use the software, it is deemed that you accept the changes in this agreement.
+7.3 The software developer has the right to interpret and modify this agreement to the maximum extent permitted by law.
+
+8. If you are sure to use this software, you will automatically be deemed to agree to all terms of this software. 
