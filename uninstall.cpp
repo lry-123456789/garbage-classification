@@ -31,13 +31,17 @@ void GUI_interface_1()
 	outtextxy(100, 50, ch_0);
 	outtextxy(100, 150, ch_1);
 	outtextxy(300, 150, ch_2);
-	MOUSEMSG m;
-	FlushMouseMsgBuffer();
+	//MOUSEMSG m;					//this function can not use in easyx20210730
+	ExMessage m;					//this function can use in easyx20210730 fixed successfully
+	//FlushMouseMsgBuffer();		//this function can not use in easyx20210730
+	flushmessage();					//this function can use in easyx20210730 fixed successfully
 	int a = 1;
 	while (a==1)
 	{
-		m = GetMouseMsg();
-		if(m.mkLButton)
+		//m = GetMouseMsg();		//this function can not use in easyx20210730
+		m = getmessage(-1);			//this function can use in easyx20210730 fixed successfully
+		//if(m.mkLButton)			//this function can not use in easyx20210730
+		if(m.lbutton)				//this function can use in easyx20210730 fixed successfully
 		{
 			if (m.x >= 300 && m.x <= 350 && m.y >= 125 && m.y <= 165)
 			{
