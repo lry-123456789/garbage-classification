@@ -1,22 +1,22 @@
 # garbage-classification
-this process is powered by lry and the language is c++ and python
+This program is powered by lry, written in C++ and Python.
 
-this directory contains the program:garbage classification
-this program is a free software. you can see all the files in this project
-youcan read README for more details.
-copyright : lry time: 2020~2021
-this information below are the accuracy
+The program: garbage classification can be found in this directory
+This program is a free software. You may access all the files in this project
+Please read README for more details.
+Copyright: ©2020-2021 lry
+The accuracy data is presented below
 =====================================
 accuracy:(data init):97%
 accuracy:(with no data):60~80%
 =====================================
-all of you can commit new file and commit changes to this project
+Everyone is welcome to contribute to this project and modify the codes.
 edit time:2021.9.6
 editor:lry-123456789
 
 
-this program can run in dos mode
-you can use below command to control this program.
+This program can run in dos mode
+You can use the commands below to control this program.
 ====================================================
 1.    -help                 get help from the program
 2.    -train                train the model in dos mode
@@ -26,4 +26,4 @@ you can use below command to control this program.
 6.    -upgrade              update the program
 7.    -version              get the program version
 
-all the people can use these code.
+Everyone is welcome to use the codes.
