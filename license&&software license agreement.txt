@@ -1,5 +1,5 @@
 中文版本：
-垃圾分类7.1.0安装协议
+垃圾分类8.0.1安装协议
 请务必认真阅读和理解本《垃圾分类安装许可使用协议》（以下简称“《协议》”）中规定的所有权利和限制。除非您接受本《协议》条款，否则您无权下载、安装或使用随附本《协议》的垃圾分类软件（以下简称“本软件”）及其相关服务。您一旦安装、复制、下载、访问或以其它方式使用本软件产品，将视为对本《协议》的接受，即表示您同意接受本《协议》各项条款的约束。如果您不同意本《协议》中的条款，请不要安装、复制或使用本软件。
 本《协议》是用户与本软件开发者之间关于用户下载、安装、使用、复制本软件的法律协议。
 1.权利声明
@@ -43,7 +43,7 @@
 8.如果您确定使用本软件，则自动视为同意本软件的所有条款。
 
 English version:
-Garbage Sorting 7.1.0 Installation Agreement
+Garbage Sorting 8.0.1 Installation Agreement
 Please be sure to carefully read and understand all the rights and restrictions stipulated in this Garbage Sorting Installation License Agreement (hereinafter referred to as the "Agreement"). Unless you accept the terms of this Agreement, you have no right to download, install or use the garbage classification software attached to this Agreement (hereinafter referred to as the "Software") and related services. Once you install, copy, download, access or use this software product in other ways, you will be deemed to have accepted this "Agreement", which means that you agree to be bound by the terms of this "Agreement". If you do not agree to the terms in this Agreement, please do not install, copy or use this software.
 This "Agreement" is a legal agreement between the user and the software developer regarding the user to download, install, use, and copy the software.
 1. Statement of Rights
