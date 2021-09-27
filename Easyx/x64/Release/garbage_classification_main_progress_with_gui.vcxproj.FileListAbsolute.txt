@@ -1,0 +1,2 @@
+D:\Users\lry\source\repos\garbage_classification_main_progress_with_gui\x64\Release\garbage_classification_main_progress_with_gui.exe
+E:\编程文件储存区域\garbage_classification_main_progress_with_gui\x64\Release\garbage_classification_main_progress_with_gui.exe

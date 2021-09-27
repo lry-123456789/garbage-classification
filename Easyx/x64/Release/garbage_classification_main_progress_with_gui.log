@@ -1,0 +1,9 @@
+﻿  源.cpp
+E:\编程文件储存区域\garbage_classification_main_progress_with_gui\源.cpp(880,14): warning C4476: "fprintf": 格式说明符中的类型字段字符“=”未知
+E:\编程文件储存区域\garbage_classification_main_progress_with_gui\源.cpp(2497,14): warning C4476: "fprintf": 格式说明符中的类型字段字符“=”未知
+  正在生成代码
+  2 of 40 functions ( 5.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  garbage_classification_main_progress_with_gui.vcxproj -> E:\编程文件储存区域\garbage_classification_main_progress_with_gui\x64\Release\garbage_classification_main_progress_with_gui.exe
