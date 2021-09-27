@@ -27,3 +27,9 @@ You can use the commands below to control this program.
 7.    -version              get the program version
 
 Everyone is welcome to use the codes.
+-----------------------------------------------
+
+we will change almost all the codes to fix bug:1(cannot use mouse in some cases).
+we will update from 7.0.1 to 8.0.0
+we will change the sourse code from easyx20210730 to qt6.1.3
+we will make it faster and use less percentage of cpu.
