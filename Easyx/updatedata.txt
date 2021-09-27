@@ -1,0 +1,50 @@
+version 1.0.1
+this verson can make simple classify
+version 2.0.1
+this version can run in a mode(lost something it have,still can run)
+add a signcode to this program
+version 3.0.1
+this program add some gui interface,easier for you to use
+version 3.1.1
+this version has fixed mouse problem
+version 3.1.2
+this version has fixed some problems
+version 4.0.0 BETA
+this version has two threads to monitor mouse messages.
+version 4.0.0
+this version has git to github
+version 4.0.1
+this version has makes a open sourse license.
+version 4.1.1
+this version has added a license for guests to use
+version 4.1.2
+this version has added a file that can uninstall this program
+version 4.1.3
+this version has fix the problem of uninstall.exe
+version 4.2.0
+this version has made a GUI_interface for guests
+version 5.0.0
+this version has transform the python script to execlute files
+version 5.0.1
+this version has fixed some problems
+version 6.0.0
+this version has fixed some known problems
+version 7.0.0
+this version has added a function : can read number from command,and fixed some problems
+version 7.0.1
+this version has added api to commandline.
+version 7.0.2
+this version has fixed some known problems.
+version7.0.3
+this version has fixed some known bugs.
+version 7.0.4
+this version has improved compute speed.
+version 7.0.5
+this version has fixed some bugs that can make this program stop running
+version 7.0.6
+this version has fixed a serious bug that cannot recognize recyclable garbage.
+i have changed python script
+version 7.1.0
+this version has fixed some known problems
+this version has fixed some bugs 
+ security update
