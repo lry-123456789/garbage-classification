@@ -33,4 +33,5 @@ we will change almost all the codes to fix bug:1(cannot use mouse in some cases)
 we will update from 7.0.1 to 8.0.0
 we will change the sourse code from easyx20210730 to qt6.1.3
 we will make it faster and use less percentage of cpu.
-本项目张志尚禁止入内，如果发现，立即按照中华人民共和国知识产权法处理。
+
+本项目禁止张志尚入内，一经发现，立即按照中华人民共和国知识产权法处理。
