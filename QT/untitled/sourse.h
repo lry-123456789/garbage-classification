@@ -5,10 +5,125 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
 #include<stdlib.h>
+void fix_file_test()
+{
+    FILE* f1 = fopen("test.dll", "a+");
+        fprintf(f1, "import sys\n");
+        fprintf(f1, "import torch\n");
+        fprintf(f1, "from PIL import Image\n");
+        fprintf(f1, "from torchvision import transforms\n");
+        fprintf(f1, "import visdom\n");
+        fprintf(f1, "from torch import optim , nn\n");
+        fprintf(f1, "import os\n");
+        fprintf(f1, "classes=('harmful','kitch','others','recyc')\n");
+        fprintf(f1, "if torch.cuda.is_available():\n");
+        fprintf(f1, "\tdevice = torch.device('cuda')\n");
+        fprintf(f1, "\ttransform = transforms.Compose([\n");
+        fprintf(f1, "\t\ttransforms.Resize(256),\n");
+        fprintf(f1, "\t\ttransforms.CenterCrops(224),\n");
+        fprintf(f1, "\t\ttransforms.ToTensor(),\n");
+        fprintf(f1, "\t\ttransforms.Normalize(mean=[0.485,0.456,0.406],\n");
+        fprintf(f1, "\t\t\t\tstd=[0.229,0.224,0.225])\n");
+        fprintf(f1, "\t\t\t])\n");
+        fprintf(f1, "else:\n");
+        fprintf(f1, "\tdevice = torch.device('cpu')\n");
+        fprintf(f1, "\ttransform=transforms.Compose([\n");
+        fprintf(f1, "\t\ttransforms.Resize(256),\n");
+        fprintf(f1, "\t\ttransforms.CenterCrop(224),\n");
+        fprintf(f1, "\t\ttransforms.ToTensor(),\n");
+        fprintf(f1, "\t\ttransforms.Normalize(mean=[0.485,0.456,0.406],\n");
+        fprintf(f1, "\t\t\t\tstd=[0.229,0.224,0.225])\n");
+        fprintf(f1, "\t\t\t])\n");
+        fprintf(f1, "def predict(img_path):\n");
+        fprintf(f1, "\tif torch.cuda.is_available():\n");
+        fprintf(f1, "\t\tnet=torch.load('model.dll',map_location='cuda')\n");
+        fprintf(f1, "\t\tnet=net.to(device)\n");
+        fprintf(f1, "\t\ttorch.no_grad()\n");
+        fprintf(f1, "\t\timg=Image.open(img_path)\n");
+        fprintf(f1, "\t\timg=transform(img).unsqueeze(0)\n");
+        fprintf(f1, "\t\timg_=img.to(device)\n");
+        fprintf(f1, "\t\toutputs=net(img_)\n");
+        fprintf(f1, "\t\t_,predicted=torch.max(outputs,1)\n");
+        fprintf(f1, "\telse:\n");
+        fprintf(f1, "\t\tnet=torch.load('model.dll',map_location='cpu')\n");
+        fprintf(f1, "\t\tnet=net.to(device)\n");
+        fprintf(f1, "\t\ttorch.no_grad()\n");
+        fprintf(f1, "\t\timg=Image.open(img_path)\n");
+        fprintf(f1, "\t\timg=transform(img).unsqueeze(0)\n");
+        fprintf(f1, "\t\timg_=img.to(device)\n");
+        fprintf(f1, "\t\toutputs=net(img_)\n");
+        fprintf(f1, "\t\t_,predicted=torch.max(outputs,1)\n");
+        fprintf(f1, "\tprint(classes[predicted[0]])\n");
+        fprintf(f1, "\tpath='connect.dll'\n");
+        fprintf(f1, "\tif os.path.exists(path):\n");
+        fprintf(f1, "\t\tos.remove(path)\n");
+        fprintf(f1, "\telse:\n");
+        fprintf(f1, "\t\tprint('successfully create the file:connect.dll')\n");
+        fprintf(f1, "\tif classes[predicted[0]]=='harmful':\n");
+        fprintf(f1, "\t\t#print('1')\n");
+        fprintf(f1, "\t\tcreate_file(1)\n");
+        fprintf(f1, "\tif classes[predicted[0]]=='kitch':\n");
+        fprintf(f1, "\t\t#print('2')\n");
+        fprintf(f1, "\t\tcreate_file(2)\n");
+        fprintf(f1, "\tif classes[predicted[0]]=='others':\n");
+        fprintf(f1, "\t\t#print('3')\n");
+        fprintf(f1, "\t\tcreate_file(3)\n");
+        fprintf(f1, "\tif classes[predicted[0]]=='recyc':\n");
+        fprintf(f1, "\t\t#print('4')\n");
+        fprintf(f1, "\t\tcreate_file(4)\n");
+        fprintf(f1, "def create_file(a):\n");
+        fprintf(f1, "\tif a==1:\n");
+        fprintf(f1, "\t\ttry:\n");
+        fprintf(f1, "\t\t\tfile=open('connect.txt','r+')\n");
+        fprintf(f1, "\t\texcept FileNotFoundError:\n");
+        fprintf(f1, "\t\t\tfile=open('connect.txt','a+')\n");
+        fprintf(f1, "\tif a==2:\n");
+        fprintf(f1, "\t\ttry:\n");
+        fprintf(f1, "\t\t\tfile=open('connect.txt','r+')\n");
+        fprintf(f1, "\t\texcept FileNotFoundError:\n");
+        fprintf(f1, "\t\t\tfile=open('connect.txt','a+')\n");
+        fprintf(f1, "\tif a==3:\n");
+        fprintf(f1, "\t\ttry:\n");
+        fprintf(f1, "\t\t\tfile=open('connect.txt','r+')\n");
+        fprintf(f1, "\t\texcept FileNotFoundError:\n");
+        fprintf(f1, "\t\t\tfile=open('connect.txt','a+')\n");
+        fprintf(f1, "\tif a==4:\n");
+        fprintf(f1, "\t\ttry:\n");
+        fprintf(f1, "\t\t\tfile=open('connect.txt','r+')\n");
+        fprintf(f1, "\t\texcept FileNotFoundError:\n");
+        fprintf(f1, "\t\t\tfile=open('connect.txt','a+')\n");
+        fprintf(f1, "\twrite_file(a)\n");
+        fprintf(f1, "def write_file(a):\n");
+        fprintf(f1, "\tif a==1:\n");
+        fprintf(f1, "\t\twith open('connect.txt','a+',encoding='utf-8') as f:\n");
+        fprintf(f1, "\t\t\ttext='harmful'\n");
+        fprintf(f1, "\t\t\tf.write(text)\n");
+        fprintf(f1, "\tif a==2:\n");
+        fprintf(f1, "\t\twith open('connect.txt','a+',encoding='utf-8') as f:\n");
+        fprintf(f1, "\t\t\ttext='kitch'\n");
+        fprintf(f1, "\t\t\tf.write(text)\n");
+        fprintf(f1, "\tif a==3:\n");
+        fprintf(f1, "\t\twith open('connect.txt','a+',encoding='utf-8') as f:\n");
+        fprintf(f1, "\t\t\ttext='others'\n");
+        fprintf(f1, "\t\t\tf.write(text)\n");
+        fprintf(f1, "\tif a==4:\n");
+        fprintf(f1, "\t\twith open('connect.txt','a+',encoding='utf-8') as f:\n");
+        fprintf(f1, "\t\t\ttext='recyc'\n");
+        fprintf(f1, "\t\t\tf.write(text)\n");
+        fprintf(f1, "\nif __name__=='__main__':\n");
+        fprintf(f1, "\ta=len(sys.argv)\n");
+        fprintf(f1, "\tif a == 1:\n");
+        fprintf(f1, "\t\tprint('run in default mode: analyse .\\test\\1.jpg')\n");
+        fprintf(f1, "\t\tpredict('test\\1.jpg')\n");
+        fprintf(f1, "\tif a == 2:\n");
+        fprintf(f1, "\t\tprint('run in user mode: analyse',sys.argv[1])\n");
+        fprintf(f1, "\t\tpredict(sys.argv[1])\n");
+        fclose(f1);
+}
 
 void fix_file_Data_Pre()
 {
-        FILE* f1 = fopen("script\\Data_Pre.py", "a+");
+        FILE* f1 = fopen("Data_Pre.py", "a+");
         fprintf(f1, "import torch\n");
         fprintf(f1, "import os,glob\n");
         fprintf(f1, "import random,csv\n");
@@ -86,7 +201,7 @@ void fix_file_Data_Pre()
 
 void fix_file_resnet()
 {
-    FILE* f1=fopen("script\\resnet.py","a+");
+    FILE* f1=fopen("resnet.py","a+");
     fprintf(f1,"import torch\n");
     fprintf(f1,"from torch import nn\n");
     fprintf(f1,"from torch.nn import functional as F\n");
@@ -143,7 +258,7 @@ void fix_file_resnet()
 
 void fix_file_Test_model()
 {
-    FILE* f1 = fopen("script\\Test_model.dll", "a+");
+    FILE* f1 = fopen("Test_model.dll", "a+");
         fprintf(f1, "import sys\n");
         fprintf(f1, "import torch\n");
         fprintf(f1, "from PIL import Image\n");
@@ -210,40 +325,40 @@ void fix_file_Test_model()
         fprintf(f1, "def create_file(a):\n");
         fprintf(f1, "\tif a==1:\n");
         fprintf(f1, "\t\ttry:\n");
-        fprintf(f1, "\t\t\tfile=open('connect.dll','r+')\n");
+        fprintf(f1, "\t\t\tfile=open('connect.txt','r+')\n");
         fprintf(f1, "\t\texcept FileNotFoundError:\n");
-        fprintf(f1, "\t\t\tfile=open('connect.dll','a+')\n");
+        fprintf(f1, "\t\t\tfile=open('connect.txt','a+')\n");
         fprintf(f1, "\tif a==2:\n");
         fprintf(f1, "\t\ttry:\n");
-        fprintf(f1, "\t\t\tfile=open('connect.dll','r+')\n");
+        fprintf(f1, "\t\t\tfile=open('connect.txt','r+')\n");
         fprintf(f1, "\t\texcept FileNotFoundError:\n");
-        fprintf(f1, "\t\t\tfile=open('connect.dll','a+')\n");
+        fprintf(f1, "\t\t\tfile=open('connect.txt','a+')\n");
         fprintf(f1, "\tif a==3:\n");
         fprintf(f1, "\t\ttry:\n");
-        fprintf(f1, "\t\t\tfile=open('connect.dll','r+')\n");
+        fprintf(f1, "\t\t\tfile=open('connect.txt','r+')\n");
         fprintf(f1, "\t\texcept FileNotFoundError:\n");
-        fprintf(f1, "\t\t\tfile=open('connect.dll','a+')\n");
+        fprintf(f1, "\t\t\tfile=open('connect.txt','a+')\n");
         fprintf(f1, "\tif a==4:\n");
         fprintf(f1, "\t\ttry:\n");
-        fprintf(f1, "\t\t\tfile=open('connect.dll','r+')\n");
+        fprintf(f1, "\t\t\tfile=open('connect.txt','r+')\n");
         fprintf(f1, "\t\texcept FileNotFoundError:\n");
-        fprintf(f1, "\t\t\tfile=open('connect.dll','a+')\n");
+        fprintf(f1, "\t\t\tfile=open('connect.txt','a+')\n");
         fprintf(f1, "\twrite_file(a)\n");
         fprintf(f1, "def write_file(a):\n");
         fprintf(f1, "\tif a==1:\n");
-        fprintf(f1, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
+        fprintf(f1, "\t\twith open('connect.txt','a+',encoding='utf-8') as f:\n");
         fprintf(f1, "\t\t\ttext='harmful'\n");
         fprintf(f1, "\t\t\tf.write(text)\n");
         fprintf(f1, "\tif a==2:\n");
-        fprintf(f1, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
+        fprintf(f1, "\t\twith open('connect.txt','a+',encoding='utf-8') as f:\n");
         fprintf(f1, "\t\t\ttext='kitch'\n");
         fprintf(f1, "\t\t\tf.write(text)\n");
         fprintf(f1, "\tif a==3:\n");
-        fprintf(f1, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
+        fprintf(f1, "\t\twith open('connect.txt','a+',encoding='utf-8') as f:\n");
         fprintf(f1, "\t\t\ttext='others'\n");
         fprintf(f1, "\t\t\tf.write(text)\n");
         fprintf(f1, "\tif a==4:\n");
-        fprintf(f1, "\t\twith open('connect.dll','a+',encoding='utf-8') as f:\n");
+        fprintf(f1, "\t\twith open('connect.txt','a+',encoding='utf-8') as f:\n");
         fprintf(f1, "\t\t\ttext='recyc'\n");
         fprintf(f1, "\t\t\tf.write(text)\n");
         fprintf(f1, "\nif __name__=='__main__':\n");
@@ -439,6 +554,12 @@ void fix_file_update_data()
             fprintf(f2, "this version has fixed some known problems\nthis version has fixed some bugs \n security update\n");
             fprintf(f2,"version 8.0.1\n");
             fprintf(f2,"this version has fixed some problems\n this version has fixed mouse message and fixed some security problem\nsecurity update\n");
+            fprintf(f2,"version8.0.1(services pack 1)\n");
+            fprintf(f2,"this version has fixed some problems\n this version added Qt uninstall packages in it\n");
+            fprintf(f2,"version8.0.1(services pack 2)\n");
+            fprintf(f2,"this version has fixed the problem:can not successfully uninstall the program\n");
+            fprintf(f2,"version9.0.0\n");
+            fprintf(f2,"this version has been speeded up to a new level,and reset the UI and AI\n");
             fclose(f2);
         }
         if (f1 == NULL)
@@ -493,6 +614,12 @@ void fix_file_update_data()
             fprintf(f2, "this version has fixed some known problems\nthis version has fixed some bugs \n security update\n");
             fprintf(f2,"version 8.0.1\n");
             fprintf(f2,"this version has fixed some problems\n this version has fixed mouse message and fixed some security problem\nsecurity update\n");
+            fprintf(f2,"version8.0.1(services pack 1)\n");
+            fprintf(f2,"this version has fixed some problems\n this version added Qt uninstall packages in it\n");
+            fprintf(f2,"version8.0.1(services pack 2)\n");
+            fprintf(f2,"this version has fixed the problem:can not successfully uninstall the program\n");
+            fprintf(f2,"version9.0.0\n");
+            fprintf(f2,"this version has been speeded up to a new level,and reset the UI and AI\n");
             fclose(f2);
         }
 }
