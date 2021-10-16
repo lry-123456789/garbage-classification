@@ -9,13 +9,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>480</width>
+    <width>1077</width>
     <height>640</height>
    </rect>
   </property>
   <property name="maximumSize">
    <size>
-    <width>480</width>
+    <width>1077</width>
     <height>640</height>
    </size>
   </property>
@@ -49,7 +49,8 @@
      </rect>
     </property>
     <property name="text">
-     <string>启动主程序并进行自动分类操作</string>
+     <string>启动主程序并进行自动分类操作
+（默认路径.test1.jpg）</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton_3">
@@ -71,7 +72,7 @@
       <x>100</x>
       <y>260</y>
       <width>281</width>
-      <height>71</height>
+      <height>61</height>
      </rect>
     </property>
     <property name="text">
@@ -82,7 +83,7 @@
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>340</y>
+      <y>330</y>
       <width>341</width>
       <height>23</height>
      </rect>
@@ -104,7 +105,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>340</y>
+      <y>330</y>
       <width>121</width>
       <height>21</height>
      </rect>
@@ -117,7 +118,7 @@
     <property name="geometry">
      <rect>
       <x>130</x>
-      <y>370</y>
+      <y>360</y>
       <width>341</width>
       <height>23</height>
      </rect>
@@ -133,7 +134,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>370</y>
+      <y>360</y>
       <width>121</width>
       <height>21</height>
      </rect>
@@ -146,9 +147,9 @@
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>421</y>
-      <width>421</width>
-      <height>151</height>
+      <y>450</y>
+      <width>1031</width>
+      <height>121</height>
      </rect>
     </property>
     <property name="html">
@@ -162,8 +163,8 @@ p, li { white-space: pre-wrap; }
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>13</x>
-      <y>399</y>
+      <x>10</x>
+      <y>420</y>
       <width>271</width>
       <height>21</height>
      </rect>
@@ -198,13 +199,133 @@ p, li { white-space: pre-wrap; }
      <string>源代码（Github）</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>390</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>图片分析处理进度</string>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="progressBar_3">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>390</y>
+      <width>341</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>3</x>
+      <y>570</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>当前时间：</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>63</x>
+      <y>577</y>
+      <width>381</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPlainTextEdit" name="plainTextEdit">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>30</y>
+      <width>341</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_7">
+    <property name="geometry">
+     <rect>
+      <x>900</x>
+      <y>30</y>
+      <width>151</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>选择图片并识别</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>35</y>
+      <width>61</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>文件路径：</string>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>490</x>
+      <y>80</y>
+      <width>561</width>
+      <height>351</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>493</x>
+      <y>81</y>
+      <width>561</width>
+      <height>351</height>
+     </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>561</width>
+      <height>351</height>
+     </size>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>480</width>
+     <width>1077</width>
      <height>23</height>
     </rect>
    </property>
