@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include<Windows.h>
+#include <Windows.h>
 #include <QMessageBox>
 #include <QDialog>
 #include <QLabel>
@@ -10,23 +10,123 @@
 #include <QComboBox>
 #include <QPushButton>
 #include <QGridLayout>
-#include<stdio.h>
-#include<stdlib.h>
-#include<sourse.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sourse.h>
+#include <QMainWindow>
+#include <QTimer>
+#include <QDateTime>
+#include <qdatetime.h>
+#include <QtWidgets/QMessageBox>
+#include <QFileDialog>
+#include <string.h>
+#include <process.h>
+#include <time.h>
+#include <cstdio>
+#include <cstdlib>
+#pragma comment(lib, "winmm.lib ")
 #pragma once
+using namespace std;
+
+//GLOBAL NUM/PATH
+wchar_t global_ch[1000]={'\0'};
+void analyse_graph(void *);
+int global_analyse=0;
 
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+    //add ui interface to this project
     ui->setupUi(this);
+    QTimer *timer = new QTimer(this);
+    //create a timer process.
+    connect(timer,SIGNAL(timeout()),this,SLOT(timerUpdate()));
+    timer->start(1000);
 }
 
 MainWindow::~MainWindow()
 {
+    //the action when close the main window
     delete ui;
 }
+void scan_fix_files()
+{
+    FILE *f1=fopen("Data_Pre.py","rb");
+    FILE *f2=fopen("train.dll","rb");
+    FILE *f3=fopen("resnet.py","rb");
+    FILE *f4=fopen("utils.py","rb");
+    FILE *f5=fopen("Test_model.dll","rb");
+    FILE *f6=fopen("test.dll","rb");
+    FILE *f7=fopen("readme.txt","rb");
+    FILE *f8=fopen("updatedata.txt","rb");
+    if(f1==NULL)
+    {
+        fix_file_Data_Pre();
+    }
+    else
+    {
+        fclose(f1);
+    }
+    if(f2==NULL)
+    {
+        fix_file_train();
+    }
+    else
+    {
+        fclose(f2);
+    }
+    if(f3==NULL)
+    {
+        fix_file_resnet();
+    }
+    else
+    {
+        fclose(f3);
+    }
+    if(f4==NULL)
+    {
+        fix_file_utils();
+    }
+    else
+    {
+        fclose(f4);
+    }
+    if(f5==NULL)
+    {
+        fix_file_Test_model();
+    }
+    else
+    {
+        fclose(f5);
+    }
+    if(f6==NULL)
+    {
+        fix_file_test();
+    }
+    else
+    {
+        fclose(f6);
+    }
+    if(f7==NULL)
+    {
+        fix_file_readme();
+    }
+    else
+    {
+        fix_file_readme();
+    }
+    if(f8==NULL)
+    {
+        fix_file_update_data();
+    }
+    else
+    {
+        fix_file_update_data();
+    }
+}
+
 /**************\
  * ui->progressBar->setValue(i);
  * ui->progressBar_2->setValue(j);
@@ -34,8 +134,8 @@ MainWindow::~MainWindow()
 \**************/
 void MainWindow::on_pushButton_clicked()
 {
-    FILE* ERRORf1 =freopen("error.log","w+",stderr);
-    //QMessageBox::information(NULL,  "本程序信息",  "本程序由刘仁宇编写\n版本号：version8.0.1\n程序支持：Qt\nGUI界面支持：Qt6.1.3\n编译支持：Qt cteator\n", QMessageBox::Yes);
+    FILE* ERRORf1 =freopen("system.log","a+",stdout);
+    //QMessageBox::information(NULL,  "本程序信息",  "本程序由刘仁宇编写\n版本号：version8.0.1(services pack 2)\n程序支持：Qt\nGUI界面支持：Qt6.1.3\n编译支持：Qt cteator\n", QMessageBox::Yes);
     ui->progressBar_2->setValue(0);
     FILE* f1=fopen("Qt6Widgets.dll","rb");
     if(f1==NULL)
@@ -556,7 +656,7 @@ void MainWindow::on_pushButton_clicked()
         fclose(f47);
     }
     ui->progressBar_2->setValue(47);
-    FILE* f48=fopen("script\\model.dll","rb");
+    FILE* f48=fopen("model.dll","rb");
     if(f48==NULL)
     {
         ui->textBrowser->insertPlainText("can not found the file:script\\model.dll\n");
@@ -569,7 +669,7 @@ void MainWindow::on_pushButton_clicked()
         fclose(f48);
     }
     ui->progressBar_2->setValue(48);
-    FILE* f49=fopen("script\\Data_Pre.py","rb");
+    FILE* f49=fopen("Data_Pre.py","rb");
     if(f49==NULL)
     {
         ui->textBrowser->insertPlainText("can not found the file:script\\Data_Pre.py\n");
@@ -580,7 +680,7 @@ void MainWindow::on_pushButton_clicked()
         fclose(f49);
     }
     ui->progressBar_2->setValue(49);
-    FILE* f50=fopen("script\\resnet.py","rb");
+    FILE* f50=fopen("resnet.py","rb");
     if(f50==NULL)
     {
         ui->textBrowser->insertPlainText("can not found the file:script\\resnet.py\n");
@@ -591,7 +691,7 @@ void MainWindow::on_pushButton_clicked()
         fclose(f50);
     }
     ui->progressBar_2->setValue(50);
-    FILE* f51=fopen("script\\Test_model.dll","rb");
+    FILE* f51=fopen("Test_model.dll","rb");
     if(f51==NULL)
     {
         ui->textBrowser->insertPlainText("can not found the file:script\\Test_model.dll\n");
@@ -602,7 +702,7 @@ void MainWindow::on_pushButton_clicked()
         fclose(f51);
     }
     ui->progressBar_2->setValue(51);
-    FILE* f52=fopen("script\\train.dll","rb");
+    FILE* f52=fopen("train.dll","rb");
     if(f52==NULL)
     {
         ui->textBrowser->insertPlainText("can not found the file:script\\train.dll\n");
@@ -613,7 +713,7 @@ void MainWindow::on_pushButton_clicked()
         fclose(f52);
     }
     ui->progressBar_2->setValue(52);
-    FILE* f53=fopen("script\\utils.py","rb");
+    FILE* f53=fopen("utils.py","rb");
     if(f53==NULL)
     {
         ui->textBrowser->insertPlainText("can not found the file:script\\utils.py\n");
@@ -676,36 +776,30 @@ void MainWindow::on_pushButton_clicked()
     ui->textBrowser->insertPlainText("congratulations!\nfiles checking finished\n");
 }
 
-
 void MainWindow::on_pushButton_4_clicked()
 {
     QMessageBox::information(NULL,  "提示",  "我们将要退出本程序，点击确定以继续 ", QMessageBox::Yes);
     exit(0);
 }
 
-
 void MainWindow::on_progressBar_valueChanged(int value)
 {
 //donnot write in this function
 }
-
 
 void MainWindow::on_progressBar_2_valueChanged(int value)
 {
 //donot write in this function
 }
 
-
 void MainWindow::on_pushButton_3_clicked()
 {
-    QMessageBox::information(NULL,  "本程序信息",  "本程序由刘仁宇编写\n版本号：version8.0.1\n程序支持：Qt\nGUI界面支持：Qt6.1.3\n编译支持：Qt cteator\n", QMessageBox::Yes);
+    QMessageBox::information(NULL,  "本程序信息",  "本程序由刘仁宇编写\n版本号：version9.0.0\n程序支持：Qt\nGUI界面支持：Qt6.1.3\n编译支持：Qt cteator\n", QMessageBox::Yes);
 }
-
-
 
 void MainWindow::on_pushButton_5_clicked()
 {
-    FILE* f1=fopen("script\\Data_Pre.py","rb");
+    FILE* f1=fopen("Data_Pre.py","rb");
     if(f1==NULL)
     {
         ui->textBrowser->insertPlainText("begin to fix the file:scripts\\Data_Pre.py\n");
@@ -716,7 +810,7 @@ void MainWindow::on_pushButton_5_clicked()
     {
         fclose(f1);
     }
-    FILE* f2=fopen("script\\resnet.py","rb");
+    FILE* f2=fopen("resnet.py","rb");
     if(f2==NULL)
     {
         ui->textBrowser->insertPlainText("begin to fix the file:scripts\\resnet.py\n");
@@ -727,7 +821,7 @@ void MainWindow::on_pushButton_5_clicked()
     {
         fclose(f2);
     }
-    FILE* f3=fopen("script\\Test_model.dll","rb");
+    FILE* f3=fopen("Test_model.dll","rb");
     if(f3==NULL)
     {
         ui->textBrowser->insertPlainText("begin to fix the file:scripts\\Test_model.dll\n");
@@ -738,7 +832,7 @@ void MainWindow::on_pushButton_5_clicked()
     {
         fclose(f3);
     }
-    FILE* f4=fopen("script\\train.dll","rb");
+    FILE* f4=fopen("train.dll","rb");
     if(f4==NULL)
     {
         ui->textBrowser->insertPlainText("begin to fix the file:scripts\\train.dll\n");
@@ -749,7 +843,7 @@ void MainWindow::on_pushButton_5_clicked()
     {
         fclose(f4);
     }
-    FILE* f5=fopen("script\\utils.py","rb");
+    FILE* f5=fopen("utils.py","rb");
     if(f5==NULL)
     {
         ui->textBrowser->insertPlainText("begin to fix the file:scripts\\utils.py\n");
@@ -763,19 +857,18 @@ void MainWindow::on_pushButton_5_clicked()
     FILE* f6=fopen("readme.txt","rb");
     if(f6==NULL)
     {
-        ui->textBrowser->insertPlainText("begin to update readme.txt");
+        ui->textBrowser->insertPlainText("begin to update readme.txt\n");
         fix_file_readme();
-        ui->textBrowser->insertPlainText("successfully updated readme.txt");
+        ui->textBrowser->insertPlainText("successfully updated readme.txt\n");
     }
     else
     {
         fclose(f6);
     }
-    ui->textBrowser->insertPlainText("begin to update the file:updatedata.txt");
+    ui->textBrowser->insertPlainText("begin to update the file:updatedata.txt\n");
     fix_file_update_data();
-    ui->textBrowser->insertPlainText("update successfully");
+    ui->textBrowser->insertPlainText("update successfully\n");
 }
-
 
 void MainWindow::on_pushButton_2_clicked()
 {
@@ -1301,7 +1394,7 @@ void MainWindow::on_pushButton_2_clicked()
         fclose(f47);
     }
     ui->progressBar_2->setValue(47);
-    FILE* f48=fopen("script\\model.dll","rb");
+    FILE* f48=fopen("model.dll","rb");
     if(f48==NULL)
     {
         ui->textBrowser->insertPlainText("can not found the file:script\\model.dll\n");
@@ -1314,7 +1407,7 @@ void MainWindow::on_pushButton_2_clicked()
         fclose(f48);
     }
     ui->progressBar_2->setValue(48);
-    FILE* f49=fopen("script\\Data_Pre.py","rb");
+    FILE* f49=fopen("Data_Pre.py","rb");
     if(f49==NULL)
     {
         ui->textBrowser->insertPlainText("can not found the file:script\\Data_Pre.py\n");
@@ -1325,7 +1418,7 @@ void MainWindow::on_pushButton_2_clicked()
         fclose(f49);
     }
     ui->progressBar_2->setValue(49);
-    FILE* f50=fopen("script\\resnet.py","rb");
+    FILE* f50=fopen("resnet.py","rb");
     if(f50==NULL)
     {
         ui->textBrowser->insertPlainText("can not found the file:script\\resnet.py\n");
@@ -1336,7 +1429,7 @@ void MainWindow::on_pushButton_2_clicked()
         fclose(f50);
     }
     ui->progressBar_2->setValue(50);
-    FILE* f51=fopen("script\\Test_model.dll","rb");
+    FILE* f51=fopen("Test_model.dll","rb");
     if(f51==NULL)
     {
         ui->textBrowser->insertPlainText("can not found the file:script\\Test_model.dll\n");
@@ -1347,7 +1440,7 @@ void MainWindow::on_pushButton_2_clicked()
         fclose(f51);
     }
     ui->progressBar_2->setValue(51);
-    FILE* f52=fopen("script\\train.dll","rb");
+    FILE* f52=fopen("train.dll","rb");
     if(f52==NULL)
     {
         ui->textBrowser->insertPlainText("can not found the file:script\\train.dll\n");
@@ -1358,7 +1451,7 @@ void MainWindow::on_pushButton_2_clicked()
         fclose(f52);
     }
     ui->progressBar_2->setValue(52);
-    FILE* f53=fopen("script\\utils.py","rb");
+    FILE* f53=fopen("utils.py","rb");
     if(f53==NULL)
     {
         ui->textBrowser->insertPlainText("can not found the file:script\\utils.py\n");
@@ -1424,15 +1517,29 @@ void MainWindow::on_pushButton_2_clicked()
     ui->textBrowser->insertPlainText("请稍后\n");
     ui->textBrowser->insertPlainText("启动组件ipython,powershell,python,请稍后\n");
     wchar_t cch1[]=L"open";
-    wchar_t cch2[]=L"cmd.exe";
-    wchar_t cch3[]=L"python script\\Test_model.dll";
-    ui->textBrowser->insertPlainText("向命令行注入指令：python script\\Test_model.dll");
+    wchar_t cch2[]=L"cmd";
+    wchar_t cch3[]=L"cmd /C python Test_model.dll";
+    //system("python Test_model.dll");
+    ui->textBrowser->insertPlainText("向命令行注入指令：python Test_model.dll");
     ui->textBrowser->insertPlainText("开始执行智能识别操作，请稍后\n");
-    ShellExecute(NULL,cch1,cch2,cch3,NULL,0);
+    //wchar_t ccch[]=L"script\\";
+    HINSTANCE a=ShellExecute(NULL,cch1,cch2,cch3,NULL,SW_HIDE);
+    while((long long int)a<=32)
+    {
+        Sleep(1000);
+        ui->textBrowser->insertPlainText("正在识别图片，请稍后\n");
+        Sleep(1000);
+    }
+    for(int aaa=0;aaa<=100;aaa++)
+    {
+        ui->progressBar_3->setValue(aaa);
+        Sleep(100);
+    }
     int b = 0;
-    FILE* f100 = fopen("script\\connect.dll", "rb");
+    FILE* f100 = fopen("connect.txt", "rb");
     char chh[10] = { '\0' };
     fgets(chh, 10, f100);
+    fclose(f100);
     if(chh[0]=='h')
     {
         ui->textBrowser->insertPlainText("识别结果：有害垃圾\n");
@@ -1466,15 +1573,16 @@ void MainWindow::on_pushButton_2_clicked()
         if(b==1||b==2||b==3||b==4)
         {
             ui->textBrowser->insertPlainText("本程序出现了未知错误，0x00\n");
+            QMessageBox::information(NULL,  "错误",  "本程序出现了未知错误，0x00（通常为电位翻转造成）", QMessageBox::Yes);
         }
         else
         {
             ui->textBrowser->insertPlainText("本程序出现了未知错误：识别未完成，0x01\n");
+            ui->textBrowser->insertPlainText("如果出现本情况，请与软件开发者联系:1224137702@qq.com\n");
+            QMessageBox::information(NULL,  "未知错误",  "本程序出现了未知错误：识别未完成\n如果出现了本情况，请与本程序软件开发者联系：1224137702@qq.com", QMessageBox::Yes);
         }
     }
-    fclose(f100);
 }
-
 
 void MainWindow::on_pushButton_6_clicked()
 {
@@ -1483,3 +1591,201 @@ void MainWindow::on_pushButton_6_clicked()
     ShellExecute(NULL,cch1,cch2,NULL,NULL,0);
 }
 
+void MainWindow::on_progressBar_3_valueChanged(int value)
+{
+
+}
+
+void MainWindow::timerUpdate(void)
+{
+    QDateTime time = QDateTime::currentDateTime();
+    QString str = time.toString("yyyy-MM-dd hh:mm:ss dddd");
+    ui->label_6->setText(str);
+}
+
+void MainWindow::on_label_6_linkActivated(const QString &link)
+{
+
+}
+
+void MainWindow::on_label_8_linkActivated(const QString &link)
+{
+
+}
+
+
+
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    scan_fix_files();
+    QFileDialog *fileDialog = new QFileDialog(this);
+        QString fileName = QFileDialog::getOpenFileName(this,
+                                                        tr("打开文件"),
+                                                        "C:",
+                                                        tr("图片文件(*png *jpg *jepg *raw *bmp);;"
+                                                           ));
+        qDebug()<<""<<fileName;
+        //if(fileDialog->exec() == QDialog::Accepted) {
+                //QString path = fileDialog->selectedFiles()[0];
+               // std::wstring wstr = path.toStdWString();
+                    //const wchar_t* cPath = wstr.c_str();
+            QImage* img=new QImage;
+            if(!(img->load(fileName)))
+            {
+                QMessageBox::information(this,
+                                         tr("打开图片失败"),
+                                         tr("打开图片失败"));
+                delete img;
+            }
+            //resize(561,361);
+            QPixmap IMG(fileName);
+            IMG = IMG.scaled(ui->label_8->width(), ui->label_8->height(),
+                                                Qt::IgnoreAspectRatio, Qt::SmoothTransformation);//设置图片大小和label的长宽一致
+            ui->label_8->setPixmap(IMG);
+            ui->label_8->show();
+            //ui->label_8->setPixmap(QPixmap::fromImage(*img));
+            remove("program.cmd");
+            FILE* f1=fopen("program.cmd","a+");
+            fprintf(f1,"python test.dll  ");
+            fclose(f1);
+            QFile file0;
+            file0.setFileName("program.cmd");
+            if(file0.open(QIODevice::ReadWrite | QIODevice::Append))
+            {
+                QTextStream txtOutput(&file0);
+                txtOutput<<fileName<<"\n";
+                file0.close();
+            }
+            ui->plainTextEdit->clear();
+            ui->plainTextEdit->insertPlainText(fileName);
+            _beginthread(analyse_graph,0,NULL);
+            /*********************\
+            wchar_t cch1[]=L"open";
+            wchar_t cch2[]=L"cmd";
+            wchar_t cch3[]=L"cmd /C program.cmd";
+            ui->plainTextEdit->clear();
+            ui->plainTextEdit->insertPlainText(fileName);
+            HINSTANCE a=ShellExecute(NULL,cch1,cch2,cch3,NULL,SW_HIDE);
+            while((long long int)a<=32)
+            {
+                Sleep(1000);
+                ui->textBrowser->insertPlainText("正在识别图片，请稍后\n");
+                Sleep(1000);
+            }
+            for(int aaa=0;aaa<=100;aaa++)
+            {
+                ui->progressBar_3->setValue(aaa);
+                Sleep(100);
+            }
+            \******************/
+
+
+            int second;
+            second=0;
+            DWORD t1=timeGetTime();
+            while(true)
+            {
+                DWORD t2=timeGetTime();
+                Sleep(10);
+                //second=second+1;
+                second=t2-t1;
+                ui->textBrowser->insertPlainText("正在分析图片，请稍后...\t\t");
+                if(global_analyse==1)
+                {
+                    ui->textBrowser->insertPlainText("图片分析完成，请等待后续操作\n");
+                    break;
+                }
+                char ch0[]="analysing please wait ... time used : \t\t";
+                char ch1[]="ms";
+                char ch2[100]={'\0'};
+                char ch3[2]={'\0'};
+                ch3[0]='\n';
+                sprintf(ch2,"%d",second);
+                ui->textBrowser->insertPlainText(ch0);
+                ui->textBrowser->insertPlainText(ch2);
+                ui->textBrowser->insertPlainText(ch1);
+                ui->textBrowser->insertPlainText(ch3);
+            }
+            for(int aaa=0;aaa<=100;aaa++)
+            {
+                ui->progressBar_3->setValue(aaa);
+                Sleep(100);
+            }
+            int b = 0;
+            FILE* f100 = fopen("connect.txt", "rb");
+            char chh[10] = { '\0' };
+            fgets(chh, 10, f100);
+            fclose(f100);
+            if(chh[0]=='h')
+            {
+                ui->textBrowser->insertPlainText("识别结果：有害垃圾\n");
+                QMessageBox::information(NULL,  "识别结果",  "识别结果：有害垃圾", QMessageBox::Yes);
+                ui->textBrowser->insertPlainText("识别完成\n");
+                b=1;
+            }
+            else if(chh[0]=='k')
+            {
+                ui->textBrowser->insertPlainText("识别结果：厨余垃圾\n");
+                QMessageBox::information(NULL,  "识别结果",  "识别结果：厨余垃圾", QMessageBox::Yes);
+                ui->textBrowser->insertPlainText("识别完成\n");
+                b=2;
+            }
+            else if(chh[0]=='r')
+            {
+                ui->textBrowser->insertPlainText("识别结果：可回收垃圾\n");
+                QMessageBox::information(NULL,  "识别结果",  "识别结果：可回收垃圾", QMessageBox::Yes);
+                ui->textBrowser->insertPlainText("识别完成\n");
+                b=3;
+            }
+            else if(chh[0]=='o')
+            {
+                ui->textBrowser->insertPlainText("识别结果：其他垃圾\n");
+                QMessageBox::information(NULL,  "识别结果",  "识别结果：其它垃圾", QMessageBox::Yes);
+                ui->textBrowser->insertPlainText("识别完成\n");
+                b=4;
+            }
+            else
+            {
+                if(b==1||b==2||b==3||b==4)
+                {
+                    ui->textBrowser->insertPlainText("本程序出现了未知错误，0x00\n");
+                    QMessageBox::information(NULL,  "错误",  "本程序出现了未知错误，0x00（通常为电位翻转造成）", QMessageBox::Yes);
+                }
+                else
+                {
+                    ui->textBrowser->insertPlainText("本程序出现了未知错误：识别未完成，0x01\n");
+                    ui->textBrowser->insertPlainText("如果出现本情况，请与软件开发者联系:1224137702@qq.com\n");
+                    QMessageBox::information(NULL,  "未知错误",  "本程序出现了未知错误：识别未完成\n如果出现了本情况，请与本程序软件开发者联系：1224137702@qq.com", QMessageBox::Yes);
+                }
+            }
+            fclose(f100);
+            Sleep(10000);
+            remove("connect.txt");
+        }
+        //else
+        //{
+        /*******************\
+        QImage* img=new QImage;
+        if(!(img->load(fileName)))
+        {
+            QMessageBox::information(this,
+                                     tr("打开图片失败"),
+                                     tr("打开图片失败"));
+            delete img;
+        }
+        ui->label_8->setPixmap(QPixmap::fromImage(*img));
+        \*********************/
+        //}
+//}
+
+void analyse_graph(void*)
+{
+    global_analyse=0;
+    wchar_t cch1[]=L"open";
+    wchar_t cch2[]=L"cmd";
+    wchar_t cch3[]=L"cmd /C program.cmd";
+    HINSTANCE a=ShellExecute(NULL,cch1,cch2,cch3,NULL,SW_HIDE);
+    global_analyse=1;
+    _endthread();
+}
