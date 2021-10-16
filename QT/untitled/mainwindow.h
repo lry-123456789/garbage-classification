@@ -32,7 +32,17 @@ private slots:
 
     void on_pushButton_6_clicked();
 
+    void on_progressBar_3_valueChanged(int value);
+
+    void on_label_6_linkActivated(const QString &link);
+
+    void on_label_8_linkActivated(const QString &link);
+
+    void on_pushButton_7_clicked();
+
 private:
     Ui::MainWindow *ui;
+public slots:
+    void timerUpdate(void);
 };
 #endif // MAINWINDOW_H
